@@ -1,0 +1,1198 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0517937EC2470110A545F3A5 /* Pods_AlkoKolik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */; };
+		0FBFA0836B3BA5899B341767 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */; };
+		35C582F44FEB1AA731327F8A /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */; };
+		3D619426FE78B52C70215EFB /* Pods_AlkoKolikTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */; };
+		8F271ECF25DC0CDB00B76513 /* ClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271ECE25DC0CDB00B76513 /* ClockFace.swift */; };
+		8F271EDB25DC0D0100B76513 /* ClockHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EDA25DC0D0100B76513 /* ClockHand.swift */; };
+		8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EE125DC0D1E00B76513 /* UIClockView.swift */; };
+		8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
+		8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531F25ED91B600313656 /* DrinkListCell.swift */; };
+		8F321CD325ED716200E3CFFC /* DrinkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F321CD225ED716200E3CFFC /* DrinkListVC.swift */; };
+		8F51624B25D19E54006DBD85 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51624A25D19E54006DBD85 /* AppDelegate.swift */; };
+		8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51624C25D19E54006DBD85 /* SceneDelegate.swift */; };
+		8F51624F25D19E54006DBD85 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51624E25D19E54006DBD85 /* MainVC.swift */; };
+		8F51625225D19E54006DBD85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F51625025D19E54006DBD85 /* Main.storyboard */; };
+		8F51625425D19E56006DBD85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F51625325D19E56006DBD85 /* Assets.xcassets */; };
+		8F51625725D19E56006DBD85 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F51625525D19E56006DBD85 /* LaunchScreen.storyboard */; };
+		8F51626225D19E57006DBD85 /* AlkoKolikTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51626125D19E57006DBD85 /* AlkoKolikTests.swift */; };
+		8F51626D25D19E57006DBD85 /* AlkoKolikUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51626C25D19E57006DBD85 /* AlkoKolikUITests.swift */; };
+		8F51627225D19E57006DBD85 /* AlkoKolik WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 8F51627125D19E57006DBD85 /* AlkoKolik WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F51627825D19E57006DBD85 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F51627625D19E57006DBD85 /* Interface.storyboard */; };
+		8F51627A25D19E58006DBD85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F51627925D19E58006DBD85 /* Assets.xcassets */; };
+		8F51628125D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8F51628025D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		8F51628625D19E58006DBD85 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51628525D19E58006DBD85 /* InterfaceController.swift */; };
+		8F51628825D19E58006DBD85 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51628725D19E58006DBD85 /* ExtensionDelegate.swift */; };
+		8F51628A25D19E58006DBD85 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51628925D19E58006DBD85 /* NotificationController.swift */; };
+		8F51628C25D19E58006DBD85 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F51628B25D19E58006DBD85 /* ComplicationController.swift */; };
+		8F51628E25D19E59006DBD85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F51628D25D19E59006DBD85 /* Assets.xcassets */; };
+		8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
+		8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */; };
+		8FAEAD8425EAA2C8008F2457 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */; };
+		8FCBE15325E509990057459B /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCBE15225E509990057459B /* ProgressRing.swift */; };
+		8FE3539D25ED15DB005CD98D /* FavouriteButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE3539C25ED15DB005CD98D /* FavouriteButtonsView.swift */; };
+		9B39474F3C7C1DF4BA3FA790 /* Pods_AlkoKolik_AlkoKolikUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8179707251F6D8F32E3D6A6 /* Pods_AlkoKolik_AlkoKolikUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8F51625E25D19E57006DBD85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F51623F25D19E53006DBD85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F51624625D19E53006DBD85;
+			remoteInfo = AlkoKolik;
+		};
+		8F51626925D19E57006DBD85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F51623F25D19E53006DBD85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F51624625D19E53006DBD85;
+			remoteInfo = AlkoKolik;
+		};
+		8F51627325D19E57006DBD85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F51623F25D19E53006DBD85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F51627025D19E57006DBD85;
+			remoteInfo = "AlkoKolik WatchKit App";
+		};
+		8F51628225D19E58006DBD85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8F51623F25D19E53006DBD85 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8F51627F25D19E58006DBD85;
+			remoteInfo = "AlkoKolik WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8F51629625D19E59006DBD85 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8F51628125D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51629A25D19E59006DBD85 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				8F51627225D19E57006DBD85 /* AlkoKolik WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolikTests.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolikTests/Pods-AlkoKolikTests.release.xcconfig"; sourceTree = "<group>"; };
+		800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.release.xcconfig"; sourceTree = "<group>"; };
+		892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		8F271ECE25DC0CDB00B76513 /* ClockFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockFace.swift; sourceTree = "<group>"; };
+		8F271EDA25DC0D0100B76513 /* ClockHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockHand.swift; sourceTree = "<group>"; };
+		8F271EE125DC0D1E00B76513 /* UIClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIClockView.swift; sourceTree = "<group>"; };
+		8F2F531325ED761C00313656 /* DrinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkItem.swift; sourceTree = "<group>"; };
+		8F2F531F25ED91B600313656 /* DrinkListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListCell.swift; sourceTree = "<group>"; };
+		8F321CD225ED716200E3CFFC /* DrinkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListVC.swift; sourceTree = "<group>"; };
+		8F51624725D19E54006DBD85 /* AlkoKolik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlkoKolik.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F51624A25D19E54006DBD85 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8F51624C25D19E54006DBD85 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8F51624E25D19E54006DBD85 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		8F51625125D19E54006DBD85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8F51625325D19E56006DBD85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F51625625D19E56006DBD85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8F51625825D19E56006DBD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F51625D25D19E57006DBD85 /* AlkoKolikTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlkoKolikTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F51626125D19E57006DBD85 /* AlkoKolikTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlkoKolikTests.swift; sourceTree = "<group>"; };
+		8F51626325D19E57006DBD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F51626825D19E57006DBD85 /* AlkoKolikUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlkoKolikUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F51626C25D19E57006DBD85 /* AlkoKolikUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlkoKolikUITests.swift; sourceTree = "<group>"; };
+		8F51626E25D19E57006DBD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F51627125D19E57006DBD85 /* AlkoKolik WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AlkoKolik WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F51627725D19E57006DBD85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		8F51627925D19E58006DBD85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F51627B25D19E58006DBD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F51628025D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "AlkoKolik WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F51628525D19E58006DBD85 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		8F51628725D19E58006DBD85 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		8F51628925D19E58006DBD85 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		8F51628B25D19E58006DBD85 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		8F51628D25D19E59006DBD85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8F51628F25D19E59006DBD85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F51629025D19E59006DBD85 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		8FAEAD6A25E98DAF008F2457 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFavouriteDrinkButton.swift; sourceTree = "<group>"; };
+		8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkType.swift; sourceTree = "<group>"; };
+		8FCBE15225E509990057459B /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		8FE3539C25ED15DB005CD98D /* FavouriteButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButtonsView.swift; sourceTree = "<group>"; };
+		952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2333142804548BAECB7F238 /* Pods-AlkoKolikTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolikTests.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolikTests/Pods-AlkoKolikTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.debug.xcconfig"; sourceTree = "<group>"; };
+		C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolikTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8179707251F6D8F32E3D6A6 /* Pods_AlkoKolik_AlkoKolikUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_AlkoKolikUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF3ED971F98DAB4976FA5A51 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F1F0773D858DDA6A11FB0A04 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F51624425D19E53006DBD85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0517937EC2470110A545F3A5 /* Pods_AlkoKolik.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51625A25D19E57006DBD85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D619426FE78B52C70215EFB /* Pods_AlkoKolikTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51626525D19E57006DBD85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B39474F3C7C1DF4BA3FA790 /* Pods_AlkoKolik_AlkoKolikUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51627D25D19E58006DBD85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				35C582F44FEB1AA731327F8A /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBCA131967ED72BCBF783DFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FBFA0836B3BA5899B341767 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		861410F719A201FABC838287 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */,
+				BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */,
+				DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */,
+				E8179707251F6D8F32E3D6A6 /* Pods_AlkoKolik_AlkoKolikUITests.framework */,
+				C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8F271EC725DC0CA600B76513 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8F2F531F25ED91B600313656 /* DrinkListCell.swift */,
+				8FE3539C25ED15DB005CD98D /* FavouriteButtonsView.swift */,
+				8FCBE15125E509720057459B /* Buttons */,
+				8F271ECD25DC0CB400B76513 /* Clock */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8F271ECD25DC0CB400B76513 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				8FCBE15225E509990057459B /* ProgressRing.swift */,
+				8F271ECE25DC0CDB00B76513 /* ClockFace.swift */,
+				8F271EDA25DC0D0100B76513 /* ClockHand.swift */,
+				8F271EE125DC0D1E00B76513 /* UIClockView.swift */,
+			);
+			path = Clock;
+			sourceTree = "<group>";
+		};
+		8F321CD925ED717600E3CFFC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8F51624E25D19E54006DBD85 /* MainVC.swift */,
+				8F321CD225ED716200E3CFFC /* DrinkListVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8F51623E25D19E53006DBD85 = {
+			isa = PBXGroup;
+			children = (
+				8F51624925D19E54006DBD85 /* AlkoKolik */,
+				8F51626025D19E57006DBD85 /* AlkoKolikTests */,
+				8F51626B25D19E57006DBD85 /* AlkoKolikUITests */,
+				8F51627525D19E57006DBD85 /* AlkoKolik WatchKit App */,
+				8F51628425D19E58006DBD85 /* AlkoKolik WatchKit Extension */,
+				8F51624825D19E54006DBD85 /* Products */,
+				BE0096DA05AA3B190C4368AA /* Pods */,
+				861410F719A201FABC838287 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8F51624825D19E54006DBD85 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8F51624725D19E54006DBD85 /* AlkoKolik.app */,
+				8F51625D25D19E57006DBD85 /* AlkoKolikTests.xctest */,
+				8F51626825D19E57006DBD85 /* AlkoKolikUITests.xctest */,
+				8F51627125D19E57006DBD85 /* AlkoKolik WatchKit App.app */,
+				8F51628025D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8F51624925D19E54006DBD85 /* AlkoKolik */ = {
+			isa = PBXGroup;
+			children = (
+				8F51624A25D19E54006DBD85 /* AppDelegate.swift */,
+				8F51624C25D19E54006DBD85 /* SceneDelegate.swift */,
+				8F271EC725DC0CA600B76513 /* View */,
+				8F321CD925ED717600E3CFFC /* ViewControllers */,
+				8F51625025D19E54006DBD85 /* Main.storyboard */,
+				8F51625325D19E56006DBD85 /* Assets.xcassets */,
+				8F51625525D19E56006DBD85 /* LaunchScreen.storyboard */,
+				8F51625825D19E56006DBD85 /* Info.plist */,
+				8FAEAD7125E98DB8008F2457 /* Extensions */,
+			);
+			path = AlkoKolik;
+			sourceTree = "<group>";
+		};
+		8F51626025D19E57006DBD85 /* AlkoKolikTests */ = {
+			isa = PBXGroup;
+			children = (
+				8F51626125D19E57006DBD85 /* AlkoKolikTests.swift */,
+				8F51626325D19E57006DBD85 /* Info.plist */,
+			);
+			path = AlkoKolikTests;
+			sourceTree = "<group>";
+		};
+		8F51626B25D19E57006DBD85 /* AlkoKolikUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8F51626C25D19E57006DBD85 /* AlkoKolikUITests.swift */,
+				8F51626E25D19E57006DBD85 /* Info.plist */,
+			);
+			path = AlkoKolikUITests;
+			sourceTree = "<group>";
+		};
+		8F51627525D19E57006DBD85 /* AlkoKolik WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				8F51627625D19E57006DBD85 /* Interface.storyboard */,
+				8F51627925D19E58006DBD85 /* Assets.xcassets */,
+				8F51627B25D19E58006DBD85 /* Info.plist */,
+			);
+			path = "AlkoKolik WatchKit App";
+			sourceTree = "<group>";
+		};
+		8F51628425D19E58006DBD85 /* AlkoKolik WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8F51628525D19E58006DBD85 /* InterfaceController.swift */,
+				8F51628725D19E58006DBD85 /* ExtensionDelegate.swift */,
+				8F51628925D19E58006DBD85 /* NotificationController.swift */,
+				8F51628B25D19E58006DBD85 /* ComplicationController.swift */,
+				8F51628D25D19E59006DBD85 /* Assets.xcassets */,
+				8F51628F25D19E59006DBD85 /* Info.plist */,
+				8F51629025D19E59006DBD85 /* PushNotificationPayload.apns */,
+			);
+			path = "AlkoKolik WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		8FAEAD7125E98DB8008F2457 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8FAEAD6A25E98DAF008F2457 /* Color.swift */,
+				8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */,
+				8F2F531325ED761C00313656 /* DrinkItem.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8FCBE15125E509720057459B /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		BE0096DA05AA3B190C4368AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */,
+				800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */,
+				67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */,
+				952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */,
+				892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */,
+				CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */,
+				F1F0773D858DDA6A11FB0A04 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */,
+				EF3ED971F98DAB4976FA5A51 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */,
+				C2333142804548BAECB7F238 /* Pods-AlkoKolikTests.debug.xcconfig */,
+				69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8F51624625D19E53006DBD85 /* AlkoKolik */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F51629B25D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik" */;
+			buildPhases = (
+				924976A834A14F75296CDD03 /* [CP] Check Pods Manifest.lock */,
+				8F51624325D19E53006DBD85 /* Sources */,
+				8F51624425D19E53006DBD85 /* Frameworks */,
+				8F51624525D19E53006DBD85 /* Resources */,
+				8F51629A25D19E59006DBD85 /* Embed Watch Content */,
+				EA7B1393BF1F79018CFBADBE /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F51627425D19E57006DBD85 /* PBXTargetDependency */,
+			);
+			name = AlkoKolik;
+			productName = AlkoKolik;
+			productReference = 8F51624725D19E54006DBD85 /* AlkoKolik.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8F51625C25D19E57006DBD85 /* AlkoKolikTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F51629E25D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolikTests" */;
+			buildPhases = (
+				8443720E077BAE49D96A70CB /* [CP] Check Pods Manifest.lock */,
+				8F51625925D19E57006DBD85 /* Sources */,
+				8F51625A25D19E57006DBD85 /* Frameworks */,
+				8F51625B25D19E57006DBD85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F51625F25D19E57006DBD85 /* PBXTargetDependency */,
+			);
+			name = AlkoKolikTests;
+			productName = AlkoKolikTests;
+			productReference = 8F51625D25D19E57006DBD85 /* AlkoKolikTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8F51626725D19E57006DBD85 /* AlkoKolikUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F5162A125D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolikUITests" */;
+			buildPhases = (
+				306EA38769205FB7F79634AD /* [CP] Check Pods Manifest.lock */,
+				8F51626425D19E57006DBD85 /* Sources */,
+				8F51626525D19E57006DBD85 /* Frameworks */,
+				8F51626625D19E57006DBD85 /* Resources */,
+				90A6CA58CC6A9517FA59258A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F51626A25D19E57006DBD85 /* PBXTargetDependency */,
+			);
+			name = AlkoKolikUITests;
+			productName = AlkoKolikUITests;
+			productReference = 8F51626825D19E57006DBD85 /* AlkoKolikUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		8F51627025D19E57006DBD85 /* AlkoKolik WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F51629725D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit App" */;
+			buildPhases = (
+				FD882496E0750FB8D9DAA10E /* [CP] Check Pods Manifest.lock */,
+				8F51626F25D19E57006DBD85 /* Resources */,
+				8F51629625D19E59006DBD85 /* Embed App Extensions */,
+				BBCA131967ED72BCBF783DFA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F51628325D19E58006DBD85 /* PBXTargetDependency */,
+			);
+			name = "AlkoKolik WatchKit App";
+			productName = "AlkoKolik WatchKit App";
+			productReference = 8F51627125D19E57006DBD85 /* AlkoKolik WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		8F51627F25D19E58006DBD85 /* AlkoKolik WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F51629325D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit Extension" */;
+			buildPhases = (
+				127E5B0105AF72C878D9DE60 /* [CP] Check Pods Manifest.lock */,
+				8F51627C25D19E58006DBD85 /* Sources */,
+				8F51627D25D19E58006DBD85 /* Frameworks */,
+				8F51627E25D19E58006DBD85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "AlkoKolik WatchKit Extension";
+			productName = "AlkoKolik WatchKit Extension";
+			productReference = 8F51628025D19E58006DBD85 /* AlkoKolik WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8F51623F25D19E53006DBD85 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					8F51624625D19E53006DBD85 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					8F51625C25D19E57006DBD85 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 8F51624625D19E53006DBD85;
+					};
+					8F51626725D19E57006DBD85 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 8F51624625D19E53006DBD85;
+					};
+					8F51627025D19E57006DBD85 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					8F51627F25D19E58006DBD85 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 8F51624225D19E53006DBD85 /* Build configuration list for PBXProject "AlkoKolik" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8F51623E25D19E53006DBD85;
+			productRefGroup = 8F51624825D19E54006DBD85 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8F51624625D19E53006DBD85 /* AlkoKolik */,
+				8F51625C25D19E57006DBD85 /* AlkoKolikTests */,
+				8F51626725D19E57006DBD85 /* AlkoKolikUITests */,
+				8F51627025D19E57006DBD85 /* AlkoKolik WatchKit App */,
+				8F51627F25D19E58006DBD85 /* AlkoKolik WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8F51624525D19E53006DBD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51625725D19E56006DBD85 /* LaunchScreen.storyboard in Resources */,
+				8F51625425D19E56006DBD85 /* Assets.xcassets in Resources */,
+				8F51625225D19E54006DBD85 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51625B25D19E57006DBD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51626625D19E57006DBD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51626F25D19E57006DBD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51627A25D19E58006DBD85 /* Assets.xcassets in Resources */,
+				8F51627825D19E57006DBD85 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51627E25D19E58006DBD85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51628E25D19E59006DBD85 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		127E5B0105AF72C878D9DE60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		306EA38769205FB7F79634AD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik-AlkoKolikUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8443720E077BAE49D96A70CB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolikTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90A6CA58CC6A9517FA59258A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		924976A834A14F75296CDD03 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA7B1393BF1F79018CFBADBE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD882496E0750FB8D9DAA10E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik WatchKit App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F51624325D19E53006DBD85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FAEAD8425EAA2C8008F2457 /* DrinkType.swift in Sources */,
+				8F321CD325ED716200E3CFFC /* DrinkListVC.swift in Sources */,
+				8FE3539D25ED15DB005CD98D /* FavouriteButtonsView.swift in Sources */,
+				8F51624F25D19E54006DBD85 /* MainVC.swift in Sources */,
+				8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */,
+				8F271ECF25DC0CDB00B76513 /* ClockFace.swift in Sources */,
+				8F271EDB25DC0D0100B76513 /* ClockHand.swift in Sources */,
+				8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkButton.swift in Sources */,
+				8F51624B25D19E54006DBD85 /* AppDelegate.swift in Sources */,
+				8FCBE15325E509990057459B /* ProgressRing.swift in Sources */,
+				8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */,
+				8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */,
+				8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */,
+				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51625925D19E57006DBD85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51626225D19E57006DBD85 /* AlkoKolikTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51626425D19E57006DBD85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51626D25D19E57006DBD85 /* AlkoKolikUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8F51627C25D19E58006DBD85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F51628A25D19E58006DBD85 /* NotificationController.swift in Sources */,
+				8F51628C25D19E58006DBD85 /* ComplicationController.swift in Sources */,
+				8F51628825D19E58006DBD85 /* ExtensionDelegate.swift in Sources */,
+				8F51628625D19E58006DBD85 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F51625F25D19E57006DBD85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F51624625D19E53006DBD85 /* AlkoKolik */;
+			targetProxy = 8F51625E25D19E57006DBD85 /* PBXContainerItemProxy */;
+		};
+		8F51626A25D19E57006DBD85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F51624625D19E53006DBD85 /* AlkoKolik */;
+			targetProxy = 8F51626925D19E57006DBD85 /* PBXContainerItemProxy */;
+		};
+		8F51627425D19E57006DBD85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F51627025D19E57006DBD85 /* AlkoKolik WatchKit App */;
+			targetProxy = 8F51627325D19E57006DBD85 /* PBXContainerItemProxy */;
+		};
+		8F51628325D19E58006DBD85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8F51627F25D19E58006DBD85 /* AlkoKolik WatchKit Extension */;
+			targetProxy = 8F51628225D19E58006DBD85 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8F51625025D19E54006DBD85 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F51625125D19E54006DBD85 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8F51625525D19E56006DBD85 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F51625625D19E56006DBD85 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		8F51627625D19E57006DBD85 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8F51627725D19E57006DBD85 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8F51629125D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8F51629225D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8F51629425D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AlkoKolik WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		8F51629525D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "AlkoKolik WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		8F51629825D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = AlkoKolik_WatchKit_Extension;
+				INFOPLIST_FILE = "AlkoKolik WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Debug;
+		};
+		8F51629925D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				IBSC_MODULE = AlkoKolik_WatchKit_Extension;
+				INFOPLIST_FILE = "AlkoKolik WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 7.2;
+			};
+			name = Release;
+		};
+		8F51629C25D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolik/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8F51629D25D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolik/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F51629F25D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2333142804548BAECB7F238 /* Pods-AlkoKolikTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolikTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolikTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AlkoKolik.app/AlkoKolik";
+			};
+			name = Debug;
+		};
+		8F5162A025D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolikTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolikTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AlkoKolik.app/AlkoKolik";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8F5162A225D19E59006DBD85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1F0773D858DDA6A11FB0A04 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolikUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolikUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AlkoKolik;
+			};
+			name = Debug;
+		};
+		8F5162A325D19E59006DBD85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF3ED971F98DAB4976FA5A51 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AlkoKolikUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolikUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AlkoKolik;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8F51624225D19E53006DBD85 /* Build configuration list for PBXProject "AlkoKolik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F51629125D19E59006DBD85 /* Debug */,
+				8F51629225D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F51629325D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F51629425D19E59006DBD85 /* Debug */,
+				8F51629525D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F51629725D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F51629825D19E59006DBD85 /* Debug */,
+				8F51629925D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F51629B25D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F51629C25D19E59006DBD85 /* Debug */,
+				8F51629D25D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F51629E25D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolikTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F51629F25D19E59006DBD85 /* Debug */,
+				8F5162A025D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8F5162A125D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolikUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F5162A225D19E59006DBD85 /* Debug */,
+				8F5162A325D19E59006DBD85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8F51623F25D19E53006DBD85 /* Project object */;
+}
