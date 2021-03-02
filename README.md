@@ -1,0 +1,1 @@
+# VUT_IBT_iOS-AlkoKolik-app
