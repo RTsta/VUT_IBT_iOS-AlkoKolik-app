@@ -16,5 +16,7 @@ extension UIColor {
     
     class var appMin: UIColor { return self.init(red:136/255.0, green:242/255.0, blue:174/255.0, alpha: 1.0) }
     
-    class var appGrey: UIColor { return self.init(red:136/255.0, green:242/255.0, blue:174/255.0, alpha: 1.0) }
+    class var appGrey: UIColor { return self.init(red:119/255.0, green:135/255.0, blue:139/255.0, alpha: 1.0) }
+    
+    class var appBackgroundDark: UIColor { return self.init(red:136/255.0, green:242/255.0, blue:174/255.0, alpha: 1.0) }
 }

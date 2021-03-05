@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainVC: UIViewController, UIClockViewDelegate {
+class MainVC: UIViewController {
 
     @IBOutlet weak var clock: UIClockView!
     @IBOutlet weak var favouriteBtnsView: FavouriteButtonsView!
@@ -15,23 +15,8 @@ class MainVC: UIViewController, UIClockViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        clock.uiClockViewDelegate = self
-        clock.displayRealTime = true
         
-        clock.refreshInterval = Double(1.0)
         clock.startClock()
-    }
-
-    func timeIsSetManually() {
-        //o
-    }
-    
-    func clockStopped() {
-        //o
-    }
-    
-    func countDownExpired() {
-        //o
     }
 
 }

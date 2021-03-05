@@ -61,27 +61,23 @@ class ClockHand: UIImageView {
         setup(type: .none)
     }
     
-    func setup(type: ClockHandType,_ initTimeValue: Int = 0) {
+    func setup(type: ClockHandType,_ initTime: Int = 0) {
         switch type {
         case .hour:
-            timeValue = (initTimeValue % 24) * 30
+            timeValue = (initTime % 24) * 30
             image = drawHourHand()
         case .minute:
-            timeValue = (initTimeValue % 60) * 6
+            timeValue = (initTime % 60) * 6
             image = drawMinuteHand()
         case .second:
-            timeValue = (initTimeValue % 24) * 6
-            //image = staticClockFaceImage ?? drawClockFace()
+            timeValue = (initTime % 24) * 6
+            //image = drawSecondHand()
         default:
             return
         }
         
         translatesAutoresizingMaskIntoConstraints = false
         transform = CGAffineTransform(rotationAngle: CGFloat(Double(timeValue) * Double.pi/180.0)) //set the initial hand position, where initialValue == 60.0 is "15 min"
-        /*
-        if shadowIsOn {
-            drawHandShadow(type: type, length: handLength)
-        }*/
     }
     
     
@@ -129,26 +125,6 @@ class ClockHand: UIImageView {
             ctx.cgContext.drawPath(using: .fillStroke)
         }
     }
-    
-    
-    /*
-    func drawHandShadow(type: ClockHandType, length: CGFloat){
-        if type == .hour {
-            layer.shadowRadius = length
-            layer.shadowOffset = CGSize(width: length, height: length)
-        }
-        else if type == .minute {
-            layer.shadowRadius = length
-            layer.shadowOffset = CGSize(width: length, height: length)
-        }
-        else {
-            layer.shadowRadius = length
-            layer.shadowOffset = CGSize(width: length, height: length)
-        }
-        
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.5
-    }*/
     
     func updateHandAngle(angle: CGFloat, duration: Double = 0.5) {
         UIView.animate(withDuration: duration,
