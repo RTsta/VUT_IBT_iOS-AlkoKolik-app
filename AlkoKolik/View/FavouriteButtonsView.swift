@@ -62,7 +62,13 @@ class FavouriteButtonsView: UIView {
     }
 
     @objc func buttonAction(sender: UIButton!) {
-      print("Button tapped")
+        print("Button tapped ")
+        NotificationCenter.default.post(name: .FavouriteBtnTapped, object: nil)
     }
-    
+}
+
+extension Notification.Name {
+    static var FavouriteBtnTapped: Notification.Name {
+        return .init(rawValue: "FavouriteButtonView.ButtonTapped")
+    }
 }

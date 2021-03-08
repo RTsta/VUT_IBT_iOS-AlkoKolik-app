@@ -38,6 +38,9 @@
 		8F5872B625EFEE48001CE464 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872B525EFEE48001CE464 /* ProfileVC.swift */; };
 		8F5872C325EFEF47001CE464 /* ProfileViewInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872C225EFEF47001CE464 /* ProfileViewInfoCell.swift */; };
 		8F5872F625F15928001CE464 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872F525F15928001CE464 /* FloatingPoint.swift */; };
+		8F58730225F41190001CE464 /* ClockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58730125F41190001CE464 /* ClockComponent.swift */; };
+		8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58731025F4D0BA001CE464 /* HealthKitManager.swift */; };
+		8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F58732F25F5337C001CE464 /* HealthKit.framework */; };
 		8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
 		8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */; };
 		8FAEAD8425EAA2C8008F2457 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */; };
@@ -144,6 +147,10 @@
 		8F5872B525EFEE48001CE464 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		8F5872C225EFEF47001CE464 /* ProfileViewInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewInfoCell.swift; path = AlkoKolik/View/Cells/ProfileViewInfoCell.swift; sourceTree = SOURCE_ROOT; };
 		8F5872F525F15928001CE464 /* FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatingPoint.swift; path = AlkoKolik/Extensions/FloatingPoint.swift; sourceTree = SOURCE_ROOT; };
+		8F58730125F41190001CE464 /* ClockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockComponent.swift; sourceTree = "<group>"; };
+		8F58731025F4D0BA001CE464 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		8F58732E25F5337C001CE464 /* AlkoKolik.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlkoKolik.entitlements; sourceTree = "<group>"; };
+		8F58732F25F5337C001CE464 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
 		8FAEAD6A25E98DAF008F2457 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFavouriteDrinkButton.swift; sourceTree = "<group>"; };
 		8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkType.swift; sourceTree = "<group>"; };
@@ -167,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0517937EC2470110A545F3A5 /* Pods_AlkoKolik.framework in Frameworks */,
+				8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,6 +216,7 @@
 		861410F719A201FABC838287 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8F58732F25F5337C001CE464 /* HealthKit.framework */,
 				081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */,
 				BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */,
 				DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */,
@@ -234,6 +243,7 @@
 				8FCBE15225E509990057459B /* ProgressRing.swift */,
 				8F271ECE25DC0CDB00B76513 /* ClockFace.swift */,
 				8F271EDA25DC0D0100B76513 /* ClockHand.swift */,
+				8F58730125F41190001CE464 /* ClockComponent.swift */,
 				8F271EE125DC0D1E00B76513 /* UIClockView.swift */,
 			);
 			path = Clock;
@@ -279,9 +289,11 @@
 		8F51624925D19E54006DBD85 /* AlkoKolik */ = {
 			isa = PBXGroup;
 			children = (
+				8F58732E25F5337C001CE464 /* AlkoKolik.entitlements */,
 				8F51625525D19E56006DBD85 /* LaunchScreen.storyboard */,
 				8F51625025D19E54006DBD85 /* Main.storyboard */,
 				8F51624A25D19E54006DBD85 /* AppDelegate.swift */,
+				8F58730F25F4D098001CE464 /* Managers */,
 				8F51624C25D19E54006DBD85 /* SceneDelegate.swift */,
 				8F271EC725DC0CA600B76513 /* View */,
 				8F321CD925ED717600E3CFFC /* ViewControllers */,
@@ -341,6 +353,14 @@
 				8F2F531F25ED91B600313656 /* DrinkListCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		8F58730F25F4D098001CE464 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8F58731025F4D0BA001CE464 /* HealthKitManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		8FAEAD7125E98DB8008F2457 /* Extensions */ = {
@@ -738,10 +758,12 @@
 				8F271EDB25DC0D0100B76513 /* ClockHand.swift in Sources */,
 				8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkButton.swift in Sources */,
 				8F51624B25D19E54006DBD85 /* AppDelegate.swift in Sources */,
+				8F58730225F41190001CE464 /* ClockComponent.swift in Sources */,
 				8FCBE15325E509990057459B /* ProgressRing.swift in Sources */,
 				8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */,
 				8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */,
 				8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */,
+				8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */,
 				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -943,6 +965,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = "AlkoKolik WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -965,6 +988,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = "AlkoKolik WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -990,6 +1014,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				IBSC_MODULE = AlkoKolik_WatchKit_Extension;
 				INFOPLIST_FILE = "AlkoKolik WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp;
@@ -1010,6 +1035,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				IBSC_MODULE = AlkoKolik_WatchKit_Extension;
 				INFOPLIST_FILE = "AlkoKolik WatchKit App/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = ArtsWork.AlkoKolik.watchkitapp;
@@ -1029,7 +1055,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AlkoKolik/AlkoKolik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolik/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1050,7 +1078,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AlkoKolik/AlkoKolik.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolik/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1073,6 +1103,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolikTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1096,6 +1127,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolikTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1119,6 +1151,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolikUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1141,6 +1174,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 995Z92HMCB;
 				INFOPLIST_FILE = AlkoKolikUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -17,16 +17,19 @@ class UIClockView: UIView {
         var second: Int = 25
     }
     
-    open var localTime = LocalTime()
-    open var timer = Timer()
+    var localTime = LocalTime()
+    var timer = Timer()
     
-    private var progressRing = UIImageView()
-    private var clockFace = UIImageView()
+    //duratin in minutes
+    public var durationTime = 0.0 {didSet {
+        guard let _pr = progressRing as? ProgressRing else {return}
+        _pr.timeDuration = durationTime * 60
+    }}
+    
+    private var progressRing = ClockComponent()
+    private var clockFace = ClockComponent()
     private var hourHand = ClockHand(frame: CGRect(), type: .none)
     private var minuteHand = ClockHand(frame: CGRect(), type: .none)
-    //private var secondHand = ClockHand()
-    private var secondHandCircle = UIImageView()
-    
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,14 +46,30 @@ class UIClockView: UIView {
     }
     
     private func setup() {
-        
         backgroundColor = UIColor.clear
         translatesAutoresizingMaskIntoConstraints = false
+        autoresizesSubviews = false
         setupProgressRing()
         setupHands()
         setupClockFace()
+        
+        addSubview(progressRing)
+        addSubview(clockFace)
+        addSubview(hourHand)
+        addSubview(minuteHand)
+        
+        clockFace.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
+        clockFace.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
+        
+        hourHand.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
+        hourHand.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
+        
+        minuteHand.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
+        minuteHand.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
+        
+        progressRing.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
+        progressRing.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
     }
-    
     
     private func setupHands() {
         hourHand = ClockHand(frame: frame, type: .hour, initTimeValue: Double(localTime.hour * 30))
@@ -63,52 +82,11 @@ class UIClockView: UIView {
     
     private func setupClockFace() {
         clockFace = ClockFace(frame: frame)
-        //    clockFace = ClockFace(frame: self.frame, staticClockFaceImage: UIImage(named: "clockface"))
-        
-        addSubview(progressRing)
-        addSubview(clockFace)
-        addSubview(hourHand)
-        addSubview(minuteHand)
-        //addSubview(secondHand)
-        addSubview(secondHandCircle)
-        
-        clockFace.centerXAnchor.constraint(equalTo: safeAreaLayoutGuide.centerXAnchor).isActive = true
-        clockFace.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
-        clockFace.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        clockFace.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        
-        hourHand.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
-        hourHand.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
-        hourHand.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        hourHand.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        
-        minuteHand.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
-        minuteHand.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
-        minuteHand.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        minuteHand.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        
-        progressRing.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
-        progressRing.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
-        progressRing.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-        progressRing.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-        
-        /*
-         secondHand.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
-         secondHand.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
-         secondHand.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-         secondHand.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-         
-         secondHandCircle.centerXAnchor.constraint(equalTo: clockFace.centerXAnchor).isActive = true
-         secondHandCircle.centerYAnchor.constraint(equalTo: clockFace.centerYAnchor).isActive = true
-         secondHandCircle.widthAnchor.constraint(equalTo: safeAreaLayoutGuide.widthAnchor).isActive = true
-         secondHandCircle.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor).isActive = true
-         */
     }
     
     func startClock() {
         if timer.isValid {
             timer.invalidate()
-            return
         }
         
         let refreshInterval : TimeInterval = 1.0
@@ -116,28 +94,31 @@ class UIClockView: UIView {
     }
     
     @objc private func tick() {
+        
         let localTimeComponents: Set<Calendar.Component> = [.hour, .minute, .second]
         let realTimeComponents = Calendar.current.dateComponents(localTimeComponents, from: Date())
         localTime.second = realTimeComponents.second ?? 0
-        localTime.minute = realTimeComponents.minute ?? 10
+        localTime.minute = realTimeComponents.minute ?? 42
         localTime.hour = realTimeComponents.hour ?? 10
-        
-        updateHands()
-        updateRing()
+        updateHands(animated: true)
+        updateRing(animated: true)
     }
     
-    private func updateHands() {
-        //secondHand.updateHandAngle(angle: CGFloat(Double(localTime.second * 6) * translateToRadian))
-        minuteHand.updateHandAngle(angle: CGFloat(Double(localTime.minute * 6).radians))
+    private func updateHands(animated: Bool) {
+        minuteHand.updateHandAngle(angle: CGFloat(Double(localTime.minute * 6).radians), animated: animated)
         let hourDegree = Double(localTime.hour) * 30.0 + Double(localTime.minute) * 0.5
-        hourHand.updateHandAngle(angle: CGFloat(hourDegree.radians))
+        hourHand.updateHandAngle(angle: CGFloat(hourDegree.radians), animated: animated)
     }
     
-    private func updateRing(){
+    private func updateRing(animated: Bool){
         guard let _progressRing = progressRing as? ProgressRing else {fatalError("ring not initialized")}
         let accurateHour = Double(localTime.hour % 12) + Double(localTime.minute) * 100.0 / 60.0 / 100.0
-        print("acurate \(accurateHour)")
-        _progressRing.updateRingAngle(currentTime: accurateHour)
+        _progressRing.updateRingAngle(currentTime: accurateHour, animated: animated)
+        
+    }
+    
+    func updateView(){
+        updateRing(animated: true)
     }
 }
 

@@ -7,24 +7,13 @@
 
 import UIKit
 
-@IBDesignable
-class ProgressRing : UIImageView {
-    
-    private var diameter: CGFloat { return min(bounds.width, bounds.height) }
-    private var radius: CGFloat {return diameter/2}
-    private lazy var scaleFactor = { return diameter / 277.0 }()
-    
-    static var trackLineWidth : CGFloat = 30
-    static var progressLineWidth : CGFloat = 30
-    
-    var trackColor: UIColor = .appMax
-    var progressRingInsideFillColor: UIColor = .clear
+class ProgressRing : ClockComponent {
     
     var timeValue = 0.0 //in hours
-    var timeDuration = 90.0 //in minutes
+    public var timeDuration : TimeInterval = 0 * 60.0//in minutes and converted to sec
     
     private var startAngle: CGFloat { return CGFloat(timeValue * 30.0) }
-    private var endAngle: CGFloat { return CGFloat(startAngle) + CGFloat(timeDuration / 60.0) * 30.0 }
+    private var angle: CGFloat {return CGFloat(timeDuration / 3600.0 * 30)}
     
     convenience init(frame: CGRect, initTimeValue: Double = 0) {
         self.init(frame: frame)
@@ -47,11 +36,11 @@ class ProgressRing : UIImageView {
     
     private func setup(_ initTimeValue: Double = 0) {
         timeValue = initTimeValue
-        
-        let backgroundRing = drawRingBackground()
         let progressRing = drawProgressRing()
-        self.addSubview(UIImageView(image: backgroundRing))
-        self.mask = UIImageView(image: progressRing)
+        let bcg = UIImageView(image: drawRingBackground())
+        bcg.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(bcg)
+        image = progressRing
         translatesAutoresizingMaskIntoConstraints = false
         transform = CGAffineTransform(rotationAngle: startAngle.radians)
     }
@@ -60,55 +49,64 @@ class ProgressRing : UIImageView {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: diameter, height: diameter))
         return renderer.image { ctx in
             let cgctx = ctx.cgContext
-            let arcRadius = max(radius - (ProgressRing.trackLineWidth * scaleFactor) / 2.0, radius - (ProgressRing.progressLineWidth * scaleFactor) / 2.0)
-            cgctx.addArc(center: CGPoint(x: radius, y: radius),
+            let arcRadius = radius /*- (progressLineWidth * scaleFactor / 2.0)*/
+            cgctx.addArc(center: viewCenter,
                          radius: arcRadius,
                          startAngle: 0,
                          endAngle: CGFloat.pi * 2,
                          clockwise: false)
-            cgctx.setStrokeColor(trackColor.cgColor)
-            cgctx.setFillColor(progressRingInsideFillColor.cgColor)
-            cgctx.setLineWidth(ProgressRing.trackLineWidth * scaleFactor)
+            cgctx.setStrokeColor(UIColor.clear.cgColor)
+            cgctx.setFillColor(UIColor.clear.cgColor)
+            //cgctx.setLineWidth(progressLineWidth * scaleFactor)
             cgctx.setLineCap(.round)
             cgctx.drawPath(using: .fillStroke)
         }
     }
     
     private func drawProgressRing() -> UIImage {
-        let renderer =  UIGraphicsImageRenderer(size: CGSize(width: diameter, height: diameter))
+        let renderer =  UIGraphicsImageRenderer(size: viewSize)
         return renderer.image { ctx in
             let cgctx = ctx.cgContext
-            let arcRadius = max(radius - (ProgressRing.trackLineWidth*scaleFactor) / 2.0, radius - (ProgressRing.progressLineWidth*scaleFactor) / 2.0)
-            
-            let angle = endAngle - startAngle
-            
-            print("time: \(timeValue),start: \(startAngle) end: \(endAngle) angle: \(angle)")
-            
-            cgctx.addArc(center: CGPoint(x: radius, y: radius),
+            let arcRadius = radius - (progressLineWidth * scaleFactor / 2.0)
+            print("\(bounds.size) arcRadius \(arcRadius)")
+            cgctx.addArc(center: super.viewCenter,
                             radius: arcRadius,
-                            startAngle: startAngle.radians,
-                            endAngle: angle.radians,
+                            startAngle: CGFloat(-90.0).radians,
+                            endAngle: (angle-90.0).radians,
                             clockwise: false)
-            print("scale: \(scaleFactor) diameter: \(diameter)")
-            cgctx.setLineCap(.round)
-            cgctx.setLineWidth(ProgressRing.progressLineWidth*scaleFactor)
+            cgctx.setLineCap(.butt)
+            cgctx.setStrokeColor(progressLineColor.cgColor)
+            cgctx.setLineWidth(progressLineWidth*scaleFactor)
             cgctx.drawPath(using: .stroke)
         }
     }
+    private func update(){
+        if timeDuration > 0 {
+            self.image = drawProgressRing()
+            //TODO
+            //self.transform = self.transform.rotated(by: (self.startAngle).radians)
+            self.transform = CGAffineTransform(rotationAngle: (self.startAngle).radians)
+        } else {
+            self.image = nil
+        }
+    }
     
-    func updateRingAngle(currentTime: Double, duration: Double = 0.5) {
-        UIView.animate(withDuration: duration,
-                       delay: 0.0,
-                       options: .curveEaseInOut,
-                       animations: {
-                        self.timeValue = currentTime
-                        self.mask = UIImageView(image: self.drawProgressRing())
-                        self.transform = CGAffineTransform(rotationAngle: (self.startAngle - 70.0).radians)
-                        
-                       },
-                       completion: { (finished: Bool) in
-                        return
-        })
+    public func updateRingAngle(currentTime: Double, animated: Bool ,duration: Double = 0.5) {
+        if animated {
+            UIView.animate(withDuration: duration,
+                           delay: 0.0,
+                           options: .curveEaseInOut,
+                        animations: {
+                            self.timeValue = currentTime
+                            if self.timeDuration > 0 { self.timeDuration -= 1 }
+                            self.update()
+                        },
+                        completion: { (finished: Bool) in
+                            return
+                        })
+        } else {
+            self.update()
+        }
     }
 }
 

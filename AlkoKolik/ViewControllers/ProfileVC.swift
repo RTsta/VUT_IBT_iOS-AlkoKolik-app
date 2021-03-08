@@ -6,21 +6,48 @@
 //
 
 import UIKit
+import HealthKit
 
-class ProfileVC: UIViewController {
+class ProfileVC: UITableViewController {
+    
+    var HKManager : HealthKitManager = HealthKitManager()
+    let profileDataStore = ProfileDataStore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 }
 
-extension ProfileVC : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+extension ProfileVC {
+    
+    func HKauthorization() {
+        HKManager.authorizeHealthKit { (authorized, error) in
+            print("\(authorized.description) ::: \(error.debugDescription)")
+            guard authorized else {
+                return
+              }
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "profileViewInfoCell", for: indexPath) as! ProfileViewInfoCell
-        return cell
+    func loadWeight(){
+        guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
+          print("Height Sample Type is no longer available in HealthKit")
+          return
+        }
+            
+        profileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
+              
+          guard let sample = sample else {
+            if let error = error { print("error \(error)")
+            }
+            return
+          }
+              
+          //2. Convert the height sample to meters, save to the profile model,
+          //   and update the user interface.
+          let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
+          //self.userHealthProfile.heightInMeters = heightInMeters
+          //self.updateLabels()
+        }
     }
 }

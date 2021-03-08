@@ -9,14 +9,47 @@ import UIKit
 
 class MainVC: UIViewController {
 
+    
+    @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var clock: UIClockView!
     @IBOutlet weak var favouriteBtnsView: FavouriteButtonsView!
+    
+    let HKManager = HealthKitManager()
+    
+    var duration : Double = 5.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(FavouriteBtnTapped),
+                                               name: .FavouriteBtnTapped,
+                                               object: nil)
+        
         clock.startClock()
+        clock.durationTime = duration
+        updateDurationLabel(duration)
+        
+    }
+    
+    func updateDurationLabel(_ timeDuration : Double){
+        if (timeDuration > 0){
+            let d =  Int(timeDuration / 60 / 24)
+            let h = Int(timeDuration / 60 - Double(d) * 24.0)
+            let m = Int(timeDuration - Double(d) * 24.0 * 60.0 - Double(h)*60)
+            durationLabel.isHidden = false
+            durationLabel.text = "\(d > 0 ? String(d)+"d" : "") \(h > 0 ? String(h)+"h" : "") \(m)m"
+        }else {
+            durationLabel.isHidden = true
+        }
+    }
+    
+    @objc private func FavouriteBtnTapped(_ notification: Notification) {
+        duration += 10.25
+        clock.durationTime = duration
+        updateDurationLabel(duration)
+        clock.updateView()
     }
 
 }
