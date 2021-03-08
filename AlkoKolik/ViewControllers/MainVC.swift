@@ -27,6 +27,8 @@ class MainVC: UIViewController {
                                                name: .FavouriteBtnTapped,
                                                object: nil)
         
+        HKAuthorization()
+        
         clock.startClock()
         clock.durationTime = duration
         updateDurationLabel(duration)
@@ -51,6 +53,13 @@ class MainVC: UIViewController {
         updateDurationLabel(duration)
         clock.updateView()
     }
-
+    
+    func HKAuthorization() {
+        HealthKitManager.authorizeHealthKit { (authorized, error) in
+            guard authorized else {
+                return
+              }
+        }
+    }
 }
 

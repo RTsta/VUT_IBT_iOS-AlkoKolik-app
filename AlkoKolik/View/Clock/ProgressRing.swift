@@ -68,7 +68,7 @@ class ProgressRing : ClockComponent {
         return renderer.image { ctx in
             let cgctx = ctx.cgContext
             let arcRadius = radius - (progressLineWidth * scaleFactor / 2.0)
-            print("\(bounds.size) arcRadius \(arcRadius)")
+
             cgctx.addArc(center: super.viewCenter,
                             radius: arcRadius,
                             startAngle: CGFloat(-90.0).radians,

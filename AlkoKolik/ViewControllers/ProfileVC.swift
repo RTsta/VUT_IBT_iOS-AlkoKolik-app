@@ -10,44 +10,42 @@ import HealthKit
 
 class ProfileVC: UITableViewController {
     
-    var HKManager : HealthKitManager = HealthKitManager()
-    let profileDataStore = ProfileDataStore()
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadWeightAndHeight()
     }
 }
 
 extension ProfileVC {
     
-    func HKauthorization() {
-        HKManager.authorizeHealthKit { (authorized, error) in
-            print("\(authorized.description) ::: \(error.debugDescription)")
-            guard authorized else {
+    func loadWeightAndHeight(){
+        HealthKitManager.getHeight() { (sample, error) in
+            guard let sample = sample else {
+                if let error = error {
+                    print("error in loading height")
+                }
                 return
-              }
+            }
+            let heightInCM = sample.quantity.doubleValue(for: HKUnit.meterUnit(with: .centi))
+            self.heightLabel.text = String(heightInCM)
+            
         }
+        
+        HealthKitManager.getWeight() { (sample, error) in
+            guard let sample = sample else {
+                if let error = error {
+                    print("error in loading weight")
+                }
+                return
+            }
+            
+            let weightInKG = sample.quantity.doubleValue(for: HKUnit.gramUnit(with: .kilo))
+            self.weightLabel.text = String(weightInKG)
+        }
+        
     }
     
-    func loadWeight(){
-        guard let heightSampleType = HKSampleType.quantityType(forIdentifier: .height) else {
-          print("Height Sample Type is no longer available in HealthKit")
-          return
-        }
-            
-        profileDataStore.getMostRecentSample(for: heightSampleType) { (sample, error) in
-              
-          guard let sample = sample else {
-            if let error = error { print("error \(error)")
-            }
-            return
-          }
-              
-          //2. Convert the height sample to meters, save to the profile model,
-          //   and update the user interface.
-          let heightInMeters = sample.quantity.doubleValue(for: HKUnit.meter())
-          //self.userHealthProfile.heightInMeters = heightInMeters
-          //self.updateLabels()
-        }
-    }
 }
