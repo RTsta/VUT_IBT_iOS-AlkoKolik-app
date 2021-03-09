@@ -54,7 +54,7 @@ class FavouriteButtonsView: UIView {
         self.addSubview(button)
         
         x = x + (btnDiameter + btnGap)
-        button = UIFavouriteDrinkButton(frame: CGRect(x: x, y: y, width: btnDiameter, height: btnDiameter), type: .liqueur)
+        button = UIFavouriteDrinkButton(frame: CGRect(x: x, y: y, width: btnDiameter, height: btnDiameter), type: .spirit)
         button.setTitle("btn 3", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         buttons.append(button)

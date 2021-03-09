@@ -41,6 +41,8 @@
 		8F58730225F41190001CE464 /* ClockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58730125F41190001CE464 /* ClockComponent.swift */; };
 		8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58731025F4D0BA001CE464 /* HealthKitManager.swift */; };
 		8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F58732F25F5337C001CE464 /* HealthKit.framework */; };
+		8F97138025F6E4250082FEA6 /* AlkoKolik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */; };
+		8F97139325F795180082FEA6 /* listOfDrinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F97139225F795180082FEA6 /* listOfDrinks.json */; };
 		8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
 		8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */; };
 		8FAEAD8425EAA2C8008F2457 /* DrinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */; };
@@ -151,6 +153,8 @@
 		8F58731025F4D0BA001CE464 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		8F58732E25F5337C001CE464 /* AlkoKolik.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlkoKolik.entitlements; sourceTree = "<group>"; };
 		8F58732F25F5337C001CE464 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		8F97137F25F6E4250082FEA6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8F97139225F795180082FEA6 /* listOfDrinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listOfDrinks.json; sourceTree = "<group>"; };
 		8FAEAD6A25E98DAF008F2457 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFavouriteDrinkButton.swift; sourceTree = "<group>"; };
 		8FAEAD8325EAA2C8008F2457 /* DrinkType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkType.swift; sourceTree = "<group>"; };
@@ -299,7 +303,9 @@
 				8F321CD925ED717600E3CFFC /* ViewControllers */,
 				8FAEAD7125E98DB8008F2457 /* Extensions */,
 				8F51625325D19E56006DBD85 /* Assets.xcassets */,
+				8F97139225F795180082FEA6 /* listOfDrinks.json */,
 				8F51625825D19E56006DBD85 /* Info.plist */,
+				8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */,
 			);
 			path = AlkoKolik;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F51625725D19E56006DBD85 /* LaunchScreen.storyboard in Resources */,
+				8F97139325F795180082FEA6 /* listOfDrinks.json in Resources */,
 				8F51625425D19E56006DBD85 /* Assets.xcassets in Resources */,
 				8F51625225D19E54006DBD85 /* Main.storyboard in Resources */,
 			);
@@ -762,6 +769,7 @@
 				8FCBE15325E509990057459B /* ProgressRing.swift in Sources */,
 				8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */,
 				8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */,
+				8F97138025F6E4250082FEA6 /* AlkoKolik.xcdatamodeld in Sources */,
 				8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */,
 				8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */,
 				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,
@@ -1068,7 +1076,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1091,7 +1099,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1250,6 +1258,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8F97137F25F6E4250082FEA6 /* Model.xcdatamodel */,
+			);
+			currentVersion = 8F97137F25F6E4250082FEA6 /* Model.xcdatamodel */;
+			path = AlkoKolik.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8F51623F25D19E53006DBD85 /* Project object */;
 }

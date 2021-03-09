@@ -16,7 +16,9 @@ extension UIColor {
     
     class var appMin: UIColor { return self.init(named: "appMin") ?? .systemPink}
     
-    class var appGrey: UIColor { return self.init(named: "appGrey") ?? .systemPink }
+    class var appGrey: UIColor { return self.init(named: "appGray") ?? .systemPink }
+    
+    class var appDarkGrey: UIColor { return self.init(named: "appDarkGray") ?? .systemPink }
     
     class var appWhite: UIColor { return self.init(named: "appWhite") ?? .white }
     
