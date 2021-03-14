@@ -19,13 +19,14 @@ class ProfileVC: UITableViewController {
     }
 }
 
+// MARK: HealthKit
 extension ProfileVC {
     
     func loadWeightAndHeight(){
         HealthKitManager.getHeight() { (sample, error) in
             guard let sample = sample else {
-                if let error = error {
-                    print("error in loading height")
+                if let _error = error {
+                    print("error in loading height \(_error.localizedDescription)")
                 }
                 return
             }
@@ -36,8 +37,8 @@ extension ProfileVC {
         
         HealthKitManager.getWeight() { (sample, error) in
             guard let sample = sample else {
-                if let error = error {
-                    print("error in loading weight")
+                if let _error = error {
+                    print("error in loading weight \(_error.localizedDescription)")
                 }
                 return
             }

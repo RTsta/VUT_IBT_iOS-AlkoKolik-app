@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainVC: UIViewController {
 
@@ -52,6 +53,8 @@ class MainVC: UIViewController {
         clock.durationTime = duration
         updateDurationLabel(duration)
         clock.updateView()
+        
+        CoreDataManager.insertRecord(drink: DrinkItem(id: 14, name: "Martini bianco", volume: [100, 200], alcoholPercentage: 15.0, type: .wine), volumeOpt: 0, time: Date())
     }
     
     func HKAuthorization() {

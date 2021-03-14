@@ -11,21 +11,31 @@ import UIKit
 class DrinkListVC : UIViewController {
     
     var listOfDrinks = [DrinkItem]()
-   
+    var selectedRow = 0
+    
     @IBOutlet weak var favouriteBtnsView: UIView!
     @IBOutlet weak var drinksTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _list = loadDrinksFromJSON() {
+        if let _list = ListOfDrinksManager.loadAllDrinks() {
             listOfDrinks = _list
             drinksTable.reloadData()
         }
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? VolumeAlertVC {
+            vc.volumesArray = listOfDrinks[selectedRow].volume
+            vc.selectedDrink = listOfDrinks[selectedRow]
+            vc.cellColor = UIColor.colorFor(drinkType: listOfDrinks[selectedRow].type)
+        }
+    }
+    
 }
 
+// MARK: UITableView
 extension DrinkListVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfDrinks.count
@@ -41,54 +51,12 @@ extension DrinkListVC : UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
-}
-
-extension DrinkListVC {
-    private func loadDrinksFromJSON() -> [DrinkItem]?{
-        guard let filePath = Bundle.main.path(forResource: "listOfDrinks", ofType: "json") else {return nil}
-        let url = URL(fileURLWithPath: filePath)
-
-        do {
-            let data = try Data(contentsOf: url)
-            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                guard let drinks = json["drink"] as? [[String: Any]] else {return nil}
-                var parsedDrinks = [DrinkItem]()
-                for drink in drinks{
-                        guard let id = drink["id"] as? Int,
-                              let name = drink["name"] as? String,
-                              let volumes = drink["volume"] as? [Double],
-                              let percentage = drink["percentage"] as? Double,
-                              let type = drink["type"] as? String
-                        else {return nil}
-                        
-                        var enumType : DrinkType = .none
-                        switch type {
-                        case "beer":
-                            enumType = .beer
-                        case "wine":
-                            enumType = .wine
-                        case "cider":
-                            enumType = .cider
-                        case "cocktail":
-                            enumType = .cocktail
-                        case "liquer":
-                            enumType = .liqueur
-                        case "vodka", "rum":
-                            enumType = .spirit
-                        default:
-                            break
-                        }
-                        
-                    parsedDrinks.append(DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType))
-                    }
-                return parsedDrinks
-            }
-        } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
-            return nil
-        }
-        return nil
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("tapped")
+        selectedRow = indexPath.row
+        performSegue(withIdentifier: "alertShowSegue", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+    
 }
 

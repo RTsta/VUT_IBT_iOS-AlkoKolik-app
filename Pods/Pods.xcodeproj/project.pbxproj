@@ -113,7 +113,7 @@
 		4FE1B09886FC57D5AD04B144FDEAAD9A /* Pods-AlkoKolik.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlkoKolik.modulemap"; sourceTree = "<group>"; };
 		568E62EF0A2DEAC554A96A05729B2DD8 /* FSCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-umbrella.h"; sourceTree = "<group>"; };
 		56F3564753F556088177943B47D30B1A /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		5A4674B40FF54427D08F4B900BB4151D /* Pods_AlkoKolik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlkoKolik.framework; path = "Pods-AlkoKolik.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A4674B40FF54427D08F4B900BB4151D /* Pods_AlkoKolik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C2E43E66C8EE52E545C20836F1830FD /* Pods-AlkoKolikTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlkoKolikTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		5D7EC07AB5B5A3FD01B78911E7024432 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5F8E1E2E0C4C02D00B18A67277B6F1AA /* FSCalendar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSCalendar.release.xcconfig; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		6FFF88C8E5FDB575C875BE92673B0610 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarTransitionCoordinator.h; path = FSCalendar/FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
 		72686F81B54C224B5C0EE4B940A3C861 /* Pods-AlkoKolik WatchKit App-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlkoKolik WatchKit App-Info.plist"; sourceTree = "<group>"; };
 		7330A135F06EAC5F169E9AC848564BF3 /* Pods-AlkoKolik-AlkoKolikUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlkoKolik-AlkoKolikUITests-umbrella.h"; sourceTree = "<group>"; };
-		746C19CFA3DB5C00FBF2FBB1FFA2540B /* Pods_AlkoKolik_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlkoKolik_WatchKit_Extension.framework; path = "Pods-AlkoKolik WatchKit Extension.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		746C19CFA3DB5C00FBF2FBB1FFA2540B /* Pods_AlkoKolik_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76040B53D470DFFE4B209DCBE3C169AE /* FSCalendarCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCalculator.h; path = FSCalendar/FSCalendarCalculator.h; sourceTree = "<group>"; };
 		7957F55EBC7DAFA624E80B2A5F1F5A44 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		7A0B5660CDD675DF359F487965B0DF55 /* FSCalendar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendar.h; path = FSCalendar/FSCalendar.h; sourceTree = "<group>"; };
@@ -136,12 +136,12 @@
 		84461564F8F344746670F209A9206757 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS7.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		8AA04D0EB5F1BC27E7FC74EB14A00277 /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarStickyHeader.m; path = FSCalendar/FSCalendarStickyHeader.m; sourceTree = "<group>"; };
 		91C0757CC926FE846C1A15A0731B426F /* Pods-AlkoKolikTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlkoKolikTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSCalendar.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9775EA3767C75D49BE07973219FA2B75 /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionViewLayout.m; path = FSCalendar/FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
 		9A8D3A6D13B3F2806A026A030EB84577 /* Pods-AlkoKolik-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlkoKolik-umbrella.h"; sourceTree = "<group>"; };
 		9B74A552E68AE04FE6359BF2F94E0599 /* FSCalendar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSCalendar.debug.xcconfig; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0597426352897E9336D113D6A83FDC9 /* Pods_AlkoKolikTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlkoKolikTests.framework; path = "Pods-AlkoKolikTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0597426352897E9336D113D6A83FDC9 /* Pods_AlkoKolikTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolikTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1BD58AD0296276940B7AB296EB1B226 /* Pods-AlkoKolik WatchKit App.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlkoKolik WatchKit App.modulemap"; sourceTree = "<group>"; };
 		A240CF023A9F9EA94FCADDF20823E648 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A94962431DFBB4626A3662A04D580E38 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarAppearance.m; path = FSCalendar/FSCalendarAppearance.m; sourceTree = "<group>"; };
@@ -154,12 +154,12 @@
 		BC18398FA7B4F8E92EAB9183EEBC14AF /* Pods-AlkoKolik WatchKit Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AlkoKolik WatchKit Extension.modulemap"; sourceTree = "<group>"; };
 		C20548DFB029B03FE4F211BC60FC294F /* Pods-AlkoKolik-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlkoKolik-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C2F1D949A1CC19FF696B44CD59E7E7D8 /* Pods-AlkoKolik-AlkoKolikUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlkoKolik-AlkoKolikUITests-Info.plist"; sourceTree = "<group>"; };
-		C3BBF8C544953D943A2B44D8E5D9D08F /* Pods_AlkoKolik_AlkoKolikUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlkoKolik_AlkoKolikUITests.framework; path = "Pods-AlkoKolik-AlkoKolikUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BBF8C544953D943A2B44D8E5D9D08F /* Pods_AlkoKolik_AlkoKolikUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_AlkoKolikUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB0B663BB78A752E4EFDF5A1C50F1AA8 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionViewLayout.h; path = FSCalendar/FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
 		CE90CF42A915D43D210781F11B2828E2 /* Pods-AlkoKolik-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlkoKolik-Info.plist"; sourceTree = "<group>"; };
 		D039E31E23915D715A3E6D0A5261FBA6 /* FSCalendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar-dummy.m"; sourceTree = "<group>"; };
 		D06B15BCD069D6D4368750129EE4F84F /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
-		D2C7391F68DFE8F44133098B61548779 /* Pods_AlkoKolik_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlkoKolik_WatchKit_App.framework; path = "Pods-AlkoKolik WatchKit App.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2C7391F68DFE8F44133098B61548779 /* Pods_AlkoKolik_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D653A4B4134BD164D9EE5BA889BFDE87 /* Pods-AlkoKolik WatchKit Extension-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlkoKolik WatchKit Extension-Info.plist"; sourceTree = "<group>"; };
 		D7980A69FE12D1EE88017046E217D8C2 /* FSCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-prefix.pch"; sourceTree = "<group>"; };
 		D964B7101E044CBEBDCDEDACAA0137F2 /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionView.m; path = FSCalendar/FSCalendarCollectionView.m; sourceTree = "<group>"; };
@@ -300,7 +300,6 @@
 				46DCB529DA6814CE5145C0FFFA58A5EA /* FSCalendarWeekdayView.m */,
 				E9C5AF6BDD86A915096ACCED0A192AF0 /* Support Files */,
 			);
-			name = FSCalendar;
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
@@ -628,7 +627,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 9.3";
@@ -1231,7 +1230,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/FSCalendar/FSCalendar-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FSCalendar/FSCalendar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1265,7 +1264,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/FSCalendar/FSCalendar-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/FSCalendar/FSCalendar-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

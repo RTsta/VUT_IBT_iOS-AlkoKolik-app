@@ -15,8 +15,6 @@ class UIFavouriteDrinkButton: UIButton {
         }
     }
     
-    private var scaleFactor : CGFloat { frame.height/80.0 }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -34,36 +32,30 @@ class UIFavouriteDrinkButton: UIButton {
     }
     
     private func setup(){
-        //let icon
+
         self.layer.cornerRadius = max(self.bounds.size.width,self.bounds.size.height) / 2.0
         update()
         self.setNeedsDisplay()
     }
     
     private func update() {
+        self.tintColor = .appGrey
+        self.backgroundColor = UIColor.colorFor(drinkType: self.drinkType)
         switch drinkType {
         case .beer:
             self.setImage(UIImage(named: "btn_beer")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.tintColor = .appGrey
-            backgroundColor = .appMin
         case .wine:
             self.setImage(UIImage(named: "btn_wine")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.tintColor = .appGrey
-            backgroundColor = .appMid
         case .cider:
-            backgroundColor = .appMid
+            break
         case .liqueur:
-            backgroundColor = .appSemiMax
+            break
         case .spirit:
             self.setImage(UIImage(named: "btn_spirit")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.tintColor = .appGrey
-            backgroundColor = .appMax
         case .cocktail:
             self.setImage(UIImage(named: "btn_cocktail")?.withRenderingMode(.alwaysTemplate), for: .normal)
-            self.tintColor = .appGrey
-            backgroundColor = .appSemiMax
         default:
-            backgroundColor = .yellow
+            break
         }
     }
 }

@@ -22,5 +22,41 @@ extension UIColor {
     
     class var appWhite: UIColor { return self.init(named: "appWhite") ?? .white }
     
-    class var appBackgroundDark: UIColor { return self.init(red:136/255.0, green:242/255.0, blue:174/255.0, alpha: 1.0) }
+    class var appBackground: UIColor { return self.init(named: "appBackground") ?? .black }
+    
+    class func colorFor(drinkType: DrinkType) -> UIColor {
+        switch drinkType {
+        case .beer:
+            return self.appMin
+        case .wine:
+            return self.appMid
+        case .cider:
+            return self.appMid
+        case .liqueur:
+            return self.appSemiMax
+        case .spirit:
+            return self.appMax
+        case .cocktail:
+            return self.appMax
+        default:
+            return self.yellow
+        }
+    }
+    
+    class func colorFor(daydose: Double) -> UIColor {
+        switch daydose {
+        case 0:
+            return self.appGrey
+        case 0..<20:
+            return self.appMin
+        case 20..<30:
+            return self.appMid
+        case 30..<40:
+            return self.appSemiMax
+        case 40...:
+            return self.appMax
+        default:
+            return .clear
+        }
+    }
 }

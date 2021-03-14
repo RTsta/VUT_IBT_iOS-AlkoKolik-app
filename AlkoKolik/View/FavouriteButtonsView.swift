@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// TODO: Načíst user default když se instancuje toto view, aby se správně nakreslil počet tlačítek
 class FavouriteButtonsView: UIView {
     
     var numberOfButtons : Int = 3
@@ -35,26 +35,27 @@ class FavouriteButtonsView: UIView {
     private func setupButtons() {
 
         let btnDiameter : CGFloat = 80.0
+        let btnRadius = btnDiameter/2
         let btnGap : CGFloat = 30.0
         
-        var x = (frame.width - (3 * btnDiameter + 2 * btnGap)) * 0.5
-        let y = (frame.height - 1 * 80 + 0 * 30) / 2
+        var x = bounds.midX
+        let y = bounds.midY
         
-        var button = UIFavouriteDrinkButton(frame: CGRect(x: x, y: y, width: btnDiameter, height: btnDiameter), type: .beer)
+        var button = UIFavouriteDrinkButton(frame: CGRect(x: x-btnRadius, y: y-btnRadius, width: btnDiameter, height: btnDiameter), type: .beer)
         button.setTitle("btn 1", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         buttons.append(button)
         self.addSubview(button)
         
-        x = x + (btnDiameter + btnGap)
-        button = UIFavouriteDrinkButton(frame: CGRect(x: x, y: y, width: btnDiameter, height: btnDiameter), type: .cocktail)
+        x = bounds.midX + (btnDiameter + btnGap)
+        button = UIFavouriteDrinkButton(frame: CGRect(x: x-btnRadius, y: y-btnRadius, width: btnDiameter, height: btnDiameter), type: .cocktail)
         button.setTitle("btn 2", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         buttons.append(button)
         self.addSubview(button)
         
-        x = x + (btnDiameter + btnGap)
-        button = UIFavouriteDrinkButton(frame: CGRect(x: x, y: y, width: btnDiameter, height: btnDiameter), type: .spirit)
+        x = bounds.midX - (btnDiameter + btnGap)
+        button = UIFavouriteDrinkButton(frame: CGRect(x: x-btnRadius, y: y-btnRadius, width: btnDiameter, height: btnDiameter), type: .spirit)
         button.setTitle("btn 3", for: .normal)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
         buttons.append(button)

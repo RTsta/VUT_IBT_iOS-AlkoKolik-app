@@ -43,6 +43,20 @@ class HealthKitManager{
         getMostRecentSample(for: sampleType, completion: completion)
     }
     
+    class func getAge(completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) -> Int? {
+        do {
+            let dateOfBirth = try HKHealthStore().dateOfBirthComponents()
+            
+            let todayDateComponents = Calendar.current.dateComponents([.year],from: Date())
+            let thisYear = todayDateComponents.year!
+            let age = thisYear - dateOfBirth.year!
+            return age
+        }catch let error {
+            print(error)
+            return nil
+        }
+    }
+    
     class func getMostRecentSample(for sampleType: HKSampleType,
                                    completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) {
       let mostRecentPredicate = HKQuery.predicateForSamples(withStart: Date.distantPast,
