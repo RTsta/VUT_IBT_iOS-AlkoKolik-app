@@ -9,7 +9,8 @@ import UIKit
 // TODO: Načíst user default když se instancuje toto view, aby se správně nakreslil počet tlačítek
 class FavouriteButtonsView: UIView {
     
-    var numberOfButtons : Int = 3
+    //var favourites : [FavouriteDrink] = [] { didSet{ updateFavouriteBtns() }}
+    
     var buttons : [UIButton] = [UIButton]()
     
     override init(frame: CGRect) {
@@ -24,13 +25,25 @@ class FavouriteButtonsView: UIView {
         setupButtons()
     }
     
+    
     private func setupView(){
         self.backgroundColor = .clear
     }
     
+    /*
     func updateFavouriteBtns(){
-        //favouriteBtn1.drinkType = .cocktail
-    }
+        
+        for f in favourites {
+            if let drink = ListOfDrinksManager.findDrink(drink_id: f.drinkId){
+                var button = UIFavouriteDrinkButton(frame: CGRect(x: x-btnRadius, y: y-btnRadius, width: btnDiameter, height: btnDiameter), type: .beer)
+                button.setTitle("btn 1", for: .normal)
+                button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+                buttons.append(button)
+                self.addSubview(button)
+            }
+        }
+        
+    }*/
     
     private func setupButtons() {
 

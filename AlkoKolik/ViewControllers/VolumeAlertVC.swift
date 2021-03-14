@@ -15,6 +15,8 @@ class VolumeAlertVC: UIViewController {
     
     @IBOutlet weak var theView: UIView!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var collectionHeightConstr: NSLayoutConstraint!
+    
     
     
     @IBAction func cancelButtonPress(_ sender: Any) {
@@ -23,18 +25,57 @@ class VolumeAlertVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collection.allowsSelection = true
+        setupCollectionView()
+        
+        let tapGestureOutside = UITapGestureRecognizer(target: self, action: #selector(self.pressOutsideCollection))
+        self.view.addGestureRecognizer(tapGestureOutside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         theView.layer.cornerRadius = theView.bounds.width / 10.0
     }
+    /*
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let height = collection.collectionViewLayout.collectionViewContentSize.height
+        collectionHeightConstr.constant = height
+        self.view.layoutIfNeeded()
+    }*/
+    
+    
+    @objc func pressOutsideCollection(sender: UITapGestureRecognizer){
+        if sender.state == UITapGestureRecognizer.State.ended{
+            if !theView.point(inside: sender.location(in: theView), with: nil){
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
     
 }
 
 // MARK: CollectionView
-extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func setupCollectionView(){
+        collection.allowsSelection = true
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
+        collection.addGestureRecognizer(longPress)
+    }
+    
+    @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
+        if sender.state == UIGestureRecognizer.State.began {
+            let touchPoint = sender.location(in: collection)
+            if let indexPath = collection.indexPathForItem(at: touchPoint) {
+                let row = indexPathToArrayNumber(indexPath: indexPath)
+                print("\(selectedDrink) a \(volumesArray[row])")
+                
+            }
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch volumesArray.count {
         case 1...3:
@@ -58,7 +99,7 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "drinkVolumeCell", for: indexPath) as? VolumeAlertViewCell
         else {fatalError("Cell is not an instance of VolumeAlertView.")}
         cell.label.text = ("\(Int(volumesArray[indexPathToArrayNumber(indexPath: indexPath)])) ml")
-        cell.backgroundColor = cellColor
+        cell.circleView.backgroundColor = cellColor
         return cell
         
     }
@@ -84,6 +125,7 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource {
                                      time: Date())
         self.dismiss(animated: true, completion: nil)
     }
+    
     
     private func indexPathToArrayNumber(indexPath: IndexPath) -> Int{
         switch volumesArray.count {
@@ -114,11 +156,26 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource {
         }
     }
     
-    func centerItemsInCollectionView(cellWidth: Double, numberOfItems: Double, spaceBetweenCell: Double, collectionView: UICollectionView) -> UIEdgeInsets {
-        let totalWidth = cellWidth * numberOfItems
-        let totalSpacingWidth = spaceBetweenCell * (numberOfItems - 1)
-        let leftInset = (collectionView.frame.width - CGFloat(totalWidth + totalSpacingWidth)) / 2
-        let rightInset = leftInset
-        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidth: CGFloat = flowLayout.itemSize.width
+        let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
+        var cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
+        var collectionWidth = collectionView.frame.size.width
+        var totalWidth: CGFloat
+        if #available(iOS 11.0, *) {
+            collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+        }
+        repeat {
+            totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
+            cellCount -= 1
+        } while totalWidth >= collectionWidth
+
+        if (totalWidth > 0) {
+            let edgeInset = (collectionWidth - totalWidth) / 2
+            return UIEdgeInsets.init(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)
+        } else {
+            return flowLayout.sectionInset
+        }
     }
 }
