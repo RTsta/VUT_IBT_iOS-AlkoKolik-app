@@ -13,6 +13,11 @@ class VolumeAlertVC: UIViewController {
     var volumesArray : [Double] = []
     var cellColor : UIColor = .appGrey
     
+    var favourites : [FavouriteDrink]?
+    var favouriteVolumes : [Double] = []
+    
+    var callback : (() -> Void)?
+    
     @IBOutlet weak var theView: UIView!
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet weak var collectionHeightConstr: NSLayoutConstraint!
@@ -29,19 +34,59 @@ class VolumeAlertVC: UIViewController {
         
         let tapGestureOutside = UITapGestureRecognizer(target: self, action: #selector(self.pressOutsideCollection))
         self.view.addGestureRecognizer(tapGestureOutside)
+        
+        initFavourites()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         theView.layer.cornerRadius = theView.bounds.width / 10.0
+        loadVolumesOfFavourite()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        callback?()
     }
     /*
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let height = collection.collectionViewLayout.collectionViewContentSize.height
-        collectionHeightConstr.constant = height
-        self.view.layoutIfNeeded()
-    }*/
+     override func viewDidLayoutSubviews() {
+     super.viewDidLayoutSubviews()
+     let height = collection.collectionViewLayout.collectionViewContentSize.height
+     collectionHeightConstr.constant = height
+     self.view.layoutIfNeeded()
+     }*/
+    
+    func initFavourites(){
+        favourites = UserDefaultsManager.loadFavouriteDrinks()
+        if favourites == nil {
+            favourites = []
+            print("user defaults were not loaded")
+        }
+    }
+    
+    func loadVolumesOfFavourite(){
+        if let _favourites = favourites,
+           let _selected = selectedDrink {
+            for f in _favourites {
+                if f.drinkId == _selected.id {
+                    favouriteVolumes.append(f.volume)
+                    if !volumesArray.contains(f.volume) {
+                        volumesArray.append(f.volume)
+                    }
+                }
+            }
+        }
+    }
+    
+    func reloadeVolumes(){
+        if let _list = ListOfDrinksManager.loadAllDrinks(),
+           let _selected = selectedDrink,
+           let _elem = _list.first(where: {($0.id == _selected.id)}){
+            
+            volumesArray = _elem.volume
+        }
+    }
     
     
     @objc func pressOutsideCollection(sender: UITapGestureRecognizer){
@@ -67,10 +112,25 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     @objc func handleLongPress(sender: UILongPressGestureRecognizer) {
         if sender.state == UIGestureRecognizer.State.began {
             let touchPoint = sender.location(in: collection)
-            if let indexPath = collection.indexPathForItem(at: touchPoint) {
+            if let indexPath = collection.indexPathForItem(at: touchPoint),
+               let drink = selectedDrink{
                 let row = indexPathToArrayNumber(indexPath: indexPath)
-                print("\(selectedDrink) a \(volumesArray[row])")
-                
+                let pressedVolume = volumesArray[row]
+                //drink is not in favourite and it will be added
+                if !favouriteVolumes.contains(pressedVolume) {
+                    if let f = favourites, f.count >= 7 {return}
+                    UserDefaultsManager.insertIntoFavourite(drinkId: drink.id, volume: pressedVolume)
+                    favouriteVolumes.append(pressedVolume)
+                } else {
+                    if (favourites == nil) { initFavourites() }
+                    favouriteVolumes.removeAll(where: {$0 == pressedVolume})
+                    favourites?.removeAll(where: {($0.drinkId == drink.id && $0.volume == pressedVolume)})
+                    UserDefaultsManager.saveFavourite(drinks: favourites!)
+                    reloadeVolumes()
+                }
+                collection.reloadData()
+                collection.layoutIfNeeded()
+                NotificationCenter.default.post(name: .favouriteNeedsReload, object: nil)
             }
         }
     }
@@ -98,6 +158,10 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "drinkVolumeCell", for: indexPath) as? VolumeAlertViewCell
         else {fatalError("Cell is not an instance of VolumeAlertView.")}
+        let volume = volumesArray[indexPathToArrayNumber(indexPath: indexPath)]
+        if favouriteVolumes.contains(volume){
+            cell.isFavourite = true
+        } else {cell.isFavourite = false}
         cell.label.text = ("\(Int(volumesArray[indexPathToArrayNumber(indexPath: indexPath)])) ml")
         cell.circleView.backgroundColor = cellColor
         return cell
@@ -170,7 +234,7 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource, U
             totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
             cellCount -= 1
         } while totalWidth >= collectionWidth
-
+        
         if (totalWidth > 0) {
             let edgeInset = (collectionWidth - totalWidth) / 2
             return UIEdgeInsets.init(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)

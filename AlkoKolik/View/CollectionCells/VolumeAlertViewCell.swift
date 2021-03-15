@@ -9,7 +9,7 @@ import UIKit
 
 class VolumeAlertViewCell: UICollectionViewCell {
     
-    var favourite : Bool = false
+    var isFavourite : Bool = false
     
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var circleView: UIView!
@@ -18,7 +18,7 @@ class VolumeAlertViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         self.circleView.layer.cornerRadius = max(self.bounds.size.width,self.bounds.size.height) * 0.5
         setupFavouriteIcon()
-        if favourite {
+        if isFavourite {
             favouriteIcon.isHidden = false
         }
     }
@@ -27,5 +27,6 @@ class VolumeAlertViewCell: UICollectionViewCell {
         favouriteIcon.layer.cornerRadius = max(favouriteIcon.bounds.size.width,favouriteIcon.bounds.size.height) * 0.5
         favouriteIcon.backgroundColor = .appDarkGrey
         favouriteIcon.isHidden = true
+        
     }
 }

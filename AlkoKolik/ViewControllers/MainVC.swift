@@ -13,7 +13,11 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var clock: UIClockView!
-    @IBOutlet weak var favouriteBtnsView: FavouriteButtonsView!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var containerHeight: NSLayoutConstraint!
+    
+    
+    
     
     let HKManager = HealthKitManager()
     
@@ -23,18 +27,26 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(FavouriteBtnTapped),
-                                               name: .FavouriteBtnTapped,
-                                               object: nil)
-        
         HKAuthorization()
         
         clock.startClock()
         clock.durationTime = duration
         updateDurationLabel(duration)
-        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "favouriteBtnMainSegue" {
+            if let vc = segue.destination as? FavouriteButtonsVC{
+                vc.parentVC = self
+                vc.view.translatesAutoresizingMaskIntoConstraints = false
+            }
+        }
+    }
+    
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        containerView.heightAnchor.constraint(equalToConstant: container.preferredContentSize.height).isActive = true
+    }
+    
     
     func updateDurationLabel(_ timeDuration : Double){
         if (timeDuration > 0){
@@ -48,14 +60,6 @@ class MainVC: UIViewController {
         }
     }
     
-    @objc private func FavouriteBtnTapped(_ notification: Notification) {
-        duration += 10.25
-        clock.durationTime = duration
-        updateDurationLabel(duration)
-        clock.updateView()
-        
-        CoreDataManager.insertRecord(drink: DrinkItem(id: 14, name: "Martini bianco", volume: [100, 200], alcoholPercentage: 15.0, type: .wine), volumeOpt: 0, time: Date())
-    }
     
     func HKAuthorization() {
         HealthKitManager.authorizeHealthKit { (authorized, error) in

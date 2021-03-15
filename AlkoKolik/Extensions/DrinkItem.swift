@@ -15,7 +15,7 @@ struct DrinkItem {
     let type : DrinkType
 }
 
-enum DrinkType {
+enum DrinkType: Comparable {
     case beer
     case wine
     case cider

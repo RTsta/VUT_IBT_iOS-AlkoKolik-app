@@ -13,13 +13,15 @@ class DrinkListVC : UIViewController {
     var listOfDrinks = [DrinkItem]()
     var selectedRow = 0
     
-    @IBOutlet weak var favouriteBtnsView: UIView!
+
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var drinksTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         if let _list = ListOfDrinksManager.loadAllDrinks() {
             listOfDrinks = _list
+            listOfDrinks.sort(by: {$0.type < $1.type})
             drinksTable.reloadData()
         }
         
@@ -31,8 +33,14 @@ class DrinkListVC : UIViewController {
             vc.selectedDrink = listOfDrinks[selectedRow]
             vc.cellColor = UIColor.colorFor(drinkType: listOfDrinks[selectedRow].type)
         }
+        
+        if segue.identifier == "favouriteBtnMainSegue" {
+            if let vc = segue.destination as? FavouriteButtonsVC{
+                vc.parentVC = self
+            }
+        }
+        
     }
-    
 }
 
 // MARK: UITableView
@@ -52,7 +60,6 @@ extension DrinkListVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("tapped")
         selectedRow = indexPath.row
         performSegue(withIdentifier: "alertShowSegue", sender: nil)
         tableView.deselectRow(at: indexPath, animated: true)

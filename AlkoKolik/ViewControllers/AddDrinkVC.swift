@@ -26,9 +26,9 @@ class AddDrinkVC: UIViewController {
         super.viewDidLoad()
         if let _list = ListOfDrinksManager.loadAllDrinks() {
             listOfDrinks = _list
+            listOfDrinks.sort(by: {$0.type < $1.type})
             drinksTable.reloadData()
         }
-        print("v add \n\n\n\(selectedDate)\n\n\n")
         timeText.tintColor = .clear
         volumeText.tintColor = .clear
         saveBtn.isEnabled = false

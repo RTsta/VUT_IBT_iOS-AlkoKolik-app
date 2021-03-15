@@ -35,6 +35,12 @@ class DayVC : UIViewController {
         calendar.reloadData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if selectedDayRecords.count > 8 {todayDrinkTable.scrollToRow(at: IndexPath(row: 8, section: 0), at: .bottom, animated: true)
+        }else {todayDrinkTable.scrollToRow(at: IndexPath(row: selectedDayRecords.count, section: 0), at: .bottom, animated: true)}
+    }
+    
     @IBAction func doneBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -89,7 +95,8 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
         
         todayDrinkTable.reloadData()
         updateTableContentInset()
-        todayDrinkTable.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
+        if selectedDayRecords.count > 8 {todayDrinkTable.scrollToRow(at: IndexPath(row: 8, section: 0), at: .bottom, animated: true)
+        }else {todayDrinkTable.scrollToRow(at: IndexPath(row: selectedDayRecords.count, section: 0), at: .bottom, animated: true)}
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {

@@ -24,6 +24,8 @@ extension UIColor {
     
     class var appBackground: UIColor { return self.init(named: "appBackground") ?? .black }
     
+    class var appText: UIColor { return self.init(named: "appText") ?? .white }
+    
     class func colorFor(drinkType: DrinkType) -> UIColor {
         switch drinkType {
         case .beer:
