@@ -18,17 +18,19 @@ class FavouriteButtonsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .clear
-        self.favCollection.backgroundColor = .clear
+        setupCollection()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(favouritesNeedsReload), name: .favouriteNeedsReload, object: nil)
+        
         if willNeedReloadFavourites || (favourites == nil){
             initFavourites()
             willNeedReloadFavourites = false
         }
+        
         loadFullDrinkItems()
         favCollection.reloadData()
         
-        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,47 +69,58 @@ class FavouriteButtonsVC: UIViewController {
             favCollection.reloadData()
         }
     }
+    
+    @objc func handleShortPress(sender: UITapGestureRecognizer) {
+        if sender.state == UIGestureRecognizer.State.ended {
+            let touchPoint = sender.location(in: favCollection)
+            if let indexPath = favCollection.indexPathForItem(at: touchPoint){
+                
+                let row = indexPathToArrayNumber(indexPath: indexPath)
+                let drink = fullDrinkItems[row]
+                
+                CoreDataManager.insertRecord(drink: drink, volumeOpt: row, time: Date())
+                NotificationCenter.default.post(name: .favouriteBtnPressd, object: nil)
+            }
+        }
+    }
 }
 
+// MARK: CollectionView
 extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func setupCollection(){
+        self.view.backgroundColor = .clear
+        self.favCollection.backgroundColor = .clear
+        
+        let shortPress = UITapGestureRecognizer(target: self, action: #selector(self.handleShortPress))
+        favCollection.addGestureRecognizer(shortPress)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = favourites?.count ?? 0
         switch count {
         case 1...3:
-            return 1
-        case 4...6:
+            return count
+        case 4:
             return 2
-        case 7:
+        case 5:
+            if section == 0 {return 3}
+            else { return 2}
+        case 6:
             return 3
+        case 7:
+            if section == 1 {return 3}
+            else { return 2}
         default:
             return 0
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            let count = favourites?.count ?? 0
-            switch count {
-            case 1...3:
-                return count
-            case 4:
-                return 2
-            case 5:
-                if section == 0 {return 3}
-                else { return 2}
-            case 6:
-                return 3
-            case 7:
-                if section == 1 {return 3}
-                else { return 2}
-            default:
-                return 0
-            }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteDrinkCell", for: indexPath) as? UIFavouriteDrinkCell
         else {fatalError("Cell is not an instance of VolumeAlertView.")}
+        myDebugPrint(indexPathToArrayNumber(indexPath: indexPath), "array numb")
+        myDebugPrint(fullDrinkItems, "items")
         cell.drinkType = fullDrinkItems[indexPathToArrayNumber(indexPath: indexPath)].type
         return cell
     }
@@ -126,7 +139,7 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
             totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
             cellCount -= 1
         } while totalWidth >= collectionWidth
-
+        
         if (totalWidth > 0) {
             let edgeInset = (collectionWidth - totalWidth) / 2
             return UIEdgeInsets.init(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)
@@ -140,11 +153,17 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
         switch count {
         case 1, 2, 3:
             return indexPath.row
-        case 4, 5:
+        case 4:
             if indexPath.section == 0{
                 return indexPath.row
             }else {
                 return indexPath.row+2
+            }
+        case 5:
+            if indexPath.section == 0{
+                return indexPath.row
+            }else {
+                return indexPath.row+3
             }
         case 6:
             if indexPath.section == 0{
@@ -160,6 +179,20 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
             } else {
                 return indexPath.row + 5
             }
+        default:
+            return 0
+        }
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        let count = favourites?.count ?? 0
+        switch count {
+        case 1...3:
+            return 1
+        case 4...6:
+            return 2
+        case 7:
+            return 3
         default:
             return 0
         }

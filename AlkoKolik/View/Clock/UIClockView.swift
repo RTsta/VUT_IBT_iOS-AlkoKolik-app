@@ -19,6 +19,7 @@ class UIClockView: UIView {
     
     var localTime = LocalTime()
     var timer = Timer()
+    var parrentTickAction : (()->Void)?
     
     //duratin in minutes
     public var durationTime = 0.0 {didSet {
@@ -101,6 +102,7 @@ class UIClockView: UIView {
         localTime.minute = realTimeComponents.minute ?? 42
         localTime.hour = realTimeComponents.hour ?? 10
         updateHands(animated: true)
+        if let action = parrentTickAction { action() }
         updateRing(animated: true)
     }
     

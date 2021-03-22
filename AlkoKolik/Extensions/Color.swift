@@ -8,17 +8,17 @@
 import UIKit
 
 extension UIColor {
-    class var appMax: UIColor { return self.init(named: "appMax") ?? .systemPink}
+    class var appMax: UIColor { return self.init(named: "appMax") ?? .purple}
     
-    class var appSemiMax: UIColor { return self.init(named: "appSemiMax") ?? .systemPink}
+    class var appSemiMax: UIColor { return self.init(named: "appSemiMax") ?? .purple}
     
-    class var appMid: UIColor { return self.init(named: "appMid") ?? .systemPink}
+    class var appMid: UIColor { return self.init(named: "appMid") ?? .purple}
     
-    class var appMin: UIColor { return self.init(named: "appMin") ?? .systemPink}
+    class var appMin: UIColor { return self.init(named: "appMin") ?? .purple}
     
-    class var appGrey: UIColor { return self.init(named: "appGray") ?? .systemPink }
+    class var appGrey: UIColor { return self.init(named: "appGray") ?? .purple }
     
-    class var appDarkGrey: UIColor { return self.init(named: "appDarkGray") ?? .systemPink }
+    class var appDarkGrey: UIColor { return self.init(named: "appDarkGray") ?? .purple }
     
     class var appWhite: UIColor { return self.init(named: "appWhite") ?? .white }
     

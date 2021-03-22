@@ -1,66 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Zuo-Kp-4Wn">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="17500"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
     </dependencies>
     <scenes>
         <!--Interface Controller-->
-        <scene sceneID="B8r-M2-F22">
+        <scene sceneID="vzO-nS-6oZ">
             <objects>
-                <controller id="7Ne-u3-A3O">
-                    <items>
-                        <label alignment="left" text="ahoj" id="DLk-l2-T0f"/>
-                    </items>
+                <controller id="UUd-Aw-YDo">
+                    <menu key="menu" id="Rld-7q-r2p">
+                        <items>
+                            <menuItem title="Menu Item" icon="add" id="fKt-AR-eIz"/>
+                        </items>
+                    </menu>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="-287" y="326"/>
+            <point key="canvasLocation" x="2649" y="-2356"/>
         </scene>
-        <!--Interface Controller-->
-        <scene sceneID="aou-V4-d1y">
+        <!--Drink Listo Interface Controller-->
+        <scene sceneID="E2s-E7-8wb">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="AlkoKolik_WatchKit_App" customModuleProvider="target">
+                <controller id="Zuo-Kp-4Wn" customClass="DrinkListoInterfaceController" customModule="AlkoKolik_WatchKit_Extension">
                     <items>
-                        <imageView alignment="left" id="gng-fa-bRQ"/>
+                        <table alignment="left" id="ykf-Ex-e2S">
+                            <items>
+                                <tableRow identifier="DrinkItemRow" id="ThJ-hG-g5f" customClass="DrinkRowController" customModule="AlkoKolik_WatchKit_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="6" id="Gee-lb-vbo">
+                                        <items>
+                                            <separator height="1" alignment="left" verticalAlignment="center" id="pGa-8h-O4F">
+                                                <color key="color" name="appMax"/>
+                                            </separator>
+                                            <group height="35" alignment="left" layout="vertical" spacing="0.0" id="hXd-Ez-ory">
+                                                <items>
+                                                    <group alignment="left" spacing="4" id="TY7-hK-syS">
+                                                        <items>
+                                                            <label alignment="left" text="Pilsner Urquel" id="T6h-D1-zJS"/>
+                                                        </items>
+                                                    </group>
+                                                </items>
+                                            </group>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="drinkLabel" destination="T6h-D1-zJS" id="ajk-q3-Py5"/>
+                                        <outlet property="separator" destination="pGa-8h-O4F" id="vvX-8X-D5R"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
                     <connections>
-                        <segue destination="7Ne-u3-A3O" kind="relationship" relationship="nextPage" id="5KE-jg-VpW"/>
+                        <outlet property="drinkTable" destination="ykf-Ex-e2S" id="eAy-tL-5Da"/>
+                        <segue destination="UUd-Aw-YDo" kind="relationship" relationship="nextPage" id="2qN-pq-wUs"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="40" y="326"/>
-        </scene>
-        <!--Static Notification Interface Controller-->
-        <scene sceneID="AEw-b0-oYE">
-            <objects>
-                <notificationController id="YCC-NB-fut">
-                    <items>
-                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
-                    </items>
-                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
-                    <connections>
-                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
-                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
-                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
-                    </connections>
-                </notificationController>
-            </objects>
-            <point key="canvasLocation" x="220" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="ZPc-GJ-vnh">
-            <objects>
-                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="AlkoKolik_WatchKit_App" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="643"/>
-        </scene>
-        <!--Notification Controller-->
-        <scene sceneID="Niz-AI-uX2">
-            <objects>
-                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="AlkoKolik_WatchKit_App" customModuleProvider="target"/>
-            </objects>
-            <point key="canvasLocation" x="468" y="345"/>
+            <point key="canvasLocation" x="2302" y="-2356"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="appMax">
+            <color red="0.87450980392156863" green="0.16078431372549021" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

@@ -61,13 +61,17 @@ class AddDrinkVC: UIViewController {
         datePicker.preferredDatePickerStyle = .wheels
         timeText.inputView = datePicker
         datePicker.datePickerMode = .time
+        
+        datePicker.addTarget(self, action: #selector(datePickerChangedValue), for: .valueChanged)
     }
     
     @objc func doneDatePickerPressed(){
         let formater = DateFormatter()
         formater.timeStyle = .short
         timeText.text = (formater.string(from: datePicker.date))
-        selectedDate = datePicker.date
+        let selectionComponents = Calendar.current.dateComponents([.hour,.minute], from: datePicker.date)
+        selectedDate = Calendar.current.date(bySettingHour: selectionComponents.hour!, minute: selectionComponents.minute!, second: 0, of: selectedDate)!
+        myDebugPrint(selectedDate, "datum")
         self.view.endEditing(true)
     }
     
@@ -92,6 +96,14 @@ class AddDrinkVC: UIViewController {
             volumeText.text = "\(listOfDrinks[_row].volume[_selVolume]) ml"
         }
         self.view.endEditing(true)
+    }
+    
+    @objc func datePickerChangedValue(){
+        let formater = DateFormatter()
+        formater.timeStyle = .short
+        timeText.text = (formater.string(from: datePicker.date))
+        let selectionComponents = Calendar.current.dateComponents([.hour,.minute], from: datePicker.date)
+        selectedDate = Calendar.current.date(bySettingHour: selectionComponents.hour!, minute: selectionComponents.minute!, second: 0, of: selectedDate)!
     }
 }
 
@@ -146,5 +158,10 @@ extension AddDrinkVC : UIPickerViewDataSource, UIPickerViewDelegate{
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedVolume = row
+        
+        if let _row = selectedRow,
+           let _selVolume = selectedVolume {
+            volumeText.text = "\(listOfDrinks[_row].volume[_selVolume]) ml"
+        }
     }
 }

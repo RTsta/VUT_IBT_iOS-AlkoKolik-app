@@ -24,6 +24,13 @@ class DayVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendar()
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(callendarSwipeGesture))
+        swipeRightGesture.direction = .right
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(callendarSwipeGesture))
+        swipeLeftGesture.direction = .left
+        todayDrinkTable.addGestureRecognizer(swipeRightGesture)
+        todayDrinkTable.addGestureRecognizer(swipeLeftGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +57,7 @@ class DayVC : UIViewController {
             let now = Date()
             let hour = Calendar.current.component(.hour, from: now)
             let min = Calendar.current.component(.minute, from: now)
-           
+            
             let selectedDayWithNowTime = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: selectedDate) ?? selectedDate
             vc.selectedDate = selectedDayWithNowTime
         }
@@ -60,7 +67,7 @@ class DayVC : UIViewController {
         var rec : [NSManagedObject] = []
         for case let r as DrinkRecord in weekRecords {
             if let ts = r.timestemp as Date?,
-                Calendar.current.isDate(ts, inSameDayAs: day){
+               Calendar.current.isDate(ts, inSameDayAs: day){
                 rec.append(r)
             }
         }
@@ -100,10 +107,10 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-            if (date as Date) > today {
-                return false
-            }
-            return true
+        if (date as Date) > today {
+            return false
+        }
+        return true
     }
     
     // MARK: Appearance
@@ -151,10 +158,18 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
         
         if selectedDayRecords.count > 0,
            let idOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "drink_id") as? Int,
+           let volumeOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "volume") as? Double,
+           let timestempOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "timestemp") as? Date,
            let cellForDrink = ListOfDrinksManager.findDrink(drink_id: idOfDrink) {
+            let time = Calendar.current.dateComponents([.hour, .minute], from: timestempOfDrink)
             cell.style = .drink
             cell.backgroundColor = UIColor.colorFor(drinkType: cellForDrink.type)
-            cell.drinkLabel.text = "\(cellForDrink.name)"
+            cell.drinkLabel.text = "\(volumeOfDrink) ml, \(cellForDrink.name)"
+            if let _ = time.minute, let _ = time.hour {
+                let min = time.minute! < 10 ? "0\(time.minute!)" : "\(time.minute!)"
+                cell.timeLabel.text = "\(time.hour!):\(min)"
+            }
+            
         }
         return cell
     }
@@ -162,7 +177,7 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     func updateTableContentInset() {
         let numRows = self.todayDrinkTable.numberOfRows(inSection: 0)
         var contentInsetTop = self.todayDrinkTable.bounds.size.height
-        for i in 0..<numRows {
+        for i in stride(from: 0, to: numRows, by: 1) {
             let rowRect = self.todayDrinkTable.rectForRow(at: IndexPath(item: i, section: 0))
             contentInsetTop -= rowRect.size.height
             if contentInsetTop <= 0 {
@@ -172,7 +187,7 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
         }
         self.todayDrinkTable.contentInset = UIEdgeInsets(top: contentInsetTop,left: 0,bottom: 0,right: 0)
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             performSegue(withIdentifier: "addDrinkToSelectedDaySegue", sender: nil)
@@ -183,9 +198,10 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            CoreDataManager.deleteRecord(record: weekRecords[indexPath.row])
-            weekRecords.remove(at: indexPath.row)
-            selectedDayRecords.remove(at: indexPath.row)
+            myDebugPrint(weekRecords)
+            myDebugPrint(selectedDayRecords)
+            CoreDataManager.deleteRecord(record: selectedDayRecords[indexPath.row-1])
+            selectedDayRecords.remove(at: indexPath.row-1)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             calendar.reloadData()
             tableView.endUpdates()
@@ -197,6 +213,31 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
             return .none
         }else {
             return .delete
+        }
+    }
+    
+    @objc func callendarSwipeGesture(sender: UISwipeGestureRecognizer) {
+        if (sender.direction == .right) ||  (sender.direction == .left) {
+            let change = (sender.direction == .left) ? 1 : -1
+            
+            let newDate = Calendar.current.date(byAdding: .day, value: change, to: selectedDate) ?? selectedDate
+            if newDate > Date() {return}
+            calendar.select(newDate)
+            if Calendar.current.isDate(newDate, equalTo: selectedDate, toGranularity: .weekOfYear) {
+                weekRecords = CoreDataManager.fetchRecordsForWeekPastAndNext(dayOfTheWeek: selectedDate)
+                calendar.reloadData()
+            }
+            selectedDate = newDate
+            selectedDayRecords = recoredsFor(day: newDate)
+            selectedDayRecords.reverse()
+            
+            todayDrinkTable.reloadData()
+            updateTableContentInset()
+            if selectedDayRecords.count > 8 {
+                todayDrinkTable.scrollToRow(at: IndexPath(row: 8, section: 0), at: .bottom, animated: true)
+            }else {
+                todayDrinkTable.scrollToRow(at: IndexPath(row: selectedDayRecords.count, section: 0), at: .bottom, animated: true)
+            }
         }
     }
     

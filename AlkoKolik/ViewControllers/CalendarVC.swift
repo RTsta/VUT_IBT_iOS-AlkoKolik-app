@@ -22,7 +22,7 @@ class CalendarVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        records = CoreDataManager.fetchAllRecords()
+        records = CoreDataManager.fetchRecordsAll()
         calendar.reloadData()
     }
     

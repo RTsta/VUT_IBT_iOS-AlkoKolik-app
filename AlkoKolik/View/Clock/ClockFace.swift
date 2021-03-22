@@ -12,6 +12,7 @@ class ClockFace: ClockComponent {
     
     private var staticClockFaceImage: UIImage?
     
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()

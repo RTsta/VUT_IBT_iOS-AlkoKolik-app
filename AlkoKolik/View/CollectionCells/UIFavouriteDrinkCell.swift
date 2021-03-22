@@ -27,13 +27,9 @@ class UIFavouriteDrinkCell: UICollectionViewCell {
         switch drinkType {
         case .beer:
             icon.image = UIImage(named: "btn_beer")?.withRenderingMode(.alwaysTemplate)
-        case .wine:
+        case .wine, .cider:
             icon.image = UIImage(named: "btn_wine")?.withRenderingMode(.alwaysTemplate)
-        case .cider:
-            break
-        case .liqueur:
-            break
-        case .spirit:
+        case .spirit, .liqueur:
             icon.image = UIImage(named: "btn_spirit")?.withRenderingMode(.alwaysTemplate)
         case .cocktail:
             icon.image = UIImage(named: "btn_cocktail")?.withRenderingMode(.alwaysTemplate)

@@ -7,30 +7,18 @@
 
 import Foundation
 
+typealias Concentration = Double
+
 class AlcoholModel {
+    let beta = 0.15 // g/l/h empty stomach (6.5 hours−1) or a full stomach (2.3 hours−1).
     
-    let beta = 0.15 // g/l/h
-    
-    lazy var weightKg: () = HealthKitManager.getWeight(completion: {_,_ in })
-    lazy var heightCm: () = HealthKitManager.getHeight(completion:{_,_ in })
-    //var heightM: {return heightCm / 100}
-    
-    //lazy var age: () = HealthKitManager.getAge(completion: {_,_ in }
-    /*
-     Q_males = 0.3362*weight_kg+10.74*height_m-0.09516*age+2.447
-     Q_females = 0.2466*weight_kg-10.69*height_m-2.097
-     
-     def testWidmarkDelution(time_in_m):
-     time_in_h = time_in_m/60
-     return (v*z*a*d)/(r*weight_kg)-beta*time_in_h
-     
-     def testWagner(time_in_h, oldBAC):
-     v_max = 0.17
-     k_m = 0.045
-     x = (-(v_max*oldBAC)/(k_m*oldBAC))/Q_males
-     return x
-     */
-    private enum Gender {
+    struct PersonalData{
+        let sex: Gender
+        let height: Measurement<UnitLength>  //meters
+        let weight: Measurement<UnitMass>  //kilograms
+        let age: Double    //years
+    }
+    enum Gender {
         case male
         case female
     }
@@ -40,56 +28,139 @@ class AlcoholModel {
         case forrest
         case ulrich
         case watson
+        case watsonB
     }
-    /*
-     func rSedel(gender : Gender) -> Double {
-     if gender == .male { return 0.31608 - 0.004821 * weightKg + 0.4632 * heightM }
-     else { return 0.31223 - 0.006446 * weightKg + 0.4466 * heightM }
-     }
-     
-     func rForrest(){
-     if gender == .male { return 1.0178 - (0.012127 * weightKg) / (heightM * heightM) }
-     else {return 0.8736 - (0.0124 * weightKg) / (heightM * heightM)}
-     }
-     
-     func rUlrich(){
-     if gender == .male {return 0.715 - 0.00462 * weightKg + 0.22 * heightM}
-     else {fatalError("Ulrich doesnt have formula for females")}
-     }
-     
-     func rWatson(){
-     if gender == .male {return 0.39834 + (12.725 * heightM) / weightKg - (0.11275 * age) / weightKg + 2.8993 / weightKg}
-     else {return 0.29218 + (12.666 * heightM) / weightKg - 2.4846 / weightKg}
-     /*
-     r_Watson_m_b = (0.3626*weight_kg-0.1183*age+20.03)/(0.8*weight_kg)
-     r_Watson_f_b = (0.2549*weight_kg+14.46)/(0.8*weight_kg)
-     */
-     }
-     */
-    /*
-     func absorbtionOfDrink(drink : DrinkRecord, atTime at: TimeInterval) -> Double {
-     let dose = drink.grams_of_alcohol
-     let v_d = r * weightKg
-     let k_a = 18
-     let time = Double(at / 3600)
-     return ((dose * (1 - exp(-k_a * time) ) ) / v_d) - beta * time
-     }
-     */
-    /*
-     func runTest(timeOfsimulation time: Int) {
-     let timestep : Double = 0.5
-     var i : Double = 0
-     var xs : [Double] = []
-     var ys : [Double] = []
-     while i <= time{
-     xs.append(i)
-     let y = absorbtionOfDrink(drink: , atTime: i)
-     if y < 0{
-     break
-     }
-     ys.append(y)
-     i += timestep
-     }
-     }
-     */
+    
+    func run(personalData: PersonalData, from: Date, to: Date, complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
+        
+        guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
+        else {myDebugPrint("could not retrive data from database", "AlcoholModel"); complition(nil, false); return}
+        
+        let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
+        
+        var allDrinksCalculatedInSec : [TimeInterval:Concentration] = [:]
+        for record in recordsData {
+            let currentRecTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: record.timestemp!) // rounding down time to be accurate of a minute
+            let difference = Calendar.current.dateComponents([.second], from: zeroTimePoint!, to: currentRecTimePoint!)
+            guard let secInterval = difference.second else {continue}
+
+            
+            let curve = calculateAborbtionCurve(drink: record, method: .forrest, person: personalData, zeroPointShift: TimeInterval(secInterval))
+            
+            
+            for (key, value) in curve{
+                let tmp = allDrinksCalculatedInSec[key] ?? 0
+                allDrinksCalculatedInSec[key] = tmp+value
+            }
+        }
+        let timeBetweenFromTo = Calendar.current.dateComponents([.minute], from: from, to: to)
+        guard let minInterval = timeBetweenFromTo.minute else {return}
+        for i in stride(from: 0, to: minInterval, by: 1) {
+            let tmp = allDrinksCalculatedInSec[TimeInterval(i * 60)] ?? 0
+            allDrinksCalculatedInSec[TimeInterval(i * 60)] = tmp
+        }
+        
+        var allDrinksCalculatedInMinArr : [Concentration] = []
+        for key in Array(allDrinksCalculatedInSec.keys.sorted(by: <)) {
+            allDrinksCalculatedInMinArr.append(allDrinksCalculatedInSec[key] ?? 0)
+        }
+        
+        
+        complition(allDrinksCalculatedInMinArr, true)
+        return
+    }
+    
+    private func calculateAborbtionCurve(drink : DrinkRecord, method: RFactorMethod, person: PersonalData, zeroPointShift: TimeInterval) -> [TimeInterval:Concentration] {
+        let dose : Double = drink.grams_of_alcohol
+        let r : Double = rFactorFor(method: .forrest, person: person)
+        let v_d : Double = r * person.weight.value
+        let k_a : Double = 18 // shoud varie on gender
+
+        var c : Concentration = 0
+        var time : TimeInterval = 0
+        var results : [TimeInterval:Concentration] = [:]
+        repeat {
+            results[time+zeroPointShift] = c
+            time += 60
+            let t = time / 3600
+            c = ((dose * (1 - exp(-k_a * t) ) ) / v_d) - beta * t
+        } while (c > 0)
+        
+        //myPrint(results, title: "\(drink.grams_of_alcohol)")
+        return results
+    }
+    
+    private func rFactorFor(method: RFactorMethod, person: PersonalData) -> Double{
+        switch method {
+        case .forrest:
+            return rForrest(person)
+        case .seidel:
+            return rSedel(person)
+        case .ulrich:
+            return rUlrich( person)
+        case .watson:
+            return rWatson(person)
+        case .watsonB:
+            return rWatsonB(person)
+        default:
+            return 0.0
+        }
+    }
+    
+    private func rSedel(_ person: PersonalData) -> Double {
+        let _height = person.height.converted(to: .meters).value
+        let _weight = person.weight.converted(to: .kilograms).value
+        
+        if person.sex == .male {
+            return 0.31608 - 0.004821 * _weight + 0.4632 * _height
+        } else {
+            return 0.31223 - 0.006446 * _weight + 0.4466 * _height
+        }
+    }
+    
+    private func rForrest(_ person: PersonalData) -> Double {
+        let _height = person.height.converted(to: .meters).value
+        let _weight = person.weight.converted(to: .kilograms).value
+        
+        if person.sex == .male {
+            return 1.0178 - (0.012127 * _weight) / (_height * _height)
+        } else {
+            return 0.8736 - (0.0124 * _weight) / (_height * _height)
+        }
+    }
+    
+    private func rUlrich(_ person: PersonalData) -> Double {
+        let _height = person.height.converted(to: .meters).value
+        let _weight = person.weight.converted(to: .kilograms).value
+        
+        if person.sex == .male {
+            return 0.715 - 0.00462 * _weight + 0.22 * _height
+        }else {
+            fatalError("Ulrich doesnt have formula for females")
+        }
+    }
+    
+    private func rWatson(_ person: PersonalData) -> Double {
+        let _height = person.height.converted(to: .meters).value
+        let _weight = person.weight.converted(to: .kilograms).value
+        let _age = person.age
+        
+        if person.sex == .male {
+            return 0.39834 + (12.725 * _height) / _weight - (0.11275 * _age) / _weight + 2.8993 / _weight
+        }else {
+            return 0.29218 + (12.666 * _height) / _weight - 2.4846 / _weight
+        }
+    }
+    
+    private func rWatsonB(_ person: PersonalData) -> Double {
+        //let _height = person.height.converted(to: .meters).value
+        let _weight = person.weight.converted(to: .kilograms).value
+        let _age = person.age
+        
+        if person.sex == .male {
+            return (0.3626 * _weight-0.1183*_age+20.03) / (0.8*_weight)
+        } else {
+            return (0.2549 * _weight + 14.46) / ( 0.8 * _weight)
+        }
+    }
 }

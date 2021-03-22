@@ -16,6 +16,7 @@ class TodayDrinkTableCell: UITableViewCell {
     }
     
     @IBOutlet weak var drinkLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     private func update(){
         self.layer.cornerRadius = min(self.bounds.size.width,self.bounds.size.height) / 4.0
@@ -25,14 +26,17 @@ class TodayDrinkTableCell: UITableViewCell {
 
         case .drink:
             drinkLabel.isHidden = false
+            timeLabel.isHidden  = false
         case .add:
             backgroundColor = .appBackground
             self.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview(plusImage)
             drinkLabel.isHidden = true
+            timeLabel.isHidden  = true
         default:
             drinkLabel.isHidden = true
             backgroundColor = .appBackground
+            timeLabel.isHidden  = true
         }
     }
     

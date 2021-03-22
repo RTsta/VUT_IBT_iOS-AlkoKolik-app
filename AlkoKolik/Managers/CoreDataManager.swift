@@ -12,9 +12,7 @@ class CoreDataManager {
     
     class func insertRecord(drink: DrinkItem, volumeOpt: Int ,time: Date){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
         let managedContext = appDelegate.persistentContainer.viewContext
-        
         let newRecord = DrinkRecord(context: managedContext)
         
         /*
@@ -27,7 +25,6 @@ class CoreDataManager {
         let z = drink.alcoholPercentage/100
         let a = 1.0
         let d = 0.789
-        
         let dose = v * z * a * d
         
         newRecord.timestemp = time
@@ -40,21 +37,7 @@ class CoreDataManager {
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
         }
-        print("\(time) \(drink.name) inserted!")
-    }
-    
-    class func fetchAllRecords() -> [NSManagedObject] {
-        var records : [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
-        do {
-            records = try managedContext.fetch(request)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        return records
+        print("\(time) \(drink.name), \(drink.volume[volumeOpt]) inserted!")
     }
     
     class func deleteRecord(record: NSManagedObject) {
@@ -85,13 +68,6 @@ class CoreDataManager {
         return records
     }
     
-    private class func predicateForWholeDay(date: Date) -> NSPredicate{
-        let dayBegining = Calendar.current.startOfDay(for: date)
-        let dayEnding = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
-        
-        return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", dayBegining as NSDate, dayEnding as NSDate)
-    }
-    
     class func fetchRecordsForWeekPastAndNext(dayOfTheWeek day: Date) -> [NSManagedObject]{
         var records : [NSManagedObject] = []
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records}
@@ -106,6 +82,46 @@ class CoreDataManager {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
         return records
+    }
+    
+    class func fetchRecordsBetween(from: Date, to: Date) -> [NSManagedObject]{
+        var records : [NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records}
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
+        request.predicate = predicateForBetween(from, to)
+        do {
+            records = try managedContext.fetch(request)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return records
+    }
+    
+    class func fetchRecordsAll() -> [NSManagedObject] {
+        var records : [NSManagedObject] = []
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
+        do {
+            records = try managedContext.fetch(request)
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        return records
+    }
+    
+    private class func predicateForWholeDay(date: Date) -> NSPredicate{
+        let dayBegining = Calendar.current.startOfDay(for: date)
+        let dayEnding = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
+        
+        return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", dayBegining as NSDate, dayEnding as NSDate)
+    }
+    
+    private class func predicateForBetween(_ from: Date,_ to: Date) -> NSPredicate{
+        return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", from as NSDate, to as NSDate)
     }
     
     private class func predicateForWeekPastAndNext(date: Date) -> NSPredicate{
