@@ -10,7 +10,7 @@ import Foundation
 typealias Concentration = Double
 
 class AlcoholModel {
-    let beta = 0.15 // g/l/h empty stomach (6.5 hours−1) or a full stomach (2.3 hours−1).
+    let beta = 0.15 // g of eth/ l of body weight/h empty stomach (6.5 hours−1) or a full stomach (2.3 hours−1).
     
     struct PersonalData{
         let sex: Gender
@@ -29,65 +29,66 @@ class AlcoholModel {
         case ulrich
         case watson
         case watsonB
+        case average
     }
     
-    func run(personalData: PersonalData, from: Date, to: Date, complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
-        
+    func run(personalData: PersonalData, from: Date, to: Date,method: RFactorMethod = .average ,complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
         guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
         else {myDebugPrint("could not retrive data from database", "AlcoholModel"); complition(nil, false); return}
-        
         let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
+        let intervalBetweenStartEnd = Calendar.current.dateComponents([.minute], from: from, to: to)
+        guard let _ = intervalBetweenStartEnd.minute else {complition(nil, false); return}
+        var resultArray = [Concentration](repeating: 0.0, count: intervalBetweenStartEnd.minute!)
         
-        var allDrinksCalculatedInSec : [TimeInterval:Concentration] = [:]
         for record in recordsData {
             let currentRecTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: record.timestemp!) // rounding down time to be accurate of a minute
-            let difference = Calendar.current.dateComponents([.second], from: zeroTimePoint!, to: currentRecTimePoint!)
-            guard let secInterval = difference.second else {continue}
-
+            let difference = Calendar.current.dateComponents([.minute], from: zeroTimePoint!, to: currentRecTimePoint!)
+            guard let minInterval = difference.minute else {continue}
             
-            let curve = calculateAborbtionCurve(drink: record, method: .forrest, person: personalData, zeroPointShift: TimeInterval(secInterval))
-            
-            
-            for (key, value) in curve{
-                let tmp = allDrinksCalculatedInSec[key] ?? 0
-                allDrinksCalculatedInSec[key] = tmp+value
+            let absorbtion = calculateAbsorbtionPhases(drink: record)
+            for i in stride(from: 0, to: absorbtion.count, by: 1){
+                if minInterval+i >= resultArray.count { break }
+                resultArray[minInterval+i] += absorbtion[i]
             }
         }
-        let timeBetweenFromTo = Calendar.current.dateComponents([.minute], from: from, to: to)
-        guard let minInterval = timeBetweenFromTo.minute else {return}
-        for i in stride(from: 0, to: minInterval, by: 1) {
-            let tmp = allDrinksCalculatedInSec[TimeInterval(i * 60)] ?? 0
-            allDrinksCalculatedInSec[TimeInterval(i * 60)] = tmp
+        
+        for i in stride(from: 1, to: resultArray.count, by: 1){
+            if (resultArray[i]+resultArray[i-1]) <= 0 {continue}
+            
+            resultArray[i] = calculateEliminationPhases(doseInBody: resultArray[i-1], newAbsorbed: resultArray[i], person: personalData, method: method)
         }
         
-        var allDrinksCalculatedInMinArr : [Concentration] = []
-        for key in Array(allDrinksCalculatedInSec.keys.sorted(by: <)) {
-            allDrinksCalculatedInMinArr.append(allDrinksCalculatedInSec[key] ?? 0)
-        }
-        
-        
-        complition(allDrinksCalculatedInMinArr, true)
+        complition(resultArray, true)
         return
     }
     
-    private func calculateAborbtionCurve(drink : DrinkRecord, method: RFactorMethod, person: PersonalData, zeroPointShift: TimeInterval) -> [TimeInterval:Concentration] {
-        let dose : Double = drink.grams_of_alcohol
-        let r : Double = rFactorFor(method: .forrest, person: person)
-        let v_d : Double = r * person.weight.value
-        let k_a : Double = 18 // shoud varie on gender
-
-        var c : Concentration = 0
-        var time : TimeInterval = 0
-        var results : [TimeInterval:Concentration] = [:]
-        repeat {
-            results[time+zeroPointShift] = c
-            time += 60
-            let t = time / 3600
-            c = ((dose * (1 - exp(-k_a * t) ) ) / v_d) - beta * t
-        } while (c > 0)
+    func calculateAbsorbtionPhases(drink : DrinkRecord) -> [Concentration]{
         
-        //myPrint(results, title: "\(drink.grams_of_alcohol)")
+        let dose : Double = drink.grams_of_alcohol
+        let k_a : Double = 18 // shoud varie on gender
+        var time : Double = 0.0
+        
+        var results : [Concentration] = []
+        var c_old : Concentration = 0
+        var c_new : Concentration = 0
+        repeat {
+            results.append(c_new-c_old)
+            c_old = c_new
+            time += 1
+            let t = time / 60
+            c_new = dose * (1 - exp(-k_a * t))
+        } while ((c_new/dose) < 1)
         return results
+    }
+    
+    func calculateEliminationPhases(doseInBody: Concentration,newAbsorbed: Concentration , person: PersonalData, method: RFactorMethod) -> Concentration{
+        let r : Double = rFactorFor(method: method, person: person)
+        let v_d : Double = r * person.weight.converted(to: .kilograms).value
+        let timeChange : Double = 1/60
+        
+        let dose = doseInBody * v_d + newAbsorbed
+
+        return (dose / v_d) - beta*timeChange
     }
     
     private func rFactorFor(method: RFactorMethod, person: PersonalData) -> Double{
@@ -102,6 +103,9 @@ class AlcoholModel {
             return rWatson(person)
         case .watsonB:
             return rWatsonB(person)
+        case .average:
+            if person.sex == .male {return (rForrest(person)+rSedel(person)+rUlrich(person)+rWatson(person))/4}
+            else {return (rForrest(person)+rSedel(person)+rWatson(person))/3}
         default:
             return 0.0
         }

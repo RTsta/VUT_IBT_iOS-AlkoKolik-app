@@ -16,7 +16,7 @@ class DrinkListoInterfaceController: WKInterfaceController {
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if let drinks = drinks {
+        if let drinks = drinks?.sorted(by: {$0.type < $1.type}) {
             drinkTable.setNumberOfRows(drinks.count, withRowType: "DrinkItemRow")
             for index in 0..<drinkTable.numberOfRows {
                 guard let controller = drinkTable.rowController(at: index) as? DrinkRowController else { continue }
@@ -36,6 +36,10 @@ class DrinkListoInterfaceController: WKInterfaceController {
     }
     
     override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        print(rowIndex)
+        if let drinks = drinks {
+            let context : [String:Any?] = ["volumes":drinks[rowIndex].volume,
+                                           "selectedDrink": drinks[rowIndex]]
+            presentController(withName: "VolumeTableIC", context: context)
+        }
     }
 }

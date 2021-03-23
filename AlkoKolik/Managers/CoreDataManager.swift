@@ -10,7 +10,7 @@ import CoreData
 
 class CoreDataManager {
     
-    class func insertRecord(drink: DrinkItem, volumeOpt: Int ,time: Date){
+    class func insertRecord(drink: DrinkItem, volumeOpt: Int ,time: Date, volumeMl: Double? = nil){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let newRecord = DrinkRecord(context: managedContext)
@@ -21,7 +21,9 @@ class CoreDataManager {
          a - proportion of the alcohol absorbed
          d - alcohol density
          */
-        let v = drink.volume[volumeOpt]
+        var v = drink.volume[volumeOpt]
+        if let _ = volumeMl {v = volumeMl!}
+        
         let z = drink.alcoholPercentage/100
         let a = 1.0
         let d = 0.789
@@ -29,7 +31,7 @@ class CoreDataManager {
         
         newRecord.timestemp = time
         newRecord.drink_id = Int32(drink.id)
-        newRecord.volume = drink.volume[volumeOpt]
+        newRecord.volume = v
         newRecord.grams_of_alcohol = dose
         
         do {
@@ -37,7 +39,7 @@ class CoreDataManager {
         } catch let error as NSError {
           print("Could not save. \(error), \(error.userInfo)")
         }
-        print("\(time) \(drink.name), \(drink.volume[volumeOpt]) inserted!")
+        print("\(time) \(drink.name), \(v) inserted!")
     }
     
     class func deleteRecord(record: NSManagedObject) {

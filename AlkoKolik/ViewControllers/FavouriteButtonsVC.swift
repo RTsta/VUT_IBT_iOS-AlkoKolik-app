@@ -29,7 +29,6 @@ class FavouriteButtonsVC: UIViewController {
         
         loadFullDrinkItems()
         favCollection.reloadData()
-        
 
     }
     
@@ -77,8 +76,10 @@ class FavouriteButtonsVC: UIViewController {
                 
                 let row = indexPathToArrayNumber(indexPath: indexPath)
                 let drink = fullDrinkItems[row]
+                let volume = favourites![row].volume
                 
-                CoreDataManager.insertRecord(drink: drink, volumeOpt: row, time: Date())
+                
+                CoreDataManager.insertRecord(drink: drink, volumeOpt: row, time: Date(), volumeMl: volume)
                 NotificationCenter.default.post(name: .favouriteBtnPressd, object: nil)
             }
         }
@@ -119,8 +120,6 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteDrinkCell", for: indexPath) as? UIFavouriteDrinkCell
         else {fatalError("Cell is not an instance of VolumeAlertView.")}
-        myDebugPrint(indexPathToArrayNumber(indexPath: indexPath), "array numb")
-        myDebugPrint(fullDrinkItems, "items")
         cell.drinkType = fullDrinkItems[indexPathToArrayNumber(indexPath: indexPath)].type
         return cell
     }

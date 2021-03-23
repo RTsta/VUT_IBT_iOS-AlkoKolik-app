@@ -198,8 +198,6 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             tableView.beginUpdates()
-            myDebugPrint(weekRecords)
-            myDebugPrint(selectedDayRecords)
             CoreDataManager.deleteRecord(record: selectedDayRecords[indexPath.row-1])
             selectedDayRecords.remove(at: indexPath.row-1)
             tableView.deleteRows(at: [indexPath], with: .automatic)

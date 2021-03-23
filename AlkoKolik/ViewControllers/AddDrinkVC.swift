@@ -71,7 +71,6 @@ class AddDrinkVC: UIViewController {
         timeText.text = (formater.string(from: datePicker.date))
         let selectionComponents = Calendar.current.dateComponents([.hour,.minute], from: datePicker.date)
         selectedDate = Calendar.current.date(bySettingHour: selectionComponents.hour!, minute: selectionComponents.minute!, second: 0, of: selectedDate)!
-        myDebugPrint(selectedDate, "datum")
         self.view.endEditing(true)
     }
     

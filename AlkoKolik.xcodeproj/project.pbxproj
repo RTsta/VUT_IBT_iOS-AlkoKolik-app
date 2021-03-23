@@ -48,6 +48,7 @@
 		8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58731025F4D0BA001CE464 /* HealthKitManager.swift */; };
 		8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F58732F25F5337C001CE464 /* HealthKit.framework */; };
 		8F59F2E726021E8E009DBA37 /* myUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F59F2E626021E8E009DBA37 /* myUtil.swift */; };
+		8F669F2B2609633C00871C8A /* myUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F59F2E626021E8E009DBA37 /* myUtil.swift */; };
 		8F69E9D025FBEB34009A5CFF /* AddDrinkVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F69E9CF25FBEB34009A5CFF /* AddDrinkVC.swift */; };
 		8F791C7426060EC200DABA27 /* DrinkListoInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F791C7326060EC200DABA27 /* DrinkListoInterfaceController.swift */; };
 		8F791C7A260610BF00DABA27 /* ListOfDrinksManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F30D2E225FA4F030023A195 /* ListOfDrinksManager.swift */; };
@@ -55,6 +56,10 @@
 		8F791C86260611A900DABA27 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
 		8F791C8D2606143900DABA27 /* DrinkRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F791C8C2606143900DABA27 /* DrinkRowController.swift */; };
 		8F791C932606151800DABA27 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
+		8F7D32F0260910D200DDB35B /* VolumeRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D32EF260910D200DDB35B /* VolumeRowController.swift */; };
+		8F7D32F7260911A500DDB35B /* VolumeTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D32F6260911A500DDB35B /* VolumeTableInterfaceController.swift */; };
+		8F7D33082609231600DDB35B /* AlkoKolik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */; };
+		8F7D332126092F2400DDB35B /* WatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D332026092F2400DDB35B /* WatchManager.swift */; };
 		8F97138025F6E4250082FEA6 /* AlkoKolik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */; };
 		8F97139325F795180082FEA6 /* listOfDrinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F97139225F795180082FEA6 /* listOfDrinks.json */; };
 		8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
@@ -180,6 +185,9 @@
 		8F69E9CF25FBEB34009A5CFF /* AddDrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkVC.swift; sourceTree = "<group>"; };
 		8F791C7326060EC200DABA27 /* DrinkListoInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListoInterfaceController.swift; sourceTree = "<group>"; };
 		8F791C8C2606143900DABA27 /* DrinkRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRowController.swift; sourceTree = "<group>"; };
+		8F7D32EF260910D200DDB35B /* VolumeRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeRowController.swift; sourceTree = "<group>"; };
+		8F7D32F6260911A500DDB35B /* VolumeTableInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTableInterfaceController.swift; sourceTree = "<group>"; };
+		8F7D332026092F2400DDB35B /* WatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManager.swift; sourceTree = "<group>"; };
 		8F97137F25F6E4250082FEA6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8F97139225F795180082FEA6 /* listOfDrinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listOfDrinks.json; sourceTree = "<group>"; };
 		8FAEAD6A25E98DAF008F2457 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -338,9 +346,9 @@
 				8F321CD925ED717600E3CFFC /* ViewControllers */,
 				8FAEAD7125E98DB8008F2457 /* Extensions */,
 				8F51625325D19E56006DBD85 /* Assets.xcassets */,
-				8F97139225F795180082FEA6 /* listOfDrinks.json */,
 				8F51625825D19E56006DBD85 /* Info.plist */,
 				8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */,
+				8F97139225F795180082FEA6 /* listOfDrinks.json */,
 			);
 			path = AlkoKolik;
 			sourceTree = "<group>";
@@ -383,6 +391,8 @@
 				8F51629025D19E59006DBD85 /* PushNotificationPayload.apns */,
 				8F791C7326060EC200DABA27 /* DrinkListoInterfaceController.swift */,
 				8F791C8C2606143900DABA27 /* DrinkRowController.swift */,
+				8F7D32EF260910D200DDB35B /* VolumeRowController.swift */,
+				8F7D32F6260911A500DDB35B /* VolumeTableInterfaceController.swift */,
 			);
 			path = "AlkoKolik WatchKit Extension";
 			sourceTree = "<group>";
@@ -405,6 +415,7 @@
 				8F58731025F4D0BA001CE464 /* HealthKitManager.swift */,
 				8F30D2E225FA4F030023A195 /* ListOfDrinksManager.swift */,
 				8FF0CFBA25FEA261008E2269 /* UserDefaultsManager.swift */,
+				8F7D332026092F2400DDB35B /* WatchManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -840,6 +851,7 @@
 				8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */,
 				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,
 				8F59F2E726021E8E009DBA37 /* myUtil.swift in Sources */,
+				8F7D332126092F2400DDB35B /* WatchManager.swift in Sources */,
 				8F30D2E325FA4F030023A195 /* ListOfDrinksManager.swift in Sources */,
 				8F3651BA25FA362D00055826 /* DayVC.swift in Sources */,
 			);
@@ -865,10 +877,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F7D32F7260911A500DDB35B /* VolumeTableInterfaceController.swift in Sources */,
+				8F7D32F0260910D200DDB35B /* VolumeRowController.swift in Sources */,
 				8F791C7426060EC200DABA27 /* DrinkListoInterfaceController.swift in Sources */,
+				8F7D33082609231600DDB35B /* AlkoKolik.xcdatamodeld in Sources */,
 				8F791C86260611A900DABA27 /* DrinkItem.swift in Sources */,
 				8F791C932606151800DABA27 /* Color.swift in Sources */,
 				8F51628C25D19E58006DBD85 /* ComplicationController.swift in Sources */,
+				8F669F2B2609633C00871C8A /* myUtil.swift in Sources */,
 				8F791C8D2606143900DABA27 /* DrinkRowController.swift in Sources */,
 				8F51628825D19E58006DBD85 /* ExtensionDelegate.swift in Sources */,
 				8F791C7A260610BF00DABA27 /* ListOfDrinksManager.swift in Sources */,
