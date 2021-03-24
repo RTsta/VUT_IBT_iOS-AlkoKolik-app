@@ -10,4 +10,5 @@ import Foundation
 extension Notification.Name {
     static let favouriteNeedsReload = Notification.Name("favouriteNeedsReload")
     static let favouriteBtnPressd = Notification.Name("favouriteBtnPressd")
+    static let watchRequestedUpdate = Notification.Name("watchRequestedUpdate")
 }

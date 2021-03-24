@@ -11,6 +11,7 @@ import CoreData
 class CoreDataManager {
     
     class func insertRecord(drink: DrinkItem, volumeOpt: Int ,time: Date, volumeMl: Double? = nil){
+        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let newRecord = DrinkRecord(context: managedContext)

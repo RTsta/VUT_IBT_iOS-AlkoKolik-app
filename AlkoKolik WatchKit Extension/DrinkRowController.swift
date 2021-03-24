@@ -17,7 +17,8 @@ class DrinkRowController: NSObject {
         guard let drink = drink else { return }
         // 4
         drinkLabel.setText(drink.name)
-        separator.setColor(UIColor.colorFor(drinkType: drink.type))
+        let drinkColor = UIColor.colorFor(drinkType: drink.type)
+        separator.setColor(drinkColor)
       }
     }
 }

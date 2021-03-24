@@ -16,10 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        if WCSession.isSupported(){
-            let watchSession = WCSession.default
-            watchSession.delegate = self
-            watchSession.activate()
+        if !WatchManager.shared.isSuported() {
+            print("WCSession not supported (f.e. on iPad).")
         }
         return true
     }
@@ -85,30 +83,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-}
-
-extension AppDelegate : WCSessionDelegate{
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
-    }
-    
-    func sessionDidBecomeInactive(_ session: WCSession) {
-        
-    }
-    
-    func sessionDidDeactivate(_ session: WCSession) {
-        
-    }
-    
-    func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
-        replyHandler(["Message": "Succesfuly recieved"])
-        
-        if let drinkId = message["drink_id"] as? Int,
-           let volume = message["selectedVolume"] as? Int,
-           let drink = ListOfDrinksManager.findDrink(drink_id: drinkId){
-            CoreDataManager.insertRecord(drink: drink, volumeOpt: volume, time: Date())
-        }
-    }
 }
 

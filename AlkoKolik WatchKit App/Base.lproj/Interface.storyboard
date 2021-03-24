@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fJH-gE-v4f">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="17701" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Jma-U1-8oJ">
     <device id="watch38"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -7,16 +7,402 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
-        <scene sceneID="nbc-MV-jYL">
+        <!--Favourites Interface Controller-->
+        <scene sceneID="tM9-bx-7Dk">
             <objects>
-                <controller id="fJH-gE-v4f">
+                <controller id="Jma-U1-8oJ" customClass="FavouritesInterfaceController" customModule="AlkoKolik_WatchKit_Extension">
                     <items>
-                        <label alignment="left" text="OK in:" id="OP0-80-dVz"/>
-                        <timer alignment="left" id="Cgl-QP-cQp"/>
-                        <label alignment="left" text="Current BAC" id="x69-5y-tBK"/>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="8aa-6w-8XH" userLabel="Group1">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="gNG-GI-eJn">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="40" id="d8P-Cj-UQ8">
+                                            <items>
+                                                <button width="80" height="80" alignment="center" id="1fz-OI-sGH">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="2za-zd-h9q"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="Joj-cm-TnY" userLabel="Group2">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" radius="0.0" id="3ac-S2-o1x">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="ASx-z1-qyc">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="u2c-Uw-9sX">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="WUn-Rq-qos"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="X7S-Oj-HhA">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="S5M-EO-XBe">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="dQ1-fz-qbP"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="4SN-mA-dBf" userLabel="Group3">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="Eyx-1k-7dx">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="qG2-2T-vxK">
+                                            <items>
+                                                <button width="40" height="40" alignment="left" id="k4b-2v-N0L">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="ADY-io-pLp"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="6P5-Ib-nrN">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="gCC-MP-7Yc">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="TbU-jr-mq7"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="8ug-Iv-scN">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="3QZ-yx-FLj">
+                                                    <connections>
+                                                        <action selector="btn3action" destination="Jma-U1-8oJ" id="ExW-EX-z9k"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="D8g-Va-7f5" userLabel="Group4">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="lBF-I3-fZ9">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="xzU-R4-DeU">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="An6-6s-Bcz">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="3rC-gk-ENn"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="j04-8c-Xp9">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="6Zr-YM-ec6">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="BVw-Zz-bfw"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" verticalAlignment="center" id="L9q-bo-1zi">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="qdY-dG-olG">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="Xt5-Q6-gge">
+                                                    <connections>
+                                                        <action selector="btn3action" destination="Jma-U1-8oJ" id="Acj-C6-B0N"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="30" id="rBj-c2-4RD">
+                                            <items>
+                                                <button width="60" height="60" alignment="center" id="2s3-vi-gxx">
+                                                    <connections>
+                                                        <action selector="btn4action" destination="Jma-U1-8oJ" id="MNE-Ct-U3F"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="er6-U0-LAB" userLabel="Group5">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="O2n-wJ-H26">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="fhB-uM-cih">
+                                            <items>
+                                                <button width="40" height="40" alignment="left" id="48e-to-eFX">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="ztT-mf-Kmf"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="8cb-gR-U4N">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="9zs-9g-cRf">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="gLs-4w-hs2"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="sIg-pC-EoI">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="z0w-AH-iyk">
+                                                    <connections>
+                                                        <action selector="btn3action" destination="Jma-U1-8oJ" id="9I2-n8-mkD"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" verticalAlignment="center" id="UfR-MG-sMd">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="bNq-Dd-ApS">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="81R-0d-YXv">
+                                                    <connections>
+                                                        <action selector="btn4action" destination="Jma-U1-8oJ" id="smw-vU-Grd"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="14W-xN-gxH">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="fk0-gW-0tf">
+                                                    <connections>
+                                                        <action selector="btn5action" destination="Jma-U1-8oJ" id="nUa-Eo-KQz"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="haC-Sd-ZLN" userLabel="Group6">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="U4g-VU-7SQ">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="9Xr-ju-xth">
+                                            <items>
+                                                <button width="40" height="40" alignment="left" id="tkN-G5-MwT">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="N9c-ea-fZ9"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="VzK-KO-ZGd">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="3P2-hC-gZg">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="NA8-Ka-b71"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="8uz-1M-GWO">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="RnC-IR-SPi">
+                                                    <connections>
+                                                        <action selector="btn3action" destination="Jma-U1-8oJ" id="z9b-tb-W4N"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" verticalAlignment="center" id="fiS-d7-E71">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="yXx-kr-drB">
+                                            <items>
+                                                <button width="40" height="40" alignment="left" id="WCg-Nl-ksK">
+                                                    <connections>
+                                                        <action selector="btn4action" destination="Jma-U1-8oJ" id="CHX-So-7mj"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="cje-Wt-eoT">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="4rc-2x-0AS">
+                                                    <connections>
+                                                        <action selector="btn5action" destination="Jma-U1-8oJ" id="sCg-Xl-zIV"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="dd3-KV-KNo">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="Bnh-Aw-Pnu">
+                                                    <connections>
+                                                        <action selector="btn6action" destination="Jma-U1-8oJ" id="8Uo-Pc-Pit"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                        <group width="1" alignment="center" verticalAlignment="center" layout="vertical" id="8Ok-OQ-A6B" userLabel="Group7">
+                            <items>
+                                <group alignment="center" verticalAlignment="center" id="Th6-iU-aAO">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="MK1-cm-WdR">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="tXr-6M-dEx">
+                                                    <connections>
+                                                        <action selector="btn1action" destination="Jma-U1-8oJ" id="HPg-Gu-w2j"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="PUD-7o-r7u">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="ygh-iM-qwq">
+                                                    <connections>
+                                                        <action selector="btn2action" destination="Jma-U1-8oJ" id="Vgg-os-ZXu"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" verticalAlignment="center" id="kjr-9y-vyO">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="R2p-la-l4K">
+                                            <items>
+                                                <button width="40" height="40" alignment="left" id="k73-Ky-A3Y">
+                                                    <connections>
+                                                        <action selector="btn3action" destination="Jma-U1-8oJ" id="3t6-zZ-ic6"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="VON-6X-bo4">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="PT2-29-6GK">
+                                                    <connections>
+                                                        <action selector="btn4action" destination="Jma-U1-8oJ" id="2un-qp-ouU"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="4on-Lg-eM7">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="Euk-IJ-OUz">
+                                                    <connections>
+                                                        <action selector="btn5action" destination="Jma-U1-8oJ" id="vm3-gA-wQa"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                                <group alignment="center" verticalAlignment="center" id="rQM-8o-mKK">
+                                    <items>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="WCl-oA-PKq">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="crm-QU-9dc">
+                                                    <connections>
+                                                        <action selector="btn6action" destination="Jma-U1-8oJ" id="O1Q-Yd-a5b"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                        <group width="1" alignment="left" layout="overlap" radius="20" id="EEf-gI-6KA">
+                                            <items>
+                                                <button width="40" height="40" alignment="center" id="tbc-4B-8GP">
+                                                    <connections>
+                                                        <action selector="btn7action" destination="Jma-U1-8oJ" id="AaM-tb-NvW"/>
+                                                    </connections>
+                                                </button>
+                                            </items>
+                                        </group>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
                     </items>
                     <connections>
+                        <outlet property="btn11" destination="1fz-OI-sGH" id="zRq-dm-28F"/>
+                        <outlet property="btn21" destination="u2c-Uw-9sX" id="GJb-GP-tTF"/>
+                        <outlet property="btn22" destination="S5M-EO-XBe" id="DzR-1l-LgP"/>
+                        <outlet property="btn31" destination="k4b-2v-N0L" id="pZb-Yj-CEu"/>
+                        <outlet property="btn32" destination="gCC-MP-7Yc" id="aLy-Xv-qnW"/>
+                        <outlet property="btn33" destination="3QZ-yx-FLj" id="eBo-q2-rtz"/>
+                        <outlet property="btn41" destination="An6-6s-Bcz" id="fmM-P4-Aqw"/>
+                        <outlet property="btn42" destination="6Zr-YM-ec6" id="Lc8-YE-CSA"/>
+                        <outlet property="btn43" destination="Xt5-Q6-gge" id="Zfz-v0-YEd"/>
+                        <outlet property="btn44" destination="2s3-vi-gxx" id="7m9-n4-mGh"/>
+                        <outlet property="btn51" destination="48e-to-eFX" id="G7T-vu-bxA"/>
+                        <outlet property="btn52" destination="9zs-9g-cRf" id="gHB-fh-HHc"/>
+                        <outlet property="btn53" destination="z0w-AH-iyk" id="qif-5V-89v"/>
+                        <outlet property="btn54" destination="81R-0d-YXv" id="6fl-ci-Cr8"/>
+                        <outlet property="btn55" destination="fk0-gW-0tf" id="0JB-0c-MTW"/>
+                        <outlet property="btn61" destination="tkN-G5-MwT" id="pPb-tg-tO5"/>
+                        <outlet property="btn62" destination="3P2-hC-gZg" id="VN2-4p-a58"/>
+                        <outlet property="btn63" destination="RnC-IR-SPi" id="KeW-i7-7RI"/>
+                        <outlet property="btn64" destination="WCg-Nl-ksK" id="ZZE-jJ-baV"/>
+                        <outlet property="btn65" destination="4rc-2x-0AS" id="jet-tX-RQb"/>
+                        <outlet property="btn66" destination="Bnh-Aw-Pnu" id="q8z-R5-2Vd"/>
+                        <outlet property="btn71" destination="tXr-6M-dEx" id="W39-Em-kKC"/>
+                        <outlet property="btn72" destination="ygh-iM-qwq" id="KF7-i9-6fb"/>
+                        <outlet property="btn73" destination="k73-Ky-A3Y" id="l84-mx-P07"/>
+                        <outlet property="btn74" destination="PT2-29-6GK" id="TAy-33-ahq"/>
+                        <outlet property="btn75" destination="Euk-IJ-OUz" id="zD6-gx-Y0O"/>
+                        <outlet property="btn76" destination="crm-QU-9dc" id="INb-S1-Kx2"/>
+                        <outlet property="btn77" destination="tbc-4B-8GP" id="CN5-bz-yKo"/>
+                        <outlet property="group1" destination="8aa-6w-8XH" id="xzL-Qr-Iuo"/>
+                        <outlet property="group2" destination="Joj-cm-TnY" id="uBW-gT-na1"/>
+                        <outlet property="group3" destination="4SN-mA-dBf" id="Rce-LF-poh"/>
+                        <outlet property="group4" destination="D8g-Va-7f5" id="UWb-b0-EFA"/>
+                        <outlet property="group5" destination="er6-U0-LAB" id="0g3-j5-iZA"/>
+                        <outlet property="group6" destination="haC-Sd-ZLN" id="eNK-RB-cMt"/>
+                        <outlet property="group7" destination="8Ok-OQ-A6B" id="FGC-uX-fQT"/>
+                        <segue destination="fJH-gE-v4f" kind="relationship" relationship="nextPage" id="Wek-ag-cgF"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="1587" y="-2259"/>
+        </scene>
+        <!--Main Interface Controller-->
+        <scene sceneID="nbc-MV-jYL">
+            <objects>
+                <controller id="fJH-gE-v4f" customClass="MainInterfaceController" customModule="AlkoKolik_WatchKit_Extension">
+                    <items>
+                        <label alignment="left" text="OK in:" id="OP0-80-dVz">
+                            <color key="textColor" name="appGray"/>
+                        </label>
+                        <timer alignment="left" format="abbreviated" previewedSeconds="4200" id="Cgl-QP-cQp">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle2"/>
+                            <calendarUnit key="units" hour="YES" minute="YES"/>
+                        </timer>
+                        <label alignment="left" text="Current BAC" id="x69-5y-tBK">
+                            <color key="textColor" name="appGray"/>
+                        </label>
+                        <label alignment="left" text="Loading..." id="tbW-jM-nla"/>
+                    </items>
+                    <connections>
+                        <outlet property="bacLabel" destination="tbW-jM-nla" id="5Z2-zn-VmH"/>
+                        <outlet property="soberCountDown" destination="Cgl-QP-cQp" id="WOn-8N-0Vb"/>
                         <segue destination="Zuo-Kp-4Wn" kind="relationship" relationship="nextPage" id="mzu-Da-FnR"/>
                     </connections>
                 </controller>
@@ -38,7 +424,7 @@
                                             </separator>
                                             <group height="40" alignment="left" layout="vertical" spacing="0.0" id="hXd-Ez-ory">
                                                 <items>
-                                                    <group alignment="left" spacing="4" id="TY7-hK-syS">
+                                                    <group alignment="left" verticalAlignment="center" spacing="4" id="TY7-hK-syS">
                                                         <items>
                                                             <label alignment="left" text="Pilsner Urquel" id="T6h-D1-zJS"/>
                                                         </items>
@@ -91,8 +477,11 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="appGray">
+            <color red="0.46700000762939453" green="0.52899998426437378" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="appMax">
-            <color red="0.87450980392156863" green="0.16078431372549021" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.875" green="0.16099999845027924" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

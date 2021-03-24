@@ -25,6 +25,8 @@ class MainVC: UIViewController {
     var duration : Double = 0.0 { didSet {
         updateDurationLabel(duration)
     }}
+    var currentBAC : Concentration = 0.0
+    var soberDate : Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class MainVC: UIViewController {
         clock.parrentTickAction = {self.duration -= 1/60}
         clock.startClock()
         NotificationCenter.default.addObserver(self, selector: #selector(calculateAlcoholModel), name: .favouriteBtnPressd, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,10 +91,12 @@ class MainVC: UIViewController {
         model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
             guard succes, let _graphinputs = graphInputs else {return } // TODO: print error
             if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
-                for i in intervalToCurrent.minute!..<_graphinputs.count {
-                    if _graphinputs[i] == 0 {
+                currentBAC = _graphinputs[intervalToCurrent.minute!]
+                for i in intervalToCurrent.minute!..<_graphinputs.count-1 {
+                    if _graphinputs[i+1] == 0 {
                         let timeOfGettingSober = i
                         duration = Double(timeOfGettingSober - intervalToCurrent.minute!)
+                        soberDate = Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: from)!
                         clock.durationTime = duration
                         break
                     }
@@ -108,5 +113,29 @@ class MainVC: UIViewController {
             }
         }
     }
+    
+    @objc func watchRequestedUpdate(){
+        guard let _ = personalData else { return }
+        
+        var response : [String:Any] = [:]
+        
+        let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
+        let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
+        model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
+            guard succes, let _graphinputs = graphInputs else {return } // TODO: print error
+            if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
+                response["currentBAC"] = _graphinputs[intervalToCurrent.minute!]
+                for i in intervalToCurrent.minute!..<_graphinputs.count-1 {
+                    if _graphinputs[i+1] == 0 {
+                        let timeOfGettingSober = i
+                        soberDate = Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: from)!
+                        response["soberDate"] = soberDate
+                        break
+                    }
+                }
+            }
+            WatchManager.shared.sendMessage(response, replyHandler: nil, errorHandler: nil)
+    }
 }
-
+}

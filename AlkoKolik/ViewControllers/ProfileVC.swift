@@ -17,12 +17,12 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     @IBOutlet weak var graphView: LineChartView!
     
     let model = AlcoholModel()
+    var timer = Timer()
     
     let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
     let to = Calendar.current.date(byAdding: .hour, value: 24, to: Date())!
     
     var personalData : AlcoholModel.PersonalData?
-    var timer = Timer()
     
     var currentBAC : Double = 0 { didSet{currentBACLabel.text =  " \(String(format:"%.2f", currentBAC)) ‰"} }
     
@@ -39,13 +39,14 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                 self.weightLabel.text = "\(String(format:"%.1f",_personalData.weight.converted(to: .kilograms).value)) kg"
             }
             self.simulateAlcoholModel()
+            self.startTimer()
         }
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        simulateAlcoholModel()
+        refresChart()
     }
     
     override func viewDidLayoutSubviews() {
@@ -122,12 +123,12 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                 self.graphView.data = data
                 if let timeFromZeroPoint = intervalToCurrent.minute {
                     graphView.setVisibleXRange(minXRange: 1 , maxXRange: 480)
-                    graphView.centerViewTo(xValue: Double(timeFromZeroPoint)+4*60, yValue: 0, axis: .left)
+                    graphView.centerViewTo(xValue: Double(timeFromZeroPoint), yValue: 0, axis: .left)
                 }
                 if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
                     currentBAC = _graphinputs[intervalToCurrent.minute!]
                 }
-                
+                self.graphView.notifyDataSetChanged()
             }
         }
     }
@@ -159,6 +160,12 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     }
     
     @objc func tick(){
+        refresChart()
+    }
+    
+    func refresChart(){
+        graphView.xAxis.removeAllLimitLines()
+        createXAxes()
         simulateAlcoholModel()
     }
     

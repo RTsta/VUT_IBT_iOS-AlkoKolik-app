@@ -21,7 +21,7 @@ class FavouriteButtonsVC: UIViewController {
         setupCollection()
         
         NotificationCenter.default.addObserver(self, selector: #selector(favouritesNeedsReload), name: .favouriteNeedsReload, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
         if willNeedReloadFavourites || (favourites == nil){
             initFavourites()
             willNeedReloadFavourites = false
@@ -82,6 +82,18 @@ class FavouriteButtonsVC: UIViewController {
                 CoreDataManager.insertRecord(drink: drink, volumeOpt: row, time: Date(), volumeMl: volume)
                 NotificationCenter.default.post(name: .favouriteBtnPressd, object: nil)
             }
+        }
+    }
+    
+    @objc func watchRequestedUpdate(){
+        if let favourites = favourites {
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(favourites)
+                var response : [String:Any] = [:]
+                response["favourites"] = data
+                WatchManager.shared.sendMessage(response, replyHandler: nil, errorHandler: nil)
+            }catch let error { print("\(error.localizedDescription)")}
         }
     }
 }
