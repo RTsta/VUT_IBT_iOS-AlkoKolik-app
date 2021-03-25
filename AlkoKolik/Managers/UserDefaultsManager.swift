@@ -14,8 +14,8 @@ class UserDefaultsManager {
             let encoder = JSONEncoder()
             let data = try encoder.encode(drinks)
             UserDefaults.standard.setValue(data, forKey: .favouriteDrinkKey)
-            print("favourite drinks were saved")
-        }catch let error { print("\(error.localizedDescription)")}
+            print("UserDefaultsManager - favourite drinks were saved")
+        }catch let error { print("UserDefaultsManager - Error - \(error.localizedDescription)")}
     }
     
     class func insertIntoFavourite(drinkId id: Int, volume: Double) {
@@ -33,10 +33,10 @@ class UserDefaultsManager {
                 let drinks = try decoder.decode([FavouriteDrink].self, from: data)
                 return drinks
             } catch {
-                print("Unable to Decode FavouriteDrinks (\(error))")
+                print("UserDefaultsManager - Error - Unable to Decode FavouriteDrinks (\(error))")
             }
         }
-        print("Unable to load UserDefaults")
+        print("UserDefaultsManager - Error - Unable to load UserDefaults")
         return nil
     }
     

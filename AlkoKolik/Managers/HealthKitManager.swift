@@ -10,22 +10,22 @@ import HealthKit
 
 class HealthKitManager{
     
-    class func insertBAC(weight: Double ,completion: @escaping (Bool, Error?) -> Void = {_,_ in }){
+    class func insertBAC(bac: Double ,forDate: Date,completion: @escaping (Bool, Error?) -> Void = {_,_ in }){
         guard let bacType = HKQuantityType.quantityType(forIdentifier: .bloodAlcoholContent) else {
-            fatalError("Data type BAC is no longer part of healthkit")
+            fatalError("HealthKitManager - Error - Data type BAC is no longer part of healthkit")
         }
-        let bacQuantity = HKQuantity(unit: HKUnit.gramUnit(with: .none), doubleValue: weight)
+        let bacQuantity = HKQuantity(unit: HKUnit.gramUnit(with: .none), doubleValue: bac)
         
-        let date = Date()
+        let date = forDate
         
         let bacSample = HKQuantitySample(type: bacType, quantity: bacQuantity, start: date, end: date)
         
         HKHealthStore().save(bacSample) { (success, error) in
             if let error = error {
-                print("Error Saving weight Sample: \(error.localizedDescription)")
+                print("HealthKitManager - Error - Error Saving weight Sample: \(error.localizedDescription)")
                 completion(false, nil)
             } else {
-                print("done")
+                print("HealthKitManager - Error - BAC inserted")
                 completion(true, nil)
             }
         }
@@ -46,7 +46,7 @@ class HealthKitManager{
             let todayDateComponents = Calendar.current.dateComponents([.year],from: Date())
             let thisYear = todayDateComponents.year!
             age = Double(thisYear - dateOfBirth.year!)
-        } catch let _error { print("error in healthkit - \(_error.localizedDescription)")}
+        } catch let _error { print("HealthKitManager - Error - error in healthkit - \(_error.localizedDescription)")}
         
         guard let heightType = HKQuantityType.quantityType(forIdentifier: .height),
               let massType = HKQuantityType.quantityType(forIdentifier: .bodyMass) else {fatalError("Data type height is not part of HealthKit")}
@@ -147,7 +147,7 @@ class HealthKitManager{
     
     class func authorizeHealthKit(completion: @escaping (Bool, Error?) -> Void) {
         guard HKHealthStore.isHealthDataAvailable() else {
-            print("HealthKitn not avaible at this device")
+            print("HealthKitManager - Error - HealthKit is not avaible at this device")
             completion(false, nil)
             return
         }
@@ -156,7 +156,7 @@ class HealthKitManager{
               let age = HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.dateOfBirth),
               let sex = HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.biologicalSex),
               let bac = HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bloodAlcoholContent)
-        else {fatalError("HK type not avaibile")}
+        else {fatalError("HealthKitManager - Error - HK type not avaibile")}
         
         let HKitTypesToRead : Set<HKObjectType> = [height, weight, age, sex, bac]
         let HKitTypesToWrite : Set<HKSampleType> = [bac]
@@ -165,6 +165,19 @@ class HealthKitManager{
             (success, error) in
             completion(success, error)
         }
+    }
+    
+    enum AccesType{
+        case read
+        case write
+    }
+
+    enum HKitType{
+        case height
+        case weight
+        case age
+        case sex
+        case bac
     }
 }
 

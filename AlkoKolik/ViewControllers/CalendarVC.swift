@@ -22,14 +22,14 @@ class CalendarVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        records = CoreDataManager.fetchRecordsAll()
-        calendar.reloadData()
+        reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav_vc = segue.destination as? UINavigationController,
            let vc = nav_vc.viewControllers.first as? DayVC{
             vc.selectedDate = selectedDate
+            vc.callback = {self.reloadData()}
         }
     }
     
@@ -44,6 +44,11 @@ class CalendarVC: UIViewController {
         calendar.allowsMultipleSelection = false
         calendar.allowsSelection = true
         calendar.appearance.borderDefaultColor = .clear
+    }
+    
+    func reloadData(){
+        records = CoreDataManager.fetchRecordsAll()
+        calendar.reloadData()
     }
     
 }

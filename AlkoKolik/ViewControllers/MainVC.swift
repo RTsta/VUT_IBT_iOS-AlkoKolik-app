@@ -42,7 +42,7 @@ class MainVC: UIViewController {
             self.personalData = AlcoholModel.PersonalData(sex: _s!, height: _h!, weight: _w!, age: _a!)
             self.calculateAlcoholModel()
         }
-        clock.parrentTickAction = {self.duration -= 1/60}
+        clock.parrentTickAction = {if self.duration > 0 { self.duration -= 1/60 } else {self.duration = 0}}
         clock.startClock()
         NotificationCenter.default.addObserver(self, selector: #selector(calculateAlcoholModel), name: .favouriteBtnPressd, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
@@ -87,9 +87,8 @@ class MainVC: UIViewController {
         let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
         
-        
         model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
-            guard succes, let _graphinputs = graphInputs else {return } // TODO: print error
+            guard succes, let _graphinputs = graphInputs else {print("MainVC - Error - data were not loaded"); return}
             if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
                 currentBAC = _graphinputs[intervalToCurrent.minute!]
                 for i in intervalToCurrent.minute!..<_graphinputs.count-1 {
@@ -109,6 +108,7 @@ class MainVC: UIViewController {
     func HKAuthorization() {
         HealthKitManager.authorizeHealthKit { (authorized, error) in
             guard authorized else {
+                print("not authorized")
                 return // TODO: what error
             }
         }
@@ -123,7 +123,7 @@ class MainVC: UIViewController {
         let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
         let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
         model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
-            guard succes, let _graphinputs = graphInputs else {return } // TODO: print error
+            guard succes, let _graphinputs = graphInputs else {print("MainVC - Error - Data were not loaded"); return }
             if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
                 response["currentBAC"] = _graphinputs[intervalToCurrent.minute!]
                 for i in intervalToCurrent.minute!..<_graphinputs.count-1 {

@@ -23,8 +23,8 @@ class MainInterfaceController: WKInterfaceController {
                     let encoder = JSONEncoder()
                     let data = try encoder.encode(self.timeToGetSober)
                     UserDefaults.standard.setValue(data, forKey: .lastTimeToSober)
-                    print("sober time was saved")
-                }catch let error { print("\(error.localizedDescription)")}
+                    print("MainInterfaceController - sober time was saved")
+                }catch let error { print("MainInterfaceController - Error - \(error.localizedDescription)")}
             }
         }
     }}
@@ -106,7 +106,7 @@ extension MainInterfaceController : WCSessionDelegate {
                 let _ = try decoder.decode([FavouriteDrink].self, from: favourites)
                 UserDefaults.standard.setValue(favourites, forKey: .favouriteDrinkKey)
             } catch {
-                print("Unable to Decode FavouriteDrinks (\(error))")
+                print("MainInterfaceController - Error - Unable to Decode FavouriteDrinks from iPhone(\(error))")
             }
         }
     }

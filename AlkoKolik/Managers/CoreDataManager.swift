@@ -38,9 +38,9 @@ class CoreDataManager {
         do {
           try managedContext.save()
         } catch let error as NSError {
-          print("Could not save. \(error), \(error.userInfo)")
+          print("CoreDataManager - Error - Could not save. \(error), \(error.userInfo)")
         }
-        print("\(time) \(drink.name), \(v) inserted!")
+        print("CoreDataManager - \(time) \(drink.name), \(v) inserted!")
     }
     
     class func deleteRecord(record: NSManagedObject) {
@@ -51,7 +51,7 @@ class CoreDataManager {
         do {
             try managedContext.save()
         }catch let error as NSError {
-            fatalError("Couldnt delete object \(error.code) \n\n \(error.localizedDescription)")
+            fatalError("CoreDataManager - Error - Couldnt delete object \(error.code) \n\n \(error.localizedDescription)")
         }
     }
     
@@ -66,7 +66,7 @@ class CoreDataManager {
         do {
             records = try managedContext.fetch(request)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
         }
         return records
     }
@@ -82,7 +82,7 @@ class CoreDataManager {
         do {
             records = try managedContext.fetch(request)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
         }
         return records
     }
@@ -97,7 +97,7 @@ class CoreDataManager {
         do {
             records = try managedContext.fetch(request)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
         }
         return records
     }
@@ -111,7 +111,7 @@ class CoreDataManager {
         do {
             records = try managedContext.fetch(request)
         } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
         }
         return records
     }

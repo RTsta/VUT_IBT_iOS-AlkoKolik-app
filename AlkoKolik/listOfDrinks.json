@@ -148,6 +148,14 @@
             "percentage": 11.5,
             "type": "wine",
             "active": true
+        },
+        {
+            "id": 150734,
+            "name": "Test 151-proof",
+            "volume": [70.8],
+            "percentage": 75.5,
+            "type": "other",
+            "active": true
         }
     ]
 }

@@ -93,7 +93,7 @@ class FavouriteButtonsVC: UIViewController {
                 var response : [String:Any] = [:]
                 response["favourites"] = data
                 WatchManager.shared.sendMessage(response, replyHandler: nil, errorHandler: nil)
-            }catch let error { print("\(error.localizedDescription)")}
+            }catch let error { print("FavouriteButtonsVC - Error - \(error.localizedDescription)")}
         }
     }
 }

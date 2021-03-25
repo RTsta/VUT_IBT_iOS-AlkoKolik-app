@@ -16,6 +16,7 @@ class DayVC : UIViewController {
     var selectedDate : Date = Date()
     var weekRecords : [NSManagedObject] = []
     var selectedDayRecords : [NSManagedObject] = []
+    var callback : (() -> Void)?
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
@@ -46,6 +47,11 @@ class DayVC : UIViewController {
         super.viewDidAppear(animated)
         if selectedDayRecords.count > 8 {todayDrinkTable.scrollToRow(at: IndexPath(row: 8, section: 0), at: .bottom, animated: true)
         }else {todayDrinkTable.scrollToRow(at: IndexPath(row: selectedDayRecords.count, section: 0), at: .bottom, animated: true)}
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        callback?()
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {

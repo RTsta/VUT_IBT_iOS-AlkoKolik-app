@@ -30,11 +30,12 @@ class AlcoholModel {
         case watson
         case watsonB
         case average
+        case all
     }
     
     func run(personalData: PersonalData, from: Date, to: Date,method: RFactorMethod = .average ,complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
         guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
-        else {myDebugPrint("could not retrive data from database", "AlcoholModel"); complition(nil, false); return}
+        else {print("AlcoholModel - could not retrive data from database"); complition(nil, false); return}
         let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
         let intervalBetweenStartEnd = Calendar.current.dateComponents([.minute], from: from, to: to)
         guard let _ = intervalBetweenStartEnd.minute else {complition(nil, false); return}
@@ -58,6 +59,44 @@ class AlcoholModel {
             resultArray[i] = calculateEliminationPhases(doseInBody: resultArray[i-1], newAbsorbed: resultArray[i], person: personalData, method: method)
         }
         
+        complition(resultArray, true)
+        return
+    }
+    
+    func runWithMultipleMethods(personalData: PersonalData, from: Date, to: Date,method: [RFactorMethod] = [.all] ,complition: (_ graphEntry: [[Concentration]]?, _ succes: Bool)->Void ){
+        let rFactorMethods = (method == [.all] ? [.average,.seidel ,.forrest, .ulrich, .watson] : method)
+        
+        guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
+        else {print("AlcoholModel - could not retrive data from database"); complition(nil, false); return}
+        
+        let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
+        let intervalBetweenStartEnd = Calendar.current.dateComponents([.minute], from: from, to: to)
+        guard let _ = intervalBetweenStartEnd.minute else {complition(nil, false); return}
+        
+        var resultArray : [[Concentration]] = []
+        
+        for singleMethod in rFactorMethods {
+            var resultOfSingleMethod = [Concentration](repeating: 0.0, count: intervalBetweenStartEnd.minute!)
+        
+            for record in recordsData {
+                let currentRecTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: record.timestemp!) // rounding down time to be accurate of a minute
+                let difference = Calendar.current.dateComponents([.minute], from: zeroTimePoint!, to: currentRecTimePoint!)
+                guard let minInterval = difference.minute else {continue}
+            
+                let absorbtion = calculateAbsorbtionPhases(drink: record)
+                for i in stride(from: 0, to: absorbtion.count, by: 1){
+                    if minInterval+i >= resultOfSingleMethod.count { break }
+                    resultOfSingleMethod[minInterval+i] += absorbtion[i]
+                }
+            }
+        
+            for i in stride(from: 1, to: resultOfSingleMethod.count, by: 1){
+                if (resultOfSingleMethod[i]+resultOfSingleMethod[i-1]) <= 0 {continue}
+            
+                resultOfSingleMethod[i] = calculateEliminationPhases(doseInBody: resultOfSingleMethod[i-1], newAbsorbed: resultOfSingleMethod[i], person: personalData, method: singleMethod)
+            }
+            resultArray.append(resultOfSingleMethod)
+        }
         complition(resultArray, true)
         return
     }
@@ -107,8 +146,9 @@ class AlcoholModel {
             if person.sex == .male {return (rForrest(person)+rSedel(person)+rUlrich(person)+rWatson(person))/4}
             else {return (rForrest(person)+rSedel(person)+rWatson(person))/3}
         default:
-            return 0.0
+            return 0
         }
+        
     }
     
     private func rSedel(_ person: PersonalData) -> Double {

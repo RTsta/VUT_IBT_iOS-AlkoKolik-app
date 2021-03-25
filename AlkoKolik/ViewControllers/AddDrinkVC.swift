@@ -127,6 +127,8 @@ extension AddDrinkVC : UITableViewDelegate, UITableViewDataSource {
         selectedVolume = 0
         volumeText.text = "\(listOfDrinks[selectedRow!].volume[selectedVolume!]) ml"
         saveBtn.isEnabled = true
+        volumePickerView.selectRow(0, inComponent: 0, animated: true)
+        volumePickerView.reloadAllComponents();
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

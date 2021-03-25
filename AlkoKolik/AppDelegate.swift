@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         if !WatchManager.shared.isSuported() {
-            print("WCSession not supported (f.e. on iPad).")
+            print("AppDelegate - Error - WCSession not supported (f.e. on iPad).")
         }
         return true
     }

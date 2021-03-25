@@ -38,7 +38,7 @@ class VolumeAlertVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        theView.layer.cornerRadius = theView.bounds.width / 10.0
+        theView.layer.cornerRadius = theView.bounds.width / 8.0
         loadVolumesOfFavourite()
     }
     
@@ -51,7 +51,7 @@ class VolumeAlertVC: UIViewController {
         favourites = UserDefaultsManager.loadFavouriteDrinks()
         if favourites == nil {
             favourites = []
-            print("user defaults were not loaded")
+            print("VolumeAlertVC - Error - user defaults were not loaded")
         }
     }
     

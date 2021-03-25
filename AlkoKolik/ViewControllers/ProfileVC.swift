@@ -14,6 +14,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var currentBACLabel: UILabel!
+    @IBOutlet weak var peakBACLabel: UILabel!
     @IBOutlet weak var graphView: LineChartView!
     
     let model = AlcoholModel()
@@ -25,6 +26,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     var personalData : AlcoholModel.PersonalData?
     
     var currentBAC : Double = 0 { didSet{currentBACLabel.text =  " \(String(format:"%.2f", currentBAC)) ‰"} }
+    var peakBAC : Double = 0 { didSet{peakBACLabel.text =  " \(String(format:"%.2f", peakBAC)) ‰"} }
     
     var entries = [ChartDataEntry] ()
     
@@ -38,7 +40,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                 self.heightLabel.text = "\(String(format:"%.0f",_personalData.height.converted(to: .centimeters).value)) cm"
                 self.weightLabel.text = "\(String(format:"%.1f",_personalData.weight.converted(to: .kilograms).value)) kg"
             }
-            self.simulateAlcoholModel()
+            self.simulateMultipleAlcoholModels()
             self.startTimer()
         }
 
@@ -46,7 +48,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresChart()
+        refreshChart()
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,35 +121,64 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                     self.entries.append(ChartDataEntry(x: Double(i), y: _graphinputs[i]))
                 }
                 
-                let data = LineChartData(dataSet: createSet(entries: entries))
+                let data = LineChartData(dataSet: createMySet(entries: entries))
+                myDebugPrint("newData")
                 self.graphView.data = data
                 if let timeFromZeroPoint = intervalToCurrent.minute {
                     graphView.setVisibleXRange(minXRange: 1 , maxXRange: 480)
                     graphView.centerViewTo(xValue: Double(timeFromZeroPoint), yValue: 0, axis: .left)
                 }
                 if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
-                    currentBAC = _graphinputs[intervalToCurrent.minute!]
+                    currentBAC = _graphinputs[intervalToCurrent.minute!] //on index 0 should be result for average method
+                    var tmp = currentBAC
+                    for i in stride(from: intervalToCurrent.minute!, to: _graphinputs.count, by: 1){
+                        if _graphinputs[i] > tmp {tmp = _graphinputs[i]}
+                    }
+                    peakBAC = tmp
                 }
                 self.graphView.notifyDataSetChanged()
+                
             }
         }
     }
     
-    func createSet(entries: [ChartDataEntry]) -> LineChartDataSet {
-        let set = LineChartDataSet(entries: entries)
-        
-        let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
-        let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
-        set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
-        set.drawFilledEnabled = true
-        
-        set.drawCirclesEnabled = false
-        set.valueTextColor = .white
-        set.fillColor = .appMax
-        set.mode = .cubicBezier
-        set.colors = [.appMax]
-        set.drawValuesEnabled = false
-        return set
+    func simulateMultipleAlcoholModels(){
+        guard let _ = personalData else { return }
+        let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
+        model.runWithMultipleMethods(personalData: personalData!, from: from, to: to) { graphInputs, succes in
+            if succes, let _graphinputs = graphInputs{
+                var round : Int = 1
+                var dataSets = [LineChartDataSet]()
+                for input in _graphinputs {
+                    var gEntries = [ChartDataEntry]()
+                    for i in stride(from: 0, to: input.count, by: 1){
+                        gEntries.append(ChartDataEntry(x: Double(i), y: input[i]))
+                    }
+                    dataSets.append(createMySet(entries: gEntries, withStyle: (ProfileVC.dataSetStyle(rawValue: round) ?? ProfileVC.dataSetStyle(rawValue: 0))!))
+                    round += 1
+                }
+                
+
+                let data = LineChartData(dataSets: dataSets)
+                graphView.legend.enabled = true
+                self.graphView.data = data
+                if let timeFromZeroPoint = intervalToCurrent.minute {
+                    graphView.setVisibleXRange(minXRange: 1 , maxXRange: 480)
+                    graphView.centerViewTo(xValue: Double(timeFromZeroPoint), yValue: 0, axis: .left)
+                }
+                //_graphInputs[0] should be result for average method
+                if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs[0].count) {
+                    currentBAC = _graphinputs[0][intervalToCurrent.minute!]
+                    var tmp = currentBAC
+                    for i in stride(from: intervalToCurrent.minute!, to: _graphinputs[0].count, by: 1){
+                        if _graphinputs[0][i] > tmp {tmp = _graphinputs[0][i]}
+                    }
+                    peakBAC = tmp
+                }
+                self.graphView.notifyDataSetChanged()
+                
+            }
+        }
     }
     
     func startTimer() {
@@ -160,13 +191,71 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     }
     
     @objc func tick(){
-        refresChart()
+        refreshChart()
     }
     
-    func refresChart(){
+    func refreshChart(){
         graphView.xAxis.removeAllLimitLines()
         createXAxes()
-        simulateAlcoholModel()
+        simulateMultipleAlcoholModels()
     }
     
+}
+
+private extension ProfileVC {
+    enum dataSetStyle : Int{
+        case classic = 0
+        case average = 1
+        case seidel = 2
+        case forrest = 3
+        case ulrich = 4
+        case watson = 5
+        case watsonB = 6
+
+    }
+    
+    func createMySet(entries: [ChartDataEntry], withStyle style: dataSetStyle = .classic) -> LineChartDataSet {
+        let set = LineChartDataSet(entries: entries)
+        switch style {
+        case .seidel:
+            set.drawFilledEnabled = false
+            set.fillColor = .appMin
+            set.colors = [.appMin]
+            set.label = "Seidel"
+            break
+        case .forrest:
+            set.drawFilledEnabled = false
+            set.fillColor = .appDarkGrey
+            set.colors = [.appDarkGrey]
+            set.label = "Forrest"
+        case .ulrich:
+            set.drawFilledEnabled = false
+            set.fillColor = .appMid
+            set.colors = [.appMid]
+            set.label = "Ulrich"
+        case .watson:
+            set.drawFilledEnabled = false
+            set.fillColor = .appSemiMax
+            set.colors = [.appSemiMax]
+            set.label = "Watson"
+        case .average:
+            set.drawFilledEnabled = false
+            set.fillColor = .appMax
+            set.colors = [.appMax]
+            set.label = "Average"
+        default:
+            let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
+            let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
+            set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+            set.drawFilledEnabled = true
+            set.fillColor = .appMax
+            set.colors = [.appMax]
+            
+        }
+        set.drawValuesEnabled = false
+        set.mode = .cubicBezier
+        set.drawCirclesEnabled = false
+        set.valueTextColor = .white
+        return set
+    }
 }

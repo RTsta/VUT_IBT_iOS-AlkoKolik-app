@@ -54,7 +54,7 @@ class ListOfDrinksManager {
                 return parsedDrinks
             }
         } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
+            print("ListOfDrinksManager - Error - Failed to load: \(error.localizedDescription)")
             return nil
         }
         return nil
@@ -98,7 +98,7 @@ class ListOfDrinksManager {
                 }
             }
         } catch let error as NSError {
-            print("Failed to load: \(error.localizedDescription)")
+            print("ListOfDrinksManager - Error - Failed to load: \(error.localizedDescription)")
         }
         return nil
     }

@@ -57,9 +57,9 @@ class VolumeTableInterfaceController: WKInterfaceController {
             let message : [String: Any] = ["drink_id":drink.id, "selectedVolume" : rowIndex ]
             WCSession.default.sendMessage(message,
                                           replyHandler: {(replyMessage) in
-                                            print(replyMessage)
+                                            print("VolumeTableInterfaceController - reply message - \(replyMessage)")
                                           }, errorHandler: { (error) in
-                                            myDebugPrint(error.localizedDescription, "Error")
+                                            print("VolumeTableInterfaceController - Error - \(error.localizedDescription)")
                                           })
         }
         self.dismiss()

@@ -103,7 +103,7 @@ extension FavouritesInterfaceController{
                 favourites = drinks
                 return
             } catch {
-                print("Unable to Decode FavouriteDrinks (\(error))")
+                print("FavouritesInterfaceController - Error - Unable to Decode FavouriteDrinks (\(error))")
             }
         }
     }
@@ -125,9 +125,9 @@ extension FavouritesInterfaceController{
             let message : [String: Any] = ["drink_id":favourites[number-1].drinkId, "selectedFavouriteVolume" : favourites[number-1].volume ]
             WCSession.default.sendMessage(message,
                                           replyHandler: {(replyMessage) in
-                                            print(replyMessage)
+                                            print("FavouriteInterfaceController - reply message - \(replyMessage)")
                                           }, errorHandler: { (error) in
-                                            myDebugPrint(error.localizedDescription, "Error")
+                                            print("FavouritesInterfaceController - Error - \(error.localizedDescription)")
                                           })
         }
     }
