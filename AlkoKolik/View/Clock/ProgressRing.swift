@@ -49,7 +49,7 @@ class ProgressRing : ClockComponent {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: diameter, height: diameter))
         return renderer.image { ctx in
             let cgctx = ctx.cgContext
-            let arcRadius = radius /*- (progressLineWidth * scaleFactor / 2.0)*/
+            let arcRadius = radius - (progressLineWidth * scaleFactor / 2.0)
             cgctx.addArc(center: viewCenter,
                          radius: arcRadius,
                          startAngle: 0,
@@ -95,7 +95,7 @@ class ProgressRing : ClockComponent {
         if animated {
             UIView.animate(withDuration: duration,
                            delay: 0.0,
-                           options: .curveEaseInOut,
+                           options: .curveEaseOut,
                         animations: {
                             self.timeValue = currentTime
                             if self.timeDuration > 0 { self.timeDuration -= 1 }

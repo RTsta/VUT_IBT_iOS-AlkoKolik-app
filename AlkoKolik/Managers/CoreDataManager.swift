@@ -22,17 +22,17 @@ class CoreDataManager {
          a - proportion of the alcohol absorbed
          d - alcohol density
          */
-        var v = drink.volume[volumeOpt]
-        if let _ = volumeMl {v = volumeMl!}
-        
+        var v : Double?
+        if let _ = volumeMl {v = volumeMl!} else {v = drink.volume[volumeOpt]}
+        guard let _ = v else {print("CoreDataManager - Error - volume is nil");return}
         let z = drink.alcoholPercentage/100
         let a = 1.0
         let d = 0.789
-        let dose = v * z * a * d
+        let dose = v! * z * a * d
         
         newRecord.timestemp = time
         newRecord.drink_id = Int32(drink.id)
-        newRecord.volume = v
+        newRecord.volume = v!
         newRecord.grams_of_alcohol = dose
         
         do {
@@ -40,7 +40,7 @@ class CoreDataManager {
         } catch let error as NSError {
           print("CoreDataManager - Error - Could not save. \(error), \(error.userInfo)")
         }
-        print("CoreDataManager - \(time) \(drink.name), \(v) inserted!")
+        print("CoreDataManager - \(time) \(drink.name), \(v ?? 0) inserted!")
     }
     
     class func deleteRecord(record: NSManagedObject) {

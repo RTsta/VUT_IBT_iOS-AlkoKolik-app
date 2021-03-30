@@ -156,6 +156,22 @@
             "percentage": 75.5,
             "type": "other",
             "active": true
+        },
+        {
+            "id": 18,
+            "name": "Holba 11 Šerák",
+            "volume": [300.0, 500.0],
+            "percentage": 4.7,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 19,
+            "name": "Radegast Rázná 10",
+            "volume": [300.0, 500.0],
+            "percentage": 4.1,
+            "type": "beer",
+            "active": true
         }
     ]
 }
