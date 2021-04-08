@@ -30,23 +30,7 @@ class ListOfDrinksManager {
                           let active = drink["active"] as? Bool
                     else {return nil}
                     
-                    var enumType : DrinkType = .none
-                    switch type {
-                    case "beer":
-                        enumType = .beer
-                    case "wine":
-                        enumType = .wine
-                    case "cider":
-                        enumType = .cider
-                    case "cocktail":
-                        enumType = .cocktail
-                    case "liquer":
-                        enumType = .liqueur
-                    case "vodka", "rum", "whiskey":
-                        enumType = .spirit
-                    default:
-                        break
-                    }
+                    let enumType : DrinkType = DrinkItem.getType(withName: type)
                     if active{
                         parsedDrinks.append(DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType))
                     }
@@ -76,23 +60,7 @@ class ListOfDrinksManager {
                               let percentage = drink["percentage"] as? Double,
                               let type = drink["type"] as? String
                         else {return nil}
-                        var enumType : DrinkType = .none
-                        switch type {
-                        case "beer":
-                            enumType = .beer
-                        case "wine":
-                            enumType = .wine
-                        case "cider":
-                            enumType = .cider
-                        case "cocktail":
-                            enumType = .cocktail
-                        case "liquer":
-                            enumType = .liqueur
-                        case "vodka", "rum", "whiskey":
-                            enumType = .spirit
-                        default:
-                            break
-                        }
+                        let enumType : DrinkType = DrinkItem.getType(withName: type)
                         return DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType)
                     }
                 }

@@ -14,11 +14,16 @@ class CalendarVC: UIViewController {
     
     private let today = Date()
     var selectedDate : Date = Date()
-    var records : [NSManagedObject] = []
+    var records : [DrinkRecord] = []
+    lazy var model1 : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendar()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +36,14 @@ class CalendarVC: UIViewController {
             vc.selectedDate = selectedDate
             vc.callback = {self.reloadData()}
         }
+    }
+    
+    func createNewAppModel() -> AppModel{
+        let new = AppModel()
+        if let parrent = tabBarController as? MainTabBarController{
+                parrent.model = new
+            }
+        return new
     }
     
     func setupCalendar() {
@@ -75,7 +88,7 @@ extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDeleg
             return UIColor.appDarkGrey
         }
         var sum : Double = 0
-        for case let r as DrinkRecord in records {
+        for r in records {
             guard let timestemp = r.timestemp as Date?,
                   let dose = r.grams_of_alcohol as Double? else { break }
             if Calendar.current.isDate(timestemp, inSameDayAs: date){

@@ -31,11 +31,11 @@ class HealthKitManager{
         }
     }
     
-    class func getPersonalData(completion: @escaping (_ l: Measurement<UnitLength>?,_ w: Measurement<UnitMass>?,_ a: Double?,_ s: AlcoholModel.Gender?) -> Void){
+    class func getPersonalData(completion: @escaping (_ l: Measurement<UnitLength>?,_ w: Measurement<UnitMass>?,_ a: Double?,_ s: AppModel.Gender?) -> Void){
         let dispatchGroup = DispatchGroup()
         var height : Measurement<UnitLength>?
         var weight : Measurement<UnitMass>?
-        var sex : AlcoholModel.Gender?
+        var sex : AppModel.Gender?
         var age : Double?
         
         do {

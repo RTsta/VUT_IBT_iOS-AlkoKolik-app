@@ -9,21 +9,10 @@ import Foundation
 
 typealias Concentration = Double
 
-class AlcoholModel {
+class SimulationAlcoholModel {
     let beta = 0.15 // g of eth/ l of body weight/h empty stomach (6.5 hours−1) or a full stomach (2.3 hours−1).
     
-    struct PersonalData{
-        let sex: Gender
-        let height: Measurement<UnitLength>  //meters
-        let weight: Measurement<UnitMass>  //kilograms
-        let age: Double    //years
-    }
-    enum Gender {
-        case male
-        case female
-    }
-    
-    enum RFactorMethod {
+    enum RFactorMethod{
         case seidel
         case forrest
         case ulrich
@@ -33,9 +22,8 @@ class AlcoholModel {
         case all
     }
     
-    func run(personalData: PersonalData, from: Date, to: Date,method: RFactorMethod = .average ,complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
-        guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
-        else {print("AlcoholModel - could not retrive data from database"); complition(nil, false); return}
+    func run(personalData: AppModel.PersonalData, from: Date, to: Date,method: RFactorMethod = .average ,complition: (_ graphEntry: [Concentration]?, _ succes: Bool)->Void ){
+        let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to)
         let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
         let intervalBetweenStartEnd = Calendar.current.dateComponents([.minute], from: from, to: to)
         guard let _ = intervalBetweenStartEnd.minute else {complition(nil, false); return}
@@ -63,24 +51,23 @@ class AlcoholModel {
         return
     }
     
-    func runWithMultipleMethods(personalData: PersonalData, from: Date, to: Date,method: [RFactorMethod] = [.all] ,complition: (_ graphEntry: [[Concentration]]?, _ succes: Bool)->Void ){
+    func runWithMultipleMethods(personalData: AppModel.PersonalData, from: Date, to: Date,method: [RFactorMethod] = [.all] ,complition: (_ graphEntry: [RFactorMethod:[Concentration]]?, _ succes: Bool)->Void ){
         let rFactorMethods = (method == [.all] ? [.average,.seidel ,.forrest, .ulrich, .watson] : method)
         
-        guard let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to) as? [DrinkRecord]
-        else {print("AlcoholModel - could not retrive data from database"); complition(nil, false); return}
+        let recordsData = CoreDataManager.fetchRecordsBetween(from: from, to: to)
         
         let zeroTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: from) // rounding down time to be percize for a minutes
         let intervalBetweenStartEnd = Calendar.current.dateComponents([.minute], from: from, to: to)
         guard let _ = intervalBetweenStartEnd.minute else {complition(nil, false); return}
         
-        var resultArray : [[Concentration]] = []
+        var resultArray : [RFactorMethod:[Concentration]] = [:]
         
         for singleMethod in rFactorMethods {
             var resultOfSingleMethod = [Concentration](repeating: 0.0, count: intervalBetweenStartEnd.minute!)
         
             for record in recordsData {
-                let currentRecTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: record.timestemp!) // rounding down time to be accurate of a minute
-                let difference = Calendar.current.dateComponents([.minute], from: zeroTimePoint!, to: currentRecTimePoint!)
+                let currentRecordTimePoint = Calendar.current.date(bySetting: .second, value: 0, of: record.timestemp!) // rounding down time to be accurate of a minute
+                let difference = Calendar.current.dateComponents([.minute], from: zeroTimePoint!, to: currentRecordTimePoint!)
                 guard let minInterval = difference.minute else {continue}
             
                 let absorbtion = calculateAbsorbtionPhases(drink: record)
@@ -95,7 +82,7 @@ class AlcoholModel {
             
                 resultOfSingleMethod[i] = calculateEliminationPhases(doseInBody: resultOfSingleMethod[i-1], newAbsorbed: resultOfSingleMethod[i], person: personalData, method: singleMethod)
             }
-            resultArray.append(resultOfSingleMethod)
+            resultArray[singleMethod] = resultOfSingleMethod
         }
         complition(resultArray, true)
         return
@@ -120,7 +107,7 @@ class AlcoholModel {
         return results
     }
     
-    func calculateEliminationPhases(doseInBody: Concentration,newAbsorbed: Concentration , person: PersonalData, method: RFactorMethod) -> Concentration{
+    func calculateEliminationPhases(doseInBody: Concentration,newAbsorbed: Concentration , person: AppModel.PersonalData, method: RFactorMethod) -> Concentration{
         let r : Double = rFactorFor(method: method, person: person)
         let v_d : Double = r * person.weight.converted(to: .kilograms).value
         let timeChange : Double = 1/60
@@ -130,7 +117,7 @@ class AlcoholModel {
         return (dose / v_d) - beta*timeChange
     }
     
-    private func rFactorFor(method: RFactorMethod, person: PersonalData) -> Double{
+    private func rFactorFor(method: RFactorMethod, person: AppModel.PersonalData) -> Double{
         switch method {
         case .forrest:
             return rForrest(person)
@@ -151,7 +138,7 @@ class AlcoholModel {
         
     }
     
-    private func rSedel(_ person: PersonalData) -> Double {
+    private func rSedel(_ person: AppModel.PersonalData) -> Double {
         let _height = person.height.converted(to: .meters).value
         let _weight = person.weight.converted(to: .kilograms).value
         
@@ -162,7 +149,7 @@ class AlcoholModel {
         }
     }
     
-    private func rForrest(_ person: PersonalData) -> Double {
+    private func rForrest(_ person: AppModel.PersonalData) -> Double {
         let _height = person.height.converted(to: .meters).value
         let _weight = person.weight.converted(to: .kilograms).value
         
@@ -173,7 +160,7 @@ class AlcoholModel {
         }
     }
     
-    private func rUlrich(_ person: PersonalData) -> Double {
+    private func rUlrich(_ person: AppModel.PersonalData) -> Double {
         let _height = person.height.converted(to: .meters).value
         let _weight = person.weight.converted(to: .kilograms).value
         
@@ -184,7 +171,7 @@ class AlcoholModel {
         }
     }
     
-    private func rWatson(_ person: PersonalData) -> Double {
+    private func rWatson(_ person: AppModel.PersonalData) -> Double {
         let _height = person.height.converted(to: .meters).value
         let _weight = person.weight.converted(to: .kilograms).value
         let _age = person.age
@@ -196,7 +183,7 @@ class AlcoholModel {
         }
     }
     
-    private func rWatsonB(_ person: PersonalData) -> Double {
+    private func rWatsonB(_ person: AppModel.PersonalData) -> Double {
         //let _height = person.height.converted(to: .meters).value
         let _weight = person.weight.converted(to: .kilograms).value
         let _age = person.age

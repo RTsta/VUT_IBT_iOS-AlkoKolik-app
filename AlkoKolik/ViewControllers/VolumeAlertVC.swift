@@ -17,6 +17,7 @@ class VolumeAlertVC: UIViewController {
     var favouriteVolumes : [Double] = []       //list of volumes that relates to the drink (favoirites[x] = favouriteVolumes[x]
     
     var callback : (() -> Void)?
+    var model : AppModel? = nil //TODO: Implement
     
     @IBOutlet weak var theView: UIView!
     @IBOutlet weak var collection: UICollectionView!
@@ -45,6 +46,10 @@ class VolumeAlertVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         callback?()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     func initFavourites(){
@@ -130,6 +135,11 @@ extension VolumeAlertVC: UICollectionViewDelegate, UICollectionViewDataSource, U
         cell.circleView.backgroundColor = cellColor
         return cell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? VolumeAlertViewCell
+        cell?.isHighlighted = true
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

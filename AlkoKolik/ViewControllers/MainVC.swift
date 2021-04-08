@@ -10,65 +10,85 @@ import CoreData
 import HealthKit
 
 class MainVC: UIViewController {
+    lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
     
     
     @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var clock: UIClockView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerHeight: NSLayoutConstraint!
+    @IBOutlet weak var clockView: UIClockView!
     
+    private var timer : Timer = Timer()
     
-    let HKManager = HealthKitManager()
-    let model = AlcoholModel()
-    var personalData : AlcoholModel.PersonalData?
-    
-    var duration : Double = 0.0 { didSet {
+    private var duration : Double = 0.0 { didSet {
         updateDurationLabel(duration)
+        clockView.ringDuration = duration
     }}
-    var currentBAC : Concentration = 0.0
-    var soberDate : Date = Date()
+    
+    private var soberDate : Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        HKAuthorization()
-        HealthKitManager.getPersonalData(){_h,_w,_a,_s in
-            guard let _ = _w,
-                  let _ = _h,
-                  let _ = _a,
-                  let _ = _s
-            else {return}
-            self.personalData = AlcoholModel.PersonalData(sex: _s!, height: _h!, weight: _w!, age: _a!)
-            self.calculateAlcoholModel()
-        }
-        clock.parrentTickAction = {if self.duration > 0 { self.duration -= 1/60 } else {self.duration = 0}}
-        clock.startClock()
-        NotificationCenter.default.addObserver(self, selector: #selector(calculateAlcoholModel), name: .favouriteBtnPressd, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadSoberDate), name: .modelCalculated, object: nil)
+        startClock()
+        HKAuthorization()
+        model = AppModel()
+        
+        if let parrent = tabBarController as? MainTabBarController{
+            parrent.model = model
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.calculateAlcoholModel()
+        model.update(complition: nil)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "favouriteBtnMainSegue" {
-            if let vc = segue.destination as? FavouriteButtonsVC{
-                vc.parentVC = self
-                vc.view.translatesAutoresizingMaskIntoConstraints = false
+    //MARK: - TIMER
+    private func startClock() {
+        if timer.isValid {
+            timer.invalidate()
+        }
+        let refreshInterval : TimeInterval = 1.0
+        timer = Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func tick() {
+        let realTimeComponents = Calendar.current.dateComponents([.hour, .minute, .second], from: Date())
+        clockView.localTime = UIClockView.LocalTime(hour: realTimeComponents.hour ?? 10,
+                                                    minute:  realTimeComponents.minute ?? 42,
+                                                    second: realTimeComponents.second ?? 0)
+    }
+    
+    @objc private func loadSoberDate(){
+        
+        // TODO: předělat
+        if let _sober = model.soberDate {
+            let intervalToSober = Calendar.current.dateComponents([.minute], from: Date(), to: _sober)
+            if let min = intervalToSober.minute,
+               min > 0{
+                duration = Double(min)
+            } else {
+                duration = 0
             }
         }
     }
     
-    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
-        containerView.heightAnchor.constraint(equalToConstant: container.preferredContentSize.height).isActive = true
+    private func createNewAppModel() -> AppModel{
+        let new = AppModel()
+        if let parrent = tabBarController as? MainTabBarController{
+            parrent.model = new
+        }
+        return new
     }
     
-    
-    func updateDurationLabel(_ timeDuration : Double){
+    private func updateDurationLabel(_ timeDuration : Double){
         if (timeDuration > 0){
             let d =  Int(timeDuration / 60 / 24)
             let h = Int(timeDuration / 60 - Double(d) * 24.0)
@@ -77,30 +97,6 @@ class MainVC: UIViewController {
             durationLabel.text = "\(d > 0 ? String(d)+"d" : "") \(h > 0 ? String(h)+"h" : "") \(m)min"
         }else {
             durationLabel.isHidden = true
-        }
-    }
-    
-    @objc func calculateAlcoholModel(){
-        guard let _ = personalData else { return }
-        
-        let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
-        let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-        let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
-        
-        model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
-            guard succes, let _graphinputs = graphInputs else {print("MainVC - Error - data were not loaded"); return}
-            if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
-                currentBAC = _graphinputs[intervalToCurrent.minute!]
-                for i in intervalToCurrent.minute!..<_graphinputs.count-1 {
-                    if _graphinputs[i+1] == 0 {
-                        let timeOfGettingSober = i
-                        duration = Double(timeOfGettingSober - intervalToCurrent.minute!)
-                        soberDate = Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: from)!
-                        clock.durationTime = duration
-                        break
-                    }
-                }
-            }
         }
     }
     
@@ -115,27 +111,15 @@ class MainVC: UIViewController {
     }
     
     @objc func watchRequestedUpdate(){
-        guard let _ = personalData else { return }
-        
         var response : [String:Any] = [:]
-        
-        let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
-        let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-        let intervalToCurrent = Calendar.current.dateComponents([.minute], from: from, to: Date())
-        model.run(personalData: personalData!, from: from, to: to) { graphInputs, succes in
-            guard succes, let _graphinputs = graphInputs else {print("MainVC - Error - Data were not loaded"); return }
-            if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < _graphinputs.count) {
-                response["currentBAC"] = _graphinputs[intervalToCurrent.minute!]
-                for i in intervalToCurrent.minute!..<_graphinputs.count-1 {
-                    if _graphinputs[i+1] == 0 {
-                        let timeOfGettingSober = i
-                        soberDate = Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: from)!
-                        response["soberDate"] = soberDate
-                        break
-                    }
-                }
-            }
-            WatchManager.shared.sendMessage(response, replyHandler: nil, errorHandler: nil)
+        response["currentBAC"] = model.currentBAC
+        response["soberDate"] = model.soberDate
+        WatchManager.shared.sendMessage(response, replyHandler: nil, errorHandler: nil)
     }
-}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? FavouriteButtonsVC {
+            vc.model = model
+        }
+    }
 }

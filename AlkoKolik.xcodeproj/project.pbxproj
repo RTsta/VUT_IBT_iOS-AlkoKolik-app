@@ -11,10 +11,7 @@
 		0FBFA0836B3BA5899B341767 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */; };
 		35C582F44FEB1AA731327F8A /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */; };
 		3D619426FE78B52C70215EFB /* Pods_AlkoKolikTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */; };
-		8F118DFF25FF8E5E00C3F3A8 /* NotificationCenterNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F118DFE25FF8E5E00C3F3A8 /* NotificationCenterNames.swift */; };
 		8F118E1025FFB95300C3F3A8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */; };
-		8F271ECF25DC0CDB00B76513 /* ClockFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271ECE25DC0CDB00B76513 /* ClockFace.swift */; };
-		8F271EDB25DC0D0100B76513 /* ClockHand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EDA25DC0D0100B76513 /* ClockHand.swift */; };
 		8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EE125DC0D1E00B76513 /* UIClockView.swift */; };
 		8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
 		8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531F25ED91B600313656 /* DrinkListCell.swift */; };
@@ -43,8 +40,7 @@
 		8F5872A525EEF9E9001CE464 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872A425EEF9E9001CE464 /* CalendarVC.swift */; };
 		8F5872B625EFEE48001CE464 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872B525EFEE48001CE464 /* ProfileVC.swift */; };
 		8F5872C325EFEF47001CE464 /* ProfileViewInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872C225EFEF47001CE464 /* ProfileViewInfoCell.swift */; };
-		8F5872F625F15928001CE464 /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872F525F15928001CE464 /* FloatingPoint.swift */; };
-		8F58730225F41190001CE464 /* ClockComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58730125F41190001CE464 /* ClockComponent.swift */; };
+		8F5872F625F15928001CE464 /* HandyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5872F525F15928001CE464 /* HandyExtensions.swift */; };
 		8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F58731025F4D0BA001CE464 /* HealthKitManager.swift */; };
 		8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F58732F25F5337C001CE464 /* HealthKit.framework */; };
 		8F59F2E726021E8E009DBA37 /* myUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F59F2E626021E8E009DBA37 /* myUtil.swift */; };
@@ -59,6 +55,7 @@
 		8F791C80260610CE00DABA27 /* listOfDrinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F97139225F795180082FEA6 /* listOfDrinks.json */; };
 		8F791C86260611A900DABA27 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
 		8F791C8D2606143900DABA27 /* DrinkRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F791C8C2606143900DABA27 /* DrinkRowController.swift */; };
+		8F79DE66261E20B600E332BC /* CircularLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F79DE65261E20B600E332BC /* CircularLabel.swift */; };
 		8F7D32F0260910D200DDB35B /* VolumeRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D32EF260910D200DDB35B /* VolumeRowController.swift */; };
 		8F7D32F7260911A500DDB35B /* VolumeTableInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7D32F6260911A500DDB35B /* VolumeTableInterfaceController.swift */; };
 		8F7D33082609231600DDB35B /* AlkoKolik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */; };
@@ -66,11 +63,12 @@
 		8F865411260AACF600A5576C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8F51628D25D19E59006DBD85 /* Assets.xcassets */; };
 		8F97138025F6E4250082FEA6 /* AlkoKolik.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */; };
 		8F97139325F795180082FEA6 /* listOfDrinks.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F97139225F795180082FEA6 /* listOfDrinks.json */; };
+		8FABAC2A2617C5190039FE68 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FABAC292617C5190039FE68 /* AppModel.swift */; };
+		8FABAC47261C68890039FE68 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FABAC46261C68890039FE68 /* MainTabBarController.swift */; };
 		8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD6A25E98DAF008F2457 /* Color.swift */; };
 		8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkCell.swift */; };
 		8FBAAE4925FBA01A00F8FDCE /* VolumeAlertViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAAE4825FBA01A00F8FDCE /* VolumeAlertViewCell.swift */; };
-		8FC81B3325FD4142007C0350 /* AlcoholModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81B3225FD4142007C0350 /* AlcoholModel.swift */; };
-		8FCBE15325E509990057459B /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCBE15225E509990057459B /* ProgressRing.swift */; };
+		8FC81B3325FD4142007C0350 /* SimulationAlcoholModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81B3225FD4142007C0350 /* SimulationAlcoholModel.swift */; };
 		8FE3539D25ED15DB005CD98D /* FavouriteButtonsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */; };
 		8FF0CFAF25FE85AD008E2269 /* FavouriteDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */; };
 		8FF0CFBB25FEA261008E2269 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0CFBA25FEA261008E2269 /* UserDefaultsManager.swift */; };
@@ -139,10 +137,7 @@
 		69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolikTests.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolikTests/Pods-AlkoKolikTests.release.xcconfig"; sourceTree = "<group>"; };
 		800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.release.xcconfig"; sourceTree = "<group>"; };
 		892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		8F118DFE25FF8E5E00C3F3A8 /* NotificationCenterNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationCenterNames.swift; path = AlkoKolik/Extensions/NotificationCenterNames.swift; sourceTree = SOURCE_ROOT; };
 		8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
-		8F271ECE25DC0CDB00B76513 /* ClockFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockFace.swift; sourceTree = "<group>"; };
-		8F271EDA25DC0D0100B76513 /* ClockHand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockHand.swift; sourceTree = "<group>"; };
 		8F271EE125DC0D1E00B76513 /* UIClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIClockView.swift; sourceTree = "<group>"; };
 		8F2F531325ED761C00313656 /* DrinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkItem.swift; sourceTree = "<group>"; };
 		8F2F531F25ED91B600313656 /* DrinkListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListCell.swift; sourceTree = "<group>"; };
@@ -180,8 +175,7 @@
 		8F5872A425EEF9E9001CE464 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		8F5872B525EFEE48001CE464 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		8F5872C225EFEF47001CE464 /* ProfileViewInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileViewInfoCell.swift; path = AlkoKolik/View/TableCells/ProfileViewInfoCell.swift; sourceTree = SOURCE_ROOT; };
-		8F5872F525F15928001CE464 /* FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FloatingPoint.swift; path = AlkoKolik/Extensions/FloatingPoint.swift; sourceTree = SOURCE_ROOT; };
-		8F58730125F41190001CE464 /* ClockComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockComponent.swift; sourceTree = "<group>"; };
+		8F5872F525F15928001CE464 /* HandyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HandyExtensions.swift; path = AlkoKolik/Extensions/HandyExtensions.swift; sourceTree = SOURCE_ROOT; };
 		8F58731025F4D0BA001CE464 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		8F58732E25F5337C001CE464 /* AlkoKolik.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlkoKolik.entitlements; sourceTree = "<group>"; };
 		8F58732F25F5337C001CE464 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -192,16 +186,18 @@
 		8F69E9CF25FBEB34009A5CFF /* AddDrinkVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrinkVC.swift; sourceTree = "<group>"; };
 		8F791C7326060EC200DABA27 /* DrinkListoInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListoInterfaceController.swift; sourceTree = "<group>"; };
 		8F791C8C2606143900DABA27 /* DrinkRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkRowController.swift; sourceTree = "<group>"; };
+		8F79DE65261E20B600E332BC /* CircularLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircularLabel.swift; path = AlkoKolik/View/CircularLabel.swift; sourceTree = SOURCE_ROOT; };
 		8F7D32EF260910D200DDB35B /* VolumeRowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeRowController.swift; sourceTree = "<group>"; };
 		8F7D32F6260911A500DDB35B /* VolumeTableInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeTableInterfaceController.swift; sourceTree = "<group>"; };
 		8F7D332026092F2400DDB35B /* WatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchManager.swift; sourceTree = "<group>"; };
 		8F97137F25F6E4250082FEA6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8F97139225F795180082FEA6 /* listOfDrinks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = listOfDrinks.json; sourceTree = "<group>"; };
+		8FABAC292617C5190039FE68 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		8FABAC46261C68890039FE68 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		8FAEAD6A25E98DAF008F2457 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFavouriteDrinkCell.swift; sourceTree = "<group>"; };
 		8FBAAE4825FBA01A00F8FDCE /* VolumeAlertViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAlertViewCell.swift; sourceTree = "<group>"; };
-		8FC81B3225FD4142007C0350 /* AlcoholModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlcoholModel.swift; sourceTree = "<group>"; };
-		8FCBE15225E509990057459B /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
+		8FC81B3225FD4142007C0350 /* SimulationAlcoholModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationAlcoholModel.swift; sourceTree = "<group>"; };
 		8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButtonsVC.swift; sourceTree = "<group>"; };
 		8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDrink.swift; sourceTree = "<group>"; };
 		8FF0CFBA25FEA261008E2269 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = AlkoKolik/Managers/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
@@ -278,6 +274,7 @@
 		8F271EC725DC0CA600B76513 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8F79DE65261E20B600E332BC /* CircularLabel.swift */,
 				8FBAAE5425FBA02700F8FDCE /* CollectionCells */,
 				8F5872C125EFEEB8001CE464 /* TableCells */,
 				8F271ECD25DC0CB400B76513 /* Clock */,
@@ -288,10 +285,6 @@
 		8F271ECD25DC0CB400B76513 /* Clock */ = {
 			isa = PBXGroup;
 			children = (
-				8FCBE15225E509990057459B /* ProgressRing.swift */,
-				8F271ECE25DC0CDB00B76513 /* ClockFace.swift */,
-				8F271EDA25DC0D0100B76513 /* ClockHand.swift */,
-				8F58730125F41190001CE464 /* ClockComponent.swift */,
 				8F271EE125DC0D1E00B76513 /* UIClockView.swift */,
 			);
 			path = Clock;
@@ -346,8 +339,10 @@
 				8F51625525D19E56006DBD85 /* LaunchScreen.storyboard */,
 				8F51625025D19E54006DBD85 /* Main.storyboard */,
 				8F51624A25D19E54006DBD85 /* AppDelegate.swift */,
-				8FC81B3125FD4112007C0350 /* SimulationModel */,
 				8F51624C25D19E54006DBD85 /* SceneDelegate.swift */,
+				8FABAC292617C5190039FE68 /* AppModel.swift */,
+				8FABAC46261C68890039FE68 /* MainTabBarController.swift */,
+				8FC81B3125FD4112007C0350 /* SimulationModel */,
 				8F58730F25F4D098001CE464 /* Managers */,
 				8F271EC725DC0CA600B76513 /* View */,
 				8F321CD925ED717600E3CFFC /* ViewControllers */,
@@ -435,10 +430,9 @@
 			children = (
 				8F59F2E626021E8E009DBA37 /* myUtil.swift */,
 				8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */,
-				8F5872F525F15928001CE464 /* FloatingPoint.swift */,
+				8F5872F525F15928001CE464 /* HandyExtensions.swift */,
 				8FAEAD6A25E98DAF008F2457 /* Color.swift */,
 				8F2F531325ED761C00313656 /* DrinkItem.swift */,
-				8F118DFE25FF8E5E00C3F3A8 /* NotificationCenterNames.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,7 +449,7 @@
 		8FC81B3125FD4112007C0350 /* SimulationModel */ = {
 			isa = PBXGroup;
 			children = (
-				8FC81B3225FD4142007C0350 /* AlcoholModel.swift */,
+				8FC81B3225FD4142007C0350 /* SimulationAlcoholModel.swift */,
 			);
 			path = SimulationModel;
 			sourceTree = "<group>";
@@ -832,32 +826,30 @@
 			files = (
 				8F5872C325EFEF47001CE464 /* ProfileViewInfoCell.swift in Sources */,
 				8F321CD325ED716200E3CFFC /* DrinkListVC.swift in Sources */,
+				8F79DE66261E20B600E332BC /* CircularLabel.swift in Sources */,
 				8FE3539D25ED15DB005CD98D /* FavouriteButtonsVC.swift in Sources */,
+				8FABAC47261C68890039FE68 /* MainTabBarController.swift in Sources */,
 				8F3651C825FA3A7C00055826 /* TodayDrinkTableCell.swift in Sources */,
 				8FF0CFBB25FEA261008E2269 /* UserDefaultsManager.swift in Sources */,
 				8F51624F25D19E54006DBD85 /* MainVC.swift in Sources */,
 				8F5872B625EFEE48001CE464 /* ProfileVC.swift in Sources */,
 				8FBAAE4925FBA01A00F8FDCE /* VolumeAlertViewCell.swift in Sources */,
-				8F5872F625F15928001CE464 /* FloatingPoint.swift in Sources */,
+				8F5872F625F15928001CE464 /* HandyExtensions.swift in Sources */,
 				8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */,
 				8F5872A525EEF9E9001CE464 /* CalendarVC.swift in Sources */,
 				8F118E1025FFB95300C3F3A8 /* SettingsVC.swift in Sources */,
 				8F49304725FACBC50073DCC6 /* TodayDrinkAddTableCell.swift in Sources */,
-				8F271ECF25DC0CDB00B76513 /* ClockFace.swift in Sources */,
 				8F48195E25FB949D00A3B597 /* VolumeAlertVC.swift in Sources */,
 				8F69E9D025FBEB34009A5CFF /* AddDrinkVC.swift in Sources */,
-				8F271EDB25DC0D0100B76513 /* ClockHand.swift in Sources */,
 				8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkCell.swift in Sources */,
 				8FF0CFAF25FE85AD008E2269 /* FavouriteDrink.swift in Sources */,
 				8F51624B25D19E54006DBD85 /* AppDelegate.swift in Sources */,
-				8F58730225F41190001CE464 /* ClockComponent.swift in Sources */,
-				8F118DFF25FF8E5E00C3F3A8 /* NotificationCenterNames.swift in Sources */,
-				8FCBE15325E509990057459B /* ProgressRing.swift in Sources */,
 				8F2F532025ED91B600313656 /* DrinkListCell.swift in Sources */,
+				8FABAC2A2617C5190039FE68 /* AppModel.swift in Sources */,
 				8FAEAD6B25E98DAF008F2457 /* Color.swift in Sources */,
 				8F49304E25FAE6E80073DCC6 /* CoreDataManager.swift in Sources */,
 				8F97138025F6E4250082FEA6 /* AlkoKolik.xcdatamodeld in Sources */,
-				8FC81B3325FD4142007C0350 /* AlcoholModel.swift in Sources */,
+				8FC81B3325FD4142007C0350 /* SimulationAlcoholModel.swift in Sources */,
 				8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */,
 				8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */,
 				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,

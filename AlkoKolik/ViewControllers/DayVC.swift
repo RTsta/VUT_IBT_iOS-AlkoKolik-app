@@ -14,8 +14,8 @@ class DayVC : UIViewController {
     private let today = Date()
     
     var selectedDate : Date = Date()
-    var weekRecords : [NSManagedObject] = []
-    var selectedDayRecords : [NSManagedObject] = []
+    var weekRecords : [DrinkRecord] = []
+    var selectedDayRecords : [DrinkRecord] = []
     var callback : (() -> Void)?
     
     @IBOutlet weak var calendar: FSCalendar!
@@ -35,7 +35,8 @@ class DayVC : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        weekRecords = CoreDataManager.fetchRecordsForWeekPastAndNext(dayOfTheWeek: selectedDate)
+        weekRecords = CoreDataManager.fetchRecordsBetween(from: Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!,
+                                                          to: Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!)
         selectedDayRecords = recoredsFor(day: selectedDate)
         selectedDayRecords.reverse()
         updateTableContentInset()
@@ -54,6 +55,10 @@ class DayVC : UIViewController {
         callback?()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @IBAction func doneBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -69,9 +74,9 @@ class DayVC : UIViewController {
         }
     }
     
-    func recoredsFor(day : Date) -> [NSManagedObject] {
-        var rec : [NSManagedObject] = []
-        for case let r as DrinkRecord in weekRecords {
+    func recoredsFor(day : Date) -> [DrinkRecord] {
+        var rec : [DrinkRecord] = []
+        for r in weekRecords {
             if let ts = r.timestemp as Date?,
                Calendar.current.isDate(ts, inSameDayAs: day){
                 rec.append(r)
@@ -99,7 +104,8 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         if Calendar.current.isDate(date, equalTo: selectedDate, toGranularity: .weekOfYear) {
-            weekRecords = CoreDataManager.fetchRecordsForWeekPastAndNext(dayOfTheWeek: selectedDate)
+            weekRecords = CoreDataManager.fetchRecordsBetween(from: Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!,
+                                                              to: Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!)
             calendar.reloadData()
         }
         selectedDate = date
@@ -125,7 +131,7 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
             return UIColor.appDarkGrey
         }
         var sum : Double = 0
-        for case let r as DrinkRecord in weekRecords {
+        for r in weekRecords {
             guard let timestemp = r.timestemp as Date?,
                   let dose = r.grams_of_alcohol as Double? else { break }
             if Calendar.current.isDate(timestemp, inSameDayAs: date){
@@ -228,7 +234,8 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
             if newDate > Date() {return}
             calendar.select(newDate)
             if Calendar.current.isDate(newDate, equalTo: selectedDate, toGranularity: .weekOfYear) {
-                weekRecords = CoreDataManager.fetchRecordsForWeekPastAndNext(dayOfTheWeek: selectedDate)
+                weekRecords = CoreDataManager.fetchRecordsBetween(from: Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)!,
+                                                                  to: Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)!)
                 calendar.reloadData()
             }
             selectedDate = newDate

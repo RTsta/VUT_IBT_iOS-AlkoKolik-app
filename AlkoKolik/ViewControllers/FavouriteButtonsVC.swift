@@ -6,14 +6,13 @@
 //
 
 import UIKit
-// TODO: Načíst user default když se instancuje toto view, aby se správně nakreslil počet tlačítek
+
 class FavouriteButtonsVC: UIViewController {
     var willNeedReloadFavourites = true
-    var favourites : [FavouriteDrink]? /* { didSet{ updateFavouriteBtns() }}*/
-    var fullDrinkItems : [DrinkItem] = []
-    
-    var parentVC : UIViewController?
-    
+    var model : AppModel? = nil
+    private var favourites : [FavouriteDrink]? /* { didSet{ updateFavouriteBtns() }}*/
+    private var fullDrinkItems : [DrinkItem] = []
+
     @IBOutlet weak var favCollection: UICollectionView!
     
     override func viewDidLoad() {
@@ -23,36 +22,13 @@ class FavouriteButtonsVC: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(favouritesNeedsReload), name: .favouriteNeedsReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
         if willNeedReloadFavourites || (favourites == nil){
-            initFavourites()
-            willNeedReloadFavourites = false
+            reload()
         }
-        
-        loadFullDrinkItems()
-        favCollection.reloadData()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reload()
-    }
-    
-    func initFavourites(){
-        favourites = UserDefaultsManager.loadFavouriteDrinks()
-        if favourites == nil {
-            favourites = []
-        }
-    }
-    
-    func loadFullDrinkItems(){
-        guard let fav = favourites else { fatalError("favourtites shoud be initialized")}
-        var items : [DrinkItem] = []
-        for drink in fav {
-            let elem = ListOfDrinksManager.findDrink(drink_id: drink.drinkId)
-                ?? DrinkItem(id: -1, name: "", volume: [0], alcoholPercentage: 0, type: .none)
-            items.append(elem)
-        }
-        fullDrinkItems = items
     }
     
     @objc func favouritesNeedsReload(){
@@ -62,14 +38,15 @@ class FavouriteButtonsVC: UIViewController {
     
     func reload(){
         if willNeedReloadFavourites {
-            initFavourites()
-            loadFullDrinkItems()
+            favourites = model?.favourites
+            fullDrinkItems = model?.fullDrinkItems ?? []
+            favCollection.reloadData()
             willNeedReloadFavourites = false
             favCollection.reloadData()
         }
     }
     
-    @objc func handleShortPress(sender: UITapGestureRecognizer) {
+    @objc private func handleShortPress(sender: UITapGestureRecognizer) {
         if sender.state == UIGestureRecognizer.State.ended {
             let touchPoint = sender.location(in: favCollection)
             if let indexPath = favCollection.indexPathForItem(at: touchPoint){
@@ -85,7 +62,7 @@ class FavouriteButtonsVC: UIViewController {
         }
     }
     
-    @objc func watchRequestedUpdate(){
+    @objc private func watchRequestedUpdate(){
         if let favourites = favourites {
             do {
                 let encoder = JSONEncoder()
@@ -101,10 +78,9 @@ class FavouriteButtonsVC: UIViewController {
 // MARK: CollectionView
 extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func setupCollection(){
+    private func setupCollection(){
         self.view.backgroundColor = .clear
         self.favCollection.backgroundColor = .clear
-        
         let shortPress = UITapGestureRecognizer(target: self, action: #selector(self.handleShortPress))
         favCollection.addGestureRecognizer(shortPress)
     }
@@ -133,7 +109,13 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "favouriteDrinkCell", for: indexPath) as? UIFavouriteDrinkCell
         else {fatalError("Cell is not an instance of VolumeAlertView.")}
         cell.drinkType = fullDrinkItems[indexPathToArrayNumber(indexPath: indexPath)].type
+        cell.drinkNameLabel.text = "\(fullDrinkItems[indexPathToArrayNumber(indexPath: indexPath)].name) \(favourites![indexPathToArrayNumber(indexPath: indexPath)].volume)ml"
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? UIFavouriteDrinkCell
+        cell?.isHighlighted = true
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

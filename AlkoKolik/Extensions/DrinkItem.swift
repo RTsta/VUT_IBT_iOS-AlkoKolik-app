@@ -13,6 +13,25 @@ struct DrinkItem {
     let volume : [Double] //volume in ml
     let alcoholPercentage : Double
     let type : DrinkType
+    
+    static func getType(withName: String) -> DrinkType {
+        switch withName {
+        case "beer":
+            return .beer
+        case "wine":
+            return .wine
+        case "cider":
+            return .cider
+        case "cocktail":
+            return .cocktail
+        case "liquer":
+            return .liqueur
+        case "vodka", "rum", "whiskey":
+            return .spirit
+        default:
+            return .none
+        }
+    }
 }
 
 enum DrinkType: Comparable {

@@ -11,9 +11,7 @@ import CoreData
 class CoreDataManager {
     
     class func insertRecord(drink: DrinkItem, volumeOpt: Int ,time: Date, volumeMl: Double? = nil){
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let managedContext = getContext() else {return}
         let newRecord = DrinkRecord(context: managedContext)
         
         /*
@@ -35,103 +33,54 @@ class CoreDataManager {
         newRecord.volume = v!
         newRecord.grams_of_alcohol = dose
         
-        do {
-          try managedContext.save()
-        } catch let error as NSError {
-          print("CoreDataManager - Error - Could not save. \(error), \(error.userInfo)")
-        }
+        saveContext(managedContext)
         print("CoreDataManager - \(time) \(drink.name), \(v ?? 0) inserted!")
     }
     
     class func deleteRecord(record: NSManagedObject) {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
+        guard let managedContext = getContext() else {return}
         managedContext.delete(record)
+        saveContext(managedContext)
+    }
+    
+    class func fetchRecordsBetween(from: Date, to: Date) -> [DrinkRecord]{
+        var records : [DrinkRecord] = []
+        guard let managedContext = getContext() else {return records}
+        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
+        request.predicate = predicateForBetween(from, to)
         do {
-            try managedContext.save()
+            records = try managedContext.fetch(request) as [DrinkRecord]
+        } catch let error as NSError {
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
+        }
+        return records
+    }
+    
+    class func fetchRecordsAll() -> [DrinkRecord] {
+        var records : [DrinkRecord] = []
+        guard let managedContext = getContext() else {return records}
+        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
+        do {
+            records = try managedContext.fetch(request) as [DrinkRecord]
+        } catch let error as NSError {
+            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
+        }
+        return records
+    }
+    
+    private class func getContext() -> NSManagedObjectContext?{
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return nil}
+        return appDelegate.persistentContainer.viewContext
+    }
+    
+    private class func saveContext(_ context: NSManagedObjectContext){
+        do { try context.save()
         }catch let error as NSError {
             fatalError("CoreDataManager - Error - Couldnt delete object \(error.code) \n\n \(error.localizedDescription)")
         }
     }
     
-    class func fetchRecordsForDay(day: Date) -> [NSManagedObject]{
-        var records : [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
-        let predicate = predicateForWholeDay(date: day)
-        request.predicate = predicate
-        do {
-            records = try managedContext.fetch(request)
-        } catch let error as NSError {
-            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
-        }
-        return records
-    }
-    
-    class func fetchRecordsForWeekPastAndNext(dayOfTheWeek day: Date) -> [NSManagedObject]{
-        var records : [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
-        let predicate = predicateForWeekPastAndNext(date: day)
-        request.predicate = predicate
-        do {
-            records = try managedContext.fetch(request)
-        } catch let error as NSError {
-            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
-        }
-        return records
-    }
-    
-    class func fetchRecordsBetween(from: Date, to: Date) -> [NSManagedObject]{
-        var records : [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records}
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
-        request.predicate = predicateForBetween(from, to)
-        do {
-            records = try managedContext.fetch(request)
-        } catch let error as NSError {
-            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
-        }
-        return records
-    }
-    
-    class func fetchRecordsAll() -> [NSManagedObject] {
-        var records : [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return records }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let request : NSFetchRequest<DrinkRecord> = DrinkRecord.fetchRequest()
-        do {
-            records = try managedContext.fetch(request)
-        } catch let error as NSError {
-            print("CoreDataManager - Error - Could not fetch. \(error), \(error.userInfo)")
-        }
-        return records
-    }
-    
-    private class func predicateForWholeDay(date: Date) -> NSPredicate{
-        let dayBegining = Calendar.current.startOfDay(for: date)
-        let dayEnding = Calendar.current.date(bySettingHour: 23, minute: 59, second: 59, of: date) ?? date
-        
-        return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", dayBegining as NSDate, dayEnding as NSDate)
-    }
-    
     private class func predicateForBetween(_ from: Date,_ to: Date) -> NSPredicate{
         return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", from as NSDate, to as NSDate)
-    }
-    
-    private class func predicateForWeekPastAndNext(date: Date) -> NSPredicate{
-
-        let past = Calendar.current.date(byAdding: .day, value: -7, to: date)!
-        let next = Calendar.current.date(byAdding: .day, value: 7, to: date)!
-        
-        return NSPredicate(format:"timestemp >= %@ AND timestemp < %@", past as NSDate, next as NSDate)
     }
 }
