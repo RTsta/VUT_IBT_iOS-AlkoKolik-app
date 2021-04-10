@@ -29,7 +29,6 @@ class TodayDrinkTableCell: UITableViewCell {
             timeLabel.isHidden  = false
         case .add:
             backgroundColor = .appBackground
-            self.translatesAutoresizingMaskIntoConstraints = false
             self.contentView.addSubview(plusImage)
             drinkLabel.isHidden = true
             timeLabel.isHidden  = true

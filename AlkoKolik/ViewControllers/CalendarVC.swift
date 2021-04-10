@@ -77,7 +77,7 @@ extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDeleg
     }
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-            if (date as Date) > today {
+            if date > today {
                 return false
             }
             return true

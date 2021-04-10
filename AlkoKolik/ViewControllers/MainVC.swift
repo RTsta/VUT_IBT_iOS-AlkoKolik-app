@@ -15,7 +15,6 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var containerHeight: NSLayoutConstraint!
     @IBOutlet weak var clockView: UIClockView!
     
     private var timer : Timer = Timer()

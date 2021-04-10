@@ -82,7 +82,6 @@ class AppModel {
             peakBAC = findPeakBAC(inGraph: data)
             soberDate = findSoberDate(inGraph: data)
             dataSet[.average] = data
-            
             NotificationCenter.default.post(name: .modelCalculated, object: nil)
             
             complition?()
@@ -125,13 +124,13 @@ class AppModel {
         return .zero
     }
     
-    private func findSoberDate(inGraph input: ConcetrationData) -> Date{
+    private func findSoberDate(inGraph input: ConcetrationData) -> Date {
         let intervalToCurrent = Calendar.current.dateComponents([.minute], from: input.from, to: Date())
         if (0 <= (intervalToCurrent.minute ?? -1)) && ((intervalToCurrent.minute ?? 0) < input.values.count) {
             for i in intervalToCurrent.minute!..<input.values.count-1 {
-                if input.values[i+1] == 0 {
-                    let timeOfGettingSober = i
-                    return Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: input.from)!
+                if input.values[i+1] <= 0 {
+                    let timeOfGettingSober = i-intervalToCurrent.minute!
+                    return Calendar.current.date(byAdding: .minute, value: timeOfGettingSober, to: Date())!
                 }
             }
         }

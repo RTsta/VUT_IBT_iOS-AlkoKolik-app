@@ -58,7 +58,6 @@
                     <tabBarItem key="tabBarItem" title="Main" image="tab_main" id="fEN-Lz-Tdk"/>
                     <connections>
                         <outlet property="clockView" destination="PLr-db-I4G" id="thJ-L1-gVi"/>
-                        <outlet property="containerHeight" destination="03o-7w-vRp" id="tbb-lP-knE"/>
                         <outlet property="containerView" destination="mqF-9o-9mV" id="Sai-bA-gOD"/>
                         <outlet property="durationLabel" destination="cMf-BE-gZr" id="oBq-jY-uuC"/>
                     </connections>
@@ -278,7 +277,7 @@
             <objects>
                 <viewController id="a7Q-DY-X5Z" customClass="DayVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E84-QS-EcM">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJF-m8-FLh" customClass="FSCalendar">
@@ -395,7 +394,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="calendar" destination="AJF-m8-FLh" id="3RX-aC-fbG"/>
-                        <outlet property="calendarHeightConstraint" destination="9nY-qW-HnW" id="cXZ-qU-JyV"/>
                         <outlet property="todayDrinkTable" destination="yUk-7B-Lf4" id="3mm-tG-lw7"/>
                         <segue destination="je8-et-wTj" kind="show" identifier="addDrinkToSelectedDaySegue" id="7b3-Fu-DuF"/>
                     </connections>
@@ -409,7 +407,7 @@
             <objects>
                 <viewController id="je8-et-wTj" customClass="AddDrinkVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pPY-k9-Avc">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1lX-9e-YGc">
@@ -968,7 +966,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fernet stock citrus" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z6a-5k-75c" customClass="CircularLabel" customModule="AlkoKolik" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" name="appBackground"/>
                                                     <nil key="highlightedColor"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="angle">
@@ -1044,10 +1042,10 @@
             <color red="0.47100001573562622" green="0.47100001573562622" blue="0.50199997425079346" alpha="0.15999999642372131" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appDarkGray">
-            <color red="0.094117647058823528" green="0.10588235294117647" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.093999996781349182" green="0.10599999874830246" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appGray">
-            <color red="0.46700000762939453" green="0.52899998426437378" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appInfoLabel">
             <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -20,7 +20,6 @@ class DayVC : UIViewController {
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
-    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
