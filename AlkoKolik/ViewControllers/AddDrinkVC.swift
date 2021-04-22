@@ -142,6 +142,9 @@ extension AddDrinkVC : UITableViewDelegate, UITableViewDataSource {
         saveBtn.isEnabled = false
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
 }
 
 

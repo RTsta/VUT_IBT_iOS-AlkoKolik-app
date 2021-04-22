@@ -13,9 +13,12 @@ class MainVC: UIViewController {
     lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
     
     
+    @IBOutlet weak var favouritesViewHeight: NSLayoutConstraint!
     @IBOutlet weak var durationLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var clockView: UIClockView!
+    
+    var childFavVC : FavouriteButtonsVC? = nil
     
     private var timer : Timer = Timer()
     
@@ -44,6 +47,15 @@ class MainVC: UIViewController {
         super.viewWillAppear(animated)
         model.update(complition: nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let favVC = childFavVC?.favCollection{
+            favouritesViewHeight.constant = favVC.contentSize.height
+        }
+    }
+    
+
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -119,6 +131,7 @@ class MainVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? FavouriteButtonsVC {
             vc.model = model
+            childFavVC = vc
         }
     }
 }

@@ -17,10 +17,12 @@ class VolumeAlertVC: UIViewController {
     var favouriteVolumes : [Double] = []       //list of volumes that relates to the drink (favoirites[x] = favouriteVolumes[x]
     
     var callback : (() -> Void)?
+    var afterFavouritesChanged : (() -> Void)?
     var model : AppModel? = nil //TODO: Implement
     
     @IBOutlet weak var theView: UIView!
     @IBOutlet weak var collection: UICollectionView!
+    @IBOutlet weak var collectionHeightConstraint: NSLayoutConstraint!
     
     @IBAction func cancelButtonPress(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -41,6 +43,12 @@ class VolumeAlertVC: UIViewController {
         super.viewWillAppear(animated)
         theView.layer.cornerRadius = theView.bounds.width / 8.0
         loadVolumesOfFavourite()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //collectionHeightConstraint.constant = collection.contentSize.height
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

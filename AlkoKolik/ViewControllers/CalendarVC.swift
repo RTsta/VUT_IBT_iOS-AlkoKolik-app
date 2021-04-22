@@ -57,6 +57,7 @@ class CalendarVC: UIViewController {
         calendar.allowsMultipleSelection = false
         calendar.allowsSelection = true
         calendar.appearance.borderDefaultColor = .clear
+        
     }
     
     func reloadData(){

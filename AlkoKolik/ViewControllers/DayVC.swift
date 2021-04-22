@@ -20,6 +20,7 @@ class DayVC : UIViewController {
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
+    @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +148,11 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
         return nil
     }
     
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.calendarHeightConstraint.constant = bounds.height
+        self.view.layoutIfNeeded()
+    }
+    
 }
 
 
@@ -155,6 +161,11 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedDayRecords.count + 1
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     //todayDrinkAddTableCell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //last/first cell is add plus button

@@ -10,7 +10,9 @@ import UIKit
 
 class DrinkListVC : UIViewController {
     
+    @IBOutlet weak var favouritesViewHeight: NSLayoutConstraint!
     lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
+    var childFavVC : FavouriteButtonsVC? = nil
     
     private var listOfDrinks = [DrinkItem]()
     var selectedRow = 0
@@ -25,9 +27,13 @@ class DrinkListVC : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustFavouriteCollectionHeight), name: .favouriteNeedsReload, object: nil)
         loadListOfDrinks()
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        adjustFavouriteCollectionHeight()
     }
     
     private func createNewAppModel() -> AppModel{
@@ -50,9 +56,24 @@ class DrinkListVC : UIViewController {
             vc.selectedDrink = listOfDrinks[selectedRow]
             vc.cellColor = UIColor.colorFor(drinkType: listOfDrinks[selectedRow].type)
             vc.model = model
+            vc.callback = {self.adjustFavouriteCollectionHeight(animated: true)}
         }
         if let vc = segue.destination as? FavouriteButtonsVC {
             vc.model = model
+            childFavVC = vc
+        }
+    }
+    
+    @objc func adjustFavouriteCollectionHeight(animated: Bool = false){
+        if let favVC = childFavVC?.favCollection,
+           favouritesViewHeight.constant != favVC.contentSize.height
+           {
+            favouritesViewHeight.constant = favVC.contentSize.height
+            if animated {
+                UIView.animate(withDuration: 0.5) {
+                    self.view.layoutIfNeeded()
+                }
+            } else {self.view.layoutIfNeeded()}
         }
     }
 }
@@ -79,5 +100,8 @@ extension DrinkListVC : UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
 }
 

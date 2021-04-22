@@ -18,18 +18,20 @@ class FavouriteButtonsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
-        
+        print(#function)
         NotificationCenter.default.addObserver(self, selector: #selector(favouritesNeedsReload), name: .favouriteNeedsReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
-        if willNeedReloadFavourites || (favourites == nil){
-            reload()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reload()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+    }
+    
     
     @objc func favouritesNeedsReload(){
         willNeedReloadFavourites = true
@@ -42,7 +44,6 @@ class FavouriteButtonsVC: UIViewController {
             fullDrinkItems = model?.fullDrinkItems ?? []
             favCollection.reloadData()
             willNeedReloadFavourites = false
-            favCollection.reloadData()
         }
     }
     
@@ -117,28 +118,17 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
         let cell = collectionView.cellForItem(at: indexPath) as? UIFavouriteDrinkCell
         cell?.isHighlighted = true
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-        let cellWidth: CGFloat = flowLayout.itemSize.width
-        let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
-        var cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
-        var collectionWidth = collectionView.frame.size.width
-        var totalWidth: CGFloat
-        if #available(iOS 11.0, *) {
-            collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
-        }
-        repeat {
-            totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
-            cellCount -= 1
-        } while totalWidth >= collectionWidth
+        let cellWidth: CGFloat = (view.bounds.width*12/13)/3
+        let cellSpacing: CGFloat = (view.bounds.width*1/13)/2
+        let cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
+        let collectionWidth = collectionView.frame.size.width
         
-        if (totalWidth > 0) {
-            let edgeInset = (collectionWidth - totalWidth) / 2
-            return UIEdgeInsets.init(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)
-        } else {
-            return flowLayout.sectionInset
-        }
+        let edgeInset = (collectionWidth - cellWidth * cellCount - cellSpacing * (cellCount-1)) / 2
+        
+        return UIEdgeInsets.init(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)
     }
     
     private func indexPathToArrayNumber(indexPath: IndexPath) -> Int{
@@ -189,5 +179,19 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
         default:
             return 0
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        print(view.bounds.width)
+        return (view.bounds.width*1/13)/2*0.7
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return (view.bounds.width*1/13)/2
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = (view.bounds.width*12/13)/3
+        return CGSize(width: size, height: size)
     }
 }

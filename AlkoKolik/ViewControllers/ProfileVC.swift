@@ -38,6 +38,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         super.viewWillAppear(animated)
         self.currentBAC = model1.currentBAC ?? 0
         self.peakBAC = model1.peakBAC ?? 0
+        startTimer()
         refreshChart()
     }
     
