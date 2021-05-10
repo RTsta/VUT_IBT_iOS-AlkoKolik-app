@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import HealthKit
 import Charts
 
 class ProfileVC: UITableViewController, ChartViewDelegate {
@@ -16,12 +15,28 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     @IBOutlet weak var currentBACLabel: UILabel!
     @IBOutlet weak var peakBACLabel: UILabel!
     @IBOutlet weak var graphView: LineChartView!
+    @IBOutlet weak var soberAtLabel: UILabel!
     
     lazy var model1 : AppModel = { return (tabBarController as? MainTabBarController)?.model}() ?? createNewAppModel()
     var timer = Timer()
     
-    var currentBAC : Double = 0 { didSet{currentBACLabel.text =  " \(String(format:"%.2f", currentBAC)) ‰"} }
-    var peakBAC : Double = 0 { didSet{peakBACLabel.text =  " \(String(format:"%.2f", peakBAC)) ‰"} }
+    var currentBAC : Double = 0 { didSet{currentBACLabel.text =  "\(String(format:"%.2f", currentBAC)) ‰"} }
+    var peakBAC : Double = 0 { didSet{peakBACLabel.text =  "\(String(format:"%.2f", peakBAC)) ‰"} }
+    var soberDate : Date = Date() { didSet{
+        if soberDate > Date(){
+            soberAtLabel.isHidden = false
+            soberAtLabel.text =  "\(dateFormater.string(from: soberDate))"
+        } else {soberAtLabel.isHidden = true}
+    }}
+    
+    lazy var dateFormater : DateFormatter = {
+        let dateformater = DateFormatter()
+        dateformater.dateStyle = .none
+        dateformater.timeStyle = .short
+        return dateformater
+    }()
+        
+        
     
     var entries = [ChartDataEntry] ()
     
@@ -38,6 +53,9 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         super.viewWillAppear(animated)
         self.currentBAC = model1.currentBAC ?? 0
         self.peakBAC = model1.peakBAC ?? 0
+        self.soberDate = model1.soberDate ?? Date()
+        self.heightLabel.text = "\(String(format:"%.1f",model1.getHeight().converted(to: .centimeters).value)) cm"
+        self.weightLabel.text = "\(String(format:"%.1f",model1.getWeight().converted(to: .kilograms).value)) kg"
         startTimer()
         refreshChart()
     }
@@ -100,6 +118,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
             self.graphView.notifyDataSetChanged()
             self.currentBAC = self.model1.currentBAC ?? 0
             self.peakBAC = self.model1.peakBAC ?? 0
+            self.soberDate = self.model1.soberDate ?? Date()
         }
     }
     
@@ -121,7 +140,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                     graphView.xAxis.addLimitLine(line)
                 }
             } else if Calendar.current.isDate(tmp, equalTo: Date(), toGranularity: .minute){
-                let line = ChartLimitLine(limit: counter, label: "now")
+                let line = ChartLimitLine(limit: counter, label: NSLocalizedString("now", comment: "Now at Charts graph displaying current line"))
                 line.lineColor = .appMax
                 line.labelPosition = .bottomLeft
                 graphView.xAxis.addLimitLine(line)
@@ -138,6 +157,12 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
             parrent.model = new
         }
         return new
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? SettingsVC {
+            vc.model1 = model1
+        }
     }
     
 }

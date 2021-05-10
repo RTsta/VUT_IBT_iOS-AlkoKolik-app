@@ -18,7 +18,7 @@ class FavouriteButtonsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollection()
-        print(#function)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(favouritesNeedsReload), name: .favouriteNeedsReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
     }
@@ -182,7 +182,6 @@ extension FavouriteButtonsVC : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        print(view.bounds.width)
         return (view.bounds.width*1/13)/2*0.7
     }
     

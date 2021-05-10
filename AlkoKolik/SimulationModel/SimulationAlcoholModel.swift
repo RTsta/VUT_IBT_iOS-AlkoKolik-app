@@ -91,7 +91,7 @@ class SimulationAlcoholModel {
     func calculateAbsorbtionPhases(drink : DrinkRecord) -> [Concentration]{
         
         let dose : Double = drink.grams_of_alcohol
-        let k_a : Double = 18 // shoud varie on gender
+        let k_a : Double = 16
         var time : Double = 0.0
         
         var results : [Concentration] = []
@@ -113,8 +113,8 @@ class SimulationAlcoholModel {
         let timeChange : Double = 1/60
         
         let dose = doseInBody * v_d + newAbsorbed
-
-        return (dose / v_d) - beta*timeChange
+        let c = (dose / v_d) - beta*timeChange
+        return c > 0 ? c : 0
     }
     
     private func rFactorFor(method: RFactorMethod, person: AppModel.PersonalData) -> Double{
@@ -167,7 +167,8 @@ class SimulationAlcoholModel {
         if person.sex == .male {
             return 0.715 - 0.00462 * _weight + 0.22 * _height
         }else {
-            fatalError("Ulrich doesnt have formula for females")
+            //fatalError("Ulrich doesnt have formula for females")
+            return 0
         }
     }
     

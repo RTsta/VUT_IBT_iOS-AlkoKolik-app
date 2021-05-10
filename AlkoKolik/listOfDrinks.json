@@ -98,7 +98,7 @@
             "name": "Aperol",
             "volume": [50, 100, 200, 300, 500],
             "percentage": 11.0,
-            "type": "wine",
+            "type": "aperitive",
             "active": true
         },
         {
@@ -122,7 +122,7 @@
             "name": "Martini bianco",
             "volume": [100, 150 ,200, 300],
             "percentage": 15,
-            "type": "wine",
+            "type": "aperitive",
             "active": true
         },
         {
@@ -152,10 +152,10 @@
         {
             "id": 150734,
             "name": "Test 151-proof",
-            "volume": [70.8],
+            "volume": [73.93],
             "percentage": 75.5,
             "type": "other",
-            "active": true
+            "active": false
         },
         {
             "id": 18,
@@ -171,6 +171,310 @@
             "volume": [300.0, 500.0],
             "percentage": 4.1,
             "type": "beer",
+            "active": true
+        },
+        {
+            "id": 20,
+            "name": "Svijanský Máz 11",
+            "volume": [300.0, 500.0],
+            "percentage": 4.8,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 21,
+            "name": "Staropramen Ležák světlý",
+            "volume": [300.0, 500.0],
+            "percentage": 5.0,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 22,
+            "name": "Radegast Ryze hořká 12",
+            "volume": [300.0, 500.0],
+            "percentage": 5.1,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 23,
+            "name": "Budvar 33",
+            "volume": [300.0, 500.0],
+            "percentage": 4.6,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 24,
+            "name": "Budvar ležák světlý",
+            "volume": [300.0, 500.0],
+            "percentage": 5.0,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 25,
+            "name": "Bernard světlý 11",
+            "volume": [300.0, 500.0],
+            "percentage": 4.5,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 26,
+            "name": "Braník 11",
+            "volume": [300.0, 500.0, 2000.0],
+            "percentage": 4.8,
+            "type": "beer",
+            "active": true
+        },
+        {
+            "id": 27,
+            "name": "Bacardi Carta Blanca",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 28,
+            "name": "Diplomático Mantuano Rum",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 40.0,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 29,
+            "name": "Bacardi Carta Blanca",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 30,
+            "name": "Malibu",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 21.0,
+            "type": "liquer",
+            "active": true
+        },
+        {
+            "id": 31,
+            "name": "Havana Club 3 Aňos",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 32,
+            "name": "Legendario Elixir de Cuba 7YO",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 34.0,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 33,
+            "name": "Capitan Morgan Spiced Gold",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 35.0,
+            "type": "rum",
+            "active": true
+        },
+        {
+            "id": 34,
+            "name": "Bombay Sapphire London Dry Gin",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 40.0,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 35,
+            "name": "Žufánek OMG Gin",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 45.0,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 36,
+            "name": "Beefeater Gin",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 40.0,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 37,
+            "name": "Beefeater Pink",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 38,
+            "name": "Danybyl Dry Gin",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 39,
+            "name": "Gordons`s Dry Gin",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 37.5,
+            "type": "gin",
+            "active": true
+        },
+        {
+            "id": 40,
+            "name": "Baileys Original Irish Cream",
+            "volume": [20.0, 40.0, 50.0],
+            "percentage": 17.0,
+            "type": "liquer",
+            "active": true
+        },
+        {
+            "id": 41,
+            "name": "Russian Standard Original",
+            "volume": [20, 40, 50],
+            "percentage": 40.0,
+            "type": "vodka",
+            "active": true
+        },
+        {
+            "id": 42,
+            "name": "Ballantine's Finest",
+            "volume": [20, 40, 50],
+            "percentage": 40.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 43,
+            "name": "Jameson",
+            "volume": [20, 40, 50],
+            "percentage": 40.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 44,
+            "name": "Jack Daniel´s",
+            "volume": [20, 40, 50],
+            "percentage": 40.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 45,
+            "name": "Jack Daniel´s Honey",
+            "volume": [20, 40, 50],
+            "percentage": 35.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 46,
+            "name": "Jack Daniel´s Fire",
+            "volume": [20, 40, 50],
+            "percentage": 35.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 47,
+            "name": "Tullamore Dew",
+            "volume": [20, 40, 50],
+            "percentage": 40.0,
+            "type": "whiskey",
+            "active": true
+        },
+        {
+            "id": 48,
+            "name": "Tequila Silver",
+            "volume": [20, 40, 50],
+            "percentage": 38.0,
+            "type": "tequila",
+            "active": true
+        },
+        {
+            "id": 49,
+            "name": "Tequila Gold",
+            "volume": [20, 40, 50],
+            "percentage": 38.0,
+            "type": "tequila",
+            "active": true
+        },
+        {
+            "id": 50,
+            "name": "Campari Bitter",
+            "volume": [50, 100, 200],
+            "percentage": 25.0,
+            "type": "aperitive",
+            "active": true
+        },
+        {
+            "id": 51,
+            "name": "Frisco",
+            "volume": [200.0, 300.0],
+            "percentage": 4.5,
+            "type": "cider",
+            "active": true
+        },
+        {
+            "id": 52,
+            "name": "Cider 4.5",
+            "volume": [200.0, 300.0],
+            "percentage": 4.5,
+            "type": "cider",
+            "active": true
+        },
+        {
+            "id": 53,
+            "name": "Bohemia Sekt",
+            "volume": [100.0, 200.0, 300.0, 750.0],
+            "percentage": 11.5,
+            "type": "wine",
+            "active": true
+        },
+        {
+            "id": 54,
+            "name": "Víno 10.5",
+            "volume": [50, 100, 200, 700],
+            "percentage": 10.5,
+            "type": "wine",
+            "active": true
+        },
+        {
+            "id": 55,
+            "name": "Víno 12.5",
+            "volume": [50, 100, 200, 700],
+            "percentage": 12.5,
+            "type": "wine",
+            "active": true
+        },
+        {
+            "id": 56,
+            "name": "Víno 9.5",
+            "volume": [50, 100, 200, 700],
+            "percentage": 9.5,
+            "type": "wine",
+            "active": true
+        },
+        {
+            "id": 57,
+            "name": "Víno 8.5",
+            "volume": [50, 100, 200, 700],
+            "percentage": 8.5,
+            "type": "wine",
             "active": true
         }
     ]

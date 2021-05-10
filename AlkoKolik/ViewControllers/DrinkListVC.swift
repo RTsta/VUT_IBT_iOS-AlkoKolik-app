@@ -46,6 +46,7 @@ class DrinkListVC : UIViewController {
     
     private func loadListOfDrinks(){
         listOfDrinks = model.listOfDrinks
+        listOfDrinks.sort(by: {$0.name < $1.name})
         listOfDrinks.sort(by: {$0.type < $1.type})
         drinksTable.reloadData()
     }

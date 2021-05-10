@@ -10,13 +10,12 @@ import HealthKit
 
 class HealthKitManager{
     
-    class func insertBAC(bac: Double ,forDate: Date,completion: @escaping (Bool, Error?) -> Void = {_,_ in }){
+    class func insertBAC(bac: Double ,forDate date: Date,completion: @escaping (Bool, Error?) -> Void = {_,_ in }){
         guard let bacType = HKQuantityType.quantityType(forIdentifier: .bloodAlcoholContent) else {
             fatalError("HealthKitManager - Error - Data type BAC is no longer part of healthkit")
         }
-        let bacQuantity = HKQuantity(unit: HKUnit.gramUnit(with: .none), doubleValue: bac)
         
-        let date = forDate
+        let bacQuantity = HKQuantity(unit: HKUnit.percent(), doubleValue: bac)
         
         let bacSample = HKQuantitySample(type: bacType, quantity: bacQuantity, start: date, end: date)
         
@@ -25,7 +24,7 @@ class HealthKitManager{
                 print("HealthKitManager - Error - Error Saving weight Sample: \(error.localizedDescription)")
                 completion(false, nil)
             } else {
-                print("HealthKitManager - Error - BAC inserted")
+                print("HealthKitManager - \(bac) BAC inserted")
                 completion(true, nil)
             }
         }
@@ -118,8 +117,8 @@ class HealthKitManager{
     }
     
     
-    class func getMostRecentSample(for sampleType: HKSampleType,
-                                   completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) {
+    class func getMostRecentBACSample(completion: @escaping (HKQuantitySample?, Error?) -> Swift.Void) {
+        guard let sampleType = HKQuantityType.quantityType(forIdentifier: .bloodAlcoholContent) else {fatalError("Data type bloodAlcoholContent is not part of HealthKit")}
         let mostRecentPredicate = HKQuery.predicateForSamples(withStart: Date.distantPast,
                                                               end: Date(),
                                                               options: .strictEndDate)

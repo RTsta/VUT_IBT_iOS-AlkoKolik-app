@@ -26,6 +26,7 @@ class AddDrinkVC: UIViewController {
         super.viewDidLoad()
         if let _list = ListOfDrinksManager.loadAllDrinks() {
             listOfDrinks = _list
+            listOfDrinks.sort(by: {$0.name < $1.name})
             listOfDrinks.sort(by: {$0.type < $1.type})
             drinksTable.reloadData()
         }
@@ -36,7 +37,7 @@ class AddDrinkVC: UIViewController {
         let formater = DateFormatter()
         formater.timeStyle = .short
         timeText.text = formater.string(from: selectedDate)
-        volumeText.text = "select drink"
+        volumeText.text = NSLocalizedString("select_drink", comment: "Select dring in table at AddDrinkVC")
         createDatePicker()
         createVolumePicker()
         
@@ -136,7 +137,7 @@ extension AddDrinkVC : UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        volumeText.text = "select drink"
+        volumeText.text = NSLocalizedString("select_drink", comment: "Select dring in table at AddDrinkVC")
         selectedRow = nil
         selectedVolume = nil
         saveBtn.isEnabled = false

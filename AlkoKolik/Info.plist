@@ -21,9 +21,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>I will use HelthKit</string>
+	<string>AlkoKolik uses health data to make accurate calculations of BAC.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>Some data will be updated into HealthKit</string>
+	<string>AlkoKolik will update your BAC records according to the collected drinking history.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -36,7 +36,7 @@ class UserDefaultsManager {
                 print("UserDefaultsManager - Error - Unable to Decode FavouriteDrinks (\(error))")
             }
         }
-        print("UserDefaultsManager - Error - Unable to load UserDefaults")
+        print("UserDefaultsManager - Error - loadFavouriteDrinks - Unable to load UserDefaults")
         return nil
     }
     
@@ -47,8 +47,17 @@ class UserDefaultsManager {
         UserDefaultsManager.saveFavourite(drinks: drinks)
         print("UserDefaultManager - drink id: \(id), volume \(volume) - was deleted \n now UD contains: \n\(drinks)")
     }
+    
+    class func wasWalkthrough() -> Bool {
+        return UserDefaults.standard.bool(forKey: .wasWalkthrough)
+    }
+    
+    class func willPresentNextTimeWalkthrough(_ will : Bool) {
+        UserDefaults.standard.set(!will, forKey: .wasWalkthrough)
+    }
 }
 
 private extension String {
     static let favouriteDrinkKey = "favouriteDrinksKey"
+    static let wasWalkthrough = "wasWalkthrough"
 }

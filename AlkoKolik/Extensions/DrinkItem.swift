@@ -18,7 +18,7 @@ struct DrinkItem {
         switch withName {
         case "beer":
             return .beer
-        case "wine":
+        case "wine", "aperitive":
             return .wine
         case "cider":
             return .cider
@@ -26,7 +26,7 @@ struct DrinkItem {
             return .cocktail
         case "liquer":
             return .liqueur
-        case "vodka", "rum", "whiskey":
+        case "vodka", "rum", "whiskey", "gin", "tequila":
             return .spirit
         default:
             return .none
@@ -40,7 +40,6 @@ enum DrinkType: Comparable {
     case cider
     case liqueur
     case spirit
-    case mixeddrink
     case cocktail
     case none
 }

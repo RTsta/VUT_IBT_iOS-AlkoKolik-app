@@ -13,6 +13,12 @@
       "size" : "20x20"
     },
     {
+      "filename" : "Settings Icon - 29x29.png",
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "size" : "29x29"
+    },
+    {
       "filename" : "Settings Icon - 29x29@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",

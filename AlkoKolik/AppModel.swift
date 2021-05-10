@@ -88,6 +88,7 @@ class AppModel {
         }
     }
     
+    
     @objc func favouriteBtnPressed(){
         update(complition: nil)
     }
@@ -111,6 +112,15 @@ class AppModel {
                 }
                 complition?()
             }
+        }
+    }
+    
+    func runModelInCustomPeriod(from: Date, to: Date, complition: (([Double]?,Bool)->Void)? = nil){
+        guard let _ = personalData else { return }
+        model.run(personalData: personalData!, from: from, to: to) { results, succes in
+            guard succes, let modelResults = results else {print("Error - data were not loaded"); complition?(nil,false);return}
+            
+            complition?(modelResults,true)
         }
     }
     
@@ -161,11 +171,17 @@ class AppModel {
     }
     
     func getHeight() -> Measurement<UnitLength> {
-        return personalData!.height
+        if let _p = personalData {
+            return _p.height
+        }
+        return Measurement(value: 0, unit: .centimeters)
     }
     
     func getWeight() -> Measurement<UnitMass> {
-        return personalData!.weight
+        if let _p = personalData {
+            return _p.weight
+        }
+        return Measurement(value: 0, unit: .kilograms)
     }
     
     @objc func reloadFavourites(){

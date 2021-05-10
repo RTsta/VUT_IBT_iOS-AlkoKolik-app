@@ -53,9 +53,16 @@ class MainVC: UIViewController {
         if let favVC = childFavVC?.favCollection{
             favouritesViewHeight.constant = favVC.contentSize.height
         }
+        if UserDefaultsManager.wasWalkthrough() == false {
+            let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
+            if let _walkthroughVC = storyboard.instantiateViewController(identifier: "WalkthroughVC") as? WalkthroughVC{
+                UserDefaultsManager.willPresentNextTimeWalkthrough(false)
+                present(_walkthroughVC, animated: true, completion: nil)
+            }
+        }
     }
     
-
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
