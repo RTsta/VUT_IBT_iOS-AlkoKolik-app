@@ -65,6 +65,7 @@ class AppModel {
     }
     
     func update(complition: (()->Void)?){
+        if personalData == nil {getPersonalData(complition: nil)}
         calculateAlcoholModel(complition: complition)//on complition send notification
     }
     
