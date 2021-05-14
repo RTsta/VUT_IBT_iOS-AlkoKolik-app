@@ -7,17 +7,7 @@ target 'AlkoKolik' do
 
   # Pods for AlkoKolik
 
-  pod 'FSCalendar'
   pod 'Charts'
-
-  target 'AlkoKolikTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'AlkoKolikUITests' do
-    # Pods for testing
-  end
 
 end
 

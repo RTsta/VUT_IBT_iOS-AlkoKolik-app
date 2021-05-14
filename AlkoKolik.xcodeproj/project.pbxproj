@@ -3,13 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0517937EC2470110A545F3A5 /* Pods_AlkoKolik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */; };
-		0FBFA0836B3BA5899B341767 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */; };
-		35C582F44FEB1AA731327F8A /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */; };
+		31305345682C831C59531EC9 /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C884F6B75CB40C2E29F206 /* Pods_AlkoKolik_WatchKit_Extension.framework */; };
+		8F039919264E7BC7004D26BB /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */; };
 		8F118E1025FFB95300C3F3A8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */; };
 		8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EE125DC0D1E00B76513 /* UIClockView.swift */; };
 		8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
@@ -75,6 +74,8 @@
 		8FE3539D25ED15DB005CD98D /* FavouriteButtonsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */; };
 		8FF0CFAF25FE85AD008E2269 /* FavouriteDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */; };
 		8FF0CFBB25FEA261008E2269 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0CFBA25FEA261008E2269 /* UserDefaultsManager.swift */; };
+		DF3730816515DF67CC2436F1 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60039FAB9185ECF76E3B80C8 /* Pods_AlkoKolik_WatchKit_App.framework */; };
+		EA0B0DCEAACE064F1FA13685 /* Pods_AlkoKolik.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 155D7D6833CBE9F01300CC5E /* Pods_AlkoKolik.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8F23B5F7264E756D00691111 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8F51629625D19E59006DBD85 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,11 +131,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
-		69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolikTests.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolikTests/Pods-AlkoKolikTests.release.xcconfig"; sourceTree = "<group>"; };
-		800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.release.xcconfig"; sourceTree = "<group>"; };
-		892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		155D7D6833CBE9F01300CC5E /* Pods_AlkoKolik.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60039FAB9185ECF76E3B80C8 /* Pods_AlkoKolik_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67177CA903D19E5E030B78D7 /* Pods-AlkoKolik WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		82FFBB4F19025E101AD3EA7A /* Pods-AlkoKolik WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
 		8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		8F271EE125DC0D1E00B76513 /* UIClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIClockView.swift; sourceTree = "<group>"; };
 		8F2F531325ED761C00313656 /* DrinkItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkItem.swift; sourceTree = "<group>"; };
@@ -193,16 +203,11 @@
 		8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButtonsVC.swift; sourceTree = "<group>"; };
 		8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDrink.swift; sourceTree = "<group>"; };
 		8FF0CFBA25FEA261008E2269 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDefaultsManager.swift; path = AlkoKolik/Managers/UserDefaultsManager.swift; sourceTree = SOURCE_ROOT; };
-		952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit App/Pods-AlkoKolik WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
-		BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C2333142804548BAECB7F238 /* Pods-AlkoKolikTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolikTests.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolikTests/Pods-AlkoKolikTests.debug.xcconfig"; sourceTree = "<group>"; };
-		C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.debug.xcconfig"; sourceTree = "<group>"; };
-		C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolikTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
-		DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8179707251F6D8F32E3D6A6 /* Pods_AlkoKolik_AlkoKolikUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_AlkoKolikUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF3ED971F98DAB4976FA5A51 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig"; sourceTree = "<group>"; };
-		F1F0773D858DDA6A11FB0A04 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik-AlkoKolikUITests/Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A8C884F6B75CB40C2E29F206 /* Pods_AlkoKolik_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlkoKolik_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD527C4F50268F2EF79A704C /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		C648279CB96F0D80B9D7C4DA /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik WatchKit Extension/Pods-AlkoKolik WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		C7B475325DA477179F0C916D /* Pods-AlkoKolik.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.debug.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.debug.xcconfig"; sourceTree = "<group>"; };
+		D8A8755B9DDA214E56A94D16 /* Pods-AlkoKolik.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlkoKolik.release.xcconfig"; path = "Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,8 +215,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0517937EC2470110A545F3A5 /* Pods_AlkoKolik.framework in Frameworks */,
 				8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */,
+				8F039919264E7BC7004D26BB /* BuildFile in Frameworks */,
+				EA0B0DCEAACE064F1FA13685 /* Pods_AlkoKolik.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +225,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35C582F44FEB1AA731327F8A /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */,
+				31305345682C831C59531EC9 /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,22 +233,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FBFA0836B3BA5899B341767 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */,
+				DF3730816515DF67CC2436F1 /* Pods_AlkoKolik_WatchKit_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05FD9DACD290A0FD40A9D155 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C7B475325DA477179F0C916D /* Pods-AlkoKolik.debug.xcconfig */,
+				D8A8755B9DDA214E56A94D16 /* Pods-AlkoKolik.release.xcconfig */,
+				67177CA903D19E5E030B78D7 /* Pods-AlkoKolik WatchKit App.debug.xcconfig */,
+				82FFBB4F19025E101AD3EA7A /* Pods-AlkoKolik WatchKit App.release.xcconfig */,
+				AD527C4F50268F2EF79A704C /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */,
+				C648279CB96F0D80B9D7C4DA /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		861410F719A201FABC838287 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				8F58732F25F5337C001CE464 /* HealthKit.framework */,
-				081296B84E487E1664DCD702 /* Pods_AlkoKolik.framework */,
-				BFB13207215C461B6F1D4623 /* Pods_AlkoKolik_WatchKit_App.framework */,
-				DB2BBE56F7424015302612C6 /* Pods_AlkoKolik_WatchKit_Extension.framework */,
-				E8179707251F6D8F32E3D6A6 /* Pods_AlkoKolik_AlkoKolikUITests.framework */,
-				C565DD3D66A6B671182C9AB6 /* Pods_AlkoKolikTests.framework */,
+				155D7D6833CBE9F01300CC5E /* Pods_AlkoKolik.framework */,
+				60039FAB9185ECF76E3B80C8 /* Pods_AlkoKolik_WatchKit_App.framework */,
+				A8C884F6B75CB40C2E29F206 /* Pods_AlkoKolik_WatchKit_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -301,8 +319,8 @@
 				8F51627525D19E57006DBD85 /* AlkoKolik WatchKit App */,
 				8F51628425D19E58006DBD85 /* AlkoKolik WatchKit Extension */,
 				8F51624825D19E54006DBD85 /* Products */,
-				BE0096DA05AA3B190C4368AA /* Pods */,
 				861410F719A201FABC838287 /* Frameworks */,
+				05FD9DACD290A0FD40A9D155 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -430,23 +448,6 @@
 			path = SimulationModel;
 			sourceTree = "<group>";
 		};
-		BE0096DA05AA3B190C4368AA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */,
-				800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */,
-				67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */,
-				952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */,
-				892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */,
-				CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */,
-				F1F0773D858DDA6A11FB0A04 /* Pods-AlkoKolik-AlkoKolikUITests.debug.xcconfig */,
-				EF3ED971F98DAB4976FA5A51 /* Pods-AlkoKolik-AlkoKolikUITests.release.xcconfig */,
-				C2333142804548BAECB7F238 /* Pods-AlkoKolikTests.debug.xcconfig */,
-				69B1C20A395E5B399497A70E /* Pods-AlkoKolikTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -454,12 +455,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F51629B25D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik" */;
 			buildPhases = (
-				924976A834A14F75296CDD03 /* [CP] Check Pods Manifest.lock */,
+				33D2EA3583B3DA569F2D1854 /* [CP] Check Pods Manifest.lock */,
 				8F51624325D19E53006DBD85 /* Sources */,
 				8F51624425D19E53006DBD85 /* Frameworks */,
 				8F51624525D19E53006DBD85 /* Resources */,
 				8F51629A25D19E59006DBD85 /* Embed Watch Content */,
-				EA7B1393BF1F79018CFBADBE /* [CP] Embed Pods Frameworks */,
+				8F23B5F7264E756D00691111 /* Embed Frameworks */,
+				90594D713EE5F0570C549F49 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -468,6 +470,7 @@
 			);
 			name = AlkoKolik;
 			packageProductDependencies = (
+				8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */,
 			);
 			productName = AlkoKolik;
 			productReference = 8F51624725D19E54006DBD85 /* AlkoKolik.app */;
@@ -477,7 +480,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F51629725D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit App" */;
 			buildPhases = (
-				FD882496E0750FB8D9DAA10E /* [CP] Check Pods Manifest.lock */,
+				4136267E7ADD8B0E8F0BA85B /* [CP] Check Pods Manifest.lock */,
 				8F51626F25D19E57006DBD85 /* Resources */,
 				8F51629625D19E59006DBD85 /* Embed App Extensions */,
 				BBCA131967ED72BCBF783DFA /* Frameworks */,
@@ -496,7 +499,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8F51629325D19E59006DBD85 /* Build configuration list for PBXNativeTarget "AlkoKolik WatchKit Extension" */;
 			buildPhases = (
-				127E5B0105AF72C878D9DE60 /* [CP] Check Pods Manifest.lock */,
+				8992B08953F432D6975FC4DD /* [CP] Check Pods Manifest.lock */,
 				8F51627C25D19E58006DBD85 /* Sources */,
 				8F51627D25D19E58006DBD85 /* Frameworks */,
 				8F51627E25D19E58006DBD85 /* Resources */,
@@ -541,6 +544,7 @@
 			);
 			mainGroup = 8F51623E25D19E53006DBD85;
 			packageReferences = (
+				8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 8F51624825D19E54006DBD85 /* Products */;
 			projectDirPath = "";
@@ -589,29 +593,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		127E5B0105AF72C878D9DE60 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik WatchKit Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		924976A834A14F75296CDD03 /* [CP] Check Pods Manifest.lock */ = {
+		33D2EA3583B3DA569F2D1854 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -633,24 +615,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EA7B1393BF1F79018CFBADBE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FD882496E0750FB8D9DAA10E /* [CP] Check Pods Manifest.lock */ = {
+		4136267E7ADD8B0E8F0BA85B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -670,6 +635,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8992B08953F432D6975FC4DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlkoKolik WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90594D713EE5F0570C549F49 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlkoKolik/Pods-AlkoKolik-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -918,7 +922,7 @@
 		};
 		8F51629425D19E59006DBD85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 892FB0D064FC5E23A5CEB09F /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */;
+			baseConfigurationReference = AD527C4F50268F2EF79A704C /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -941,7 +945,7 @@
 		};
 		8F51629525D19E59006DBD85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CF3884EBBEE75470B5287B31 /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */;
+			baseConfigurationReference = C648279CB96F0D80B9D7C4DA /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -965,7 +969,7 @@
 		};
 		8F51629825D19E59006DBD85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67AB60F5AAE93329E065FC2E /* Pods-AlkoKolik WatchKit App.debug.xcconfig */;
+			baseConfigurationReference = 67177CA903D19E5E030B78D7 /* Pods-AlkoKolik WatchKit App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -986,7 +990,7 @@
 		};
 		8F51629925D19E59006DBD85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 952E5A075253A52CF4DC762F /* Pods-AlkoKolik WatchKit App.release.xcconfig */;
+			baseConfigurationReference = 82FFBB4F19025E101AD3EA7A /* Pods-AlkoKolik WatchKit App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1008,7 +1012,7 @@
 		};
 		8F51629C25D19E59006DBD85 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2D97A5C9551CC445EAAE999 /* Pods-AlkoKolik.debug.xcconfig */;
+			baseConfigurationReference = C7B475325DA477179F0C916D /* Pods-AlkoKolik.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1031,7 +1035,7 @@
 		};
 		8F51629D25D19E59006DBD85 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 800664BA8DCDF7D49D81C936 /* Pods-AlkoKolik.release.xcconfig */;
+			baseConfigurationReference = D8A8755B9DDA214E56A94D16 /* Pods-AlkoKolik.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1093,6 +1097,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */ = {
