@@ -2,7 +2,7 @@
 
 |    | version | supported iOS |
 | --- | ------- | --- | 
-| ![App icon](./AlkoKolik/Assets.xcassets/AppIcon.appiconset/Spotlight\ Icon\ \-\ 40x40\@3x.png) | v1.0 | 14.5 | 
+| ![App icon](./screenshots/icon.png) | v1.0 | 14.5 | 
 
 
 AlkoKolik is an app for tracking your alcohol drinking habits. The app is connected with Apple HealthKit, to get your personal info and to share your drinking history
