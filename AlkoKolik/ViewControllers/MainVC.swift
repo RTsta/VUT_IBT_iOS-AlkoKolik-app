@@ -53,10 +53,10 @@ class MainVC: UIViewController {
         if let favVC = childFavVC?.favCollection{
             favouritesViewHeight.constant = favVC.contentSize.height
         }
-        if UserDefaultsManager.wasWalkthrough() == false {
+        if UserDefaultsManager.isFirsttimeLaunch() == true {
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
             if let _walkthroughVC = storyboard.instantiateViewController(identifier: "WalkthroughVC") as? WalkthroughVC{
-                UserDefaultsManager.willPresentNextTimeWalkthrough(false)
+                UserDefaultsManager.setFirsttimeLaunch(false)
                 present(_walkthroughVC, animated: true, completion: nil)
             }
         }
@@ -122,7 +122,6 @@ class MainVC: UIViewController {
     func HKAuthorization() {
         HealthKitManager.authorizeHealthKit { (authorized, error) in
             guard authorized else {
-                print("not authorized")
                 return // TODO: what error
             }
         }

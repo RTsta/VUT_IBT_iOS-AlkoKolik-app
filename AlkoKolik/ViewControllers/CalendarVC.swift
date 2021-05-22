@@ -35,6 +35,7 @@ class CalendarVC: UIViewController {
            let vc = nav_vc.viewControllers.first as? DayVC{
             vc.selectedDate = selectedDate
             vc.callback = {self.reloadData()}
+            vc.model = model1
         }
     }
     
@@ -96,7 +97,7 @@ extension CalendarVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDeleg
                 sum += dose
             }
         }
-        return UIColor.colorFor(daydose: sum)
+        return UIColor.colorFor(daydose: sum, gender: model1.getSex() ?? .female) //female is default, becasue it has lower balues
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {

@@ -58,7 +58,6 @@ class SettingsVC: UITableViewController  {
         case "settings_cell_show_walkthrough":
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
             if let _walkthroughVC = storyboard.instantiateViewController(identifier: "WalkthroughVC") as? WalkthroughVC{
-                UserDefaultsManager.willPresentNextTimeWalkthrough(false)
                 present(_walkthroughVC, animated: true, completion: nil)
             }
         case "settings_cell_sync_info":

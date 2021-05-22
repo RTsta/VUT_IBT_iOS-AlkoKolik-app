@@ -41,31 +41,58 @@ class AppModel {
     //-------------------
     //---------------------
     
-    init() {
+    init(completion: ((Bool, String)->Void)? = nil) {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadFavourites), name: .favouriteNeedsReload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(favouriteBtnPressed), name: .favouriteBtnPressd, object: nil)
         
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
-        getPersonalData(){
+        loadPersonalData(){ _ in
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main){
             self.calculateAlcoholModel(complition: nil)
         }
+        completion?(true, "nic")
     }
     
-    func getPersonalData(complition: (()->Void)?){
+    func loadPersonalData(complition: ((Bool)->Void)?){
         HealthKitManager.getPersonalData(){_height,_weight,_age,_sex in
             if let w = _weight, let h = _height, let a = _age, let s = _sex {
                 self.personalData = PersonalData(sex: s, height: h, weight: w, age: a)
             }
-            complition?()
+            complition?(true)
         }
     }
     
+    func isPersonalDataAvaibile() -> Bool {
+        if personalData != nil { return true }
+        else { return false }
+    }
+    
+    func getHeight() -> Measurement<UnitLength> {
+        if let _p = personalData {
+            return _p.height
+        }
+        return Measurement(value: 0, unit: .centimeters)
+    }
+    
+    func getWeight() -> Measurement<UnitMass> {
+        if let _p = personalData {
+            return _p.weight
+        }
+        return Measurement(value: 0, unit: .kilograms)
+    }
+    
+    func getSex() -> AppModel.Gender? {
+        if let _p = personalData {
+            return _p.sex
+        }
+        return nil
+    }
+    
     func update(complition: (()->Void)?){
-        if personalData == nil {getPersonalData(complition: nil)}
+        if personalData == nil {loadPersonalData(complition: nil)}
         calculateAlcoholModel(complition: complition)//on complition send notification
     }
     
@@ -169,20 +196,6 @@ class AppModel {
             items.append(elem)
         }
         return items
-    }
-    
-    func getHeight() -> Measurement<UnitLength> {
-        if let _p = personalData {
-            return _p.height
-        }
-        return Measurement(value: 0, unit: .centimeters)
-    }
-    
-    func getWeight() -> Measurement<UnitMass> {
-        if let _p = personalData {
-            return _p.weight
-        }
-        return Measurement(value: 0, unit: .kilograms)
     }
     
     @objc func reloadFavourites(){

@@ -26,6 +26,13 @@ class UserDefaultsManager {
         print("UserDefaultManager - drink id: \(id), volume \(volume) - was inserted")
     }
     
+    class func insertInitialDrinks(){
+        let drinks = [FavouriteDrink(drinkId: 0, volume: 500),
+                      FavouriteDrink(drinkId: 17, volume: 100),
+                      FavouriteDrink(drinkId: 2, volume: 20)]
+        saveFavourite(drinks: drinks)
+    }
+    
     class func loadFavouriteDrinks() -> [FavouriteDrink]? {
         if let data = UserDefaults.standard.data(forKey: .favouriteDrinkKey) {
             do {
@@ -48,16 +55,16 @@ class UserDefaultsManager {
         print("UserDefaultManager - drink id: \(id), volume \(volume) - was deleted \n now UD contains: \n\(drinks)")
     }
     
-    class func wasWalkthrough() -> Bool {
-        return UserDefaults.standard.bool(forKey: .wasWalkthrough)
+    class func isFirsttimeLaunch() -> Bool {
+        return !UserDefaults.standard.bool(forKey: .firsttimeLaunch)
     }
     
-    class func willPresentNextTimeWalkthrough(_ will : Bool) {
-        UserDefaults.standard.set(!will, forKey: .wasWalkthrough)
+    class func setFirsttimeLaunch(_ value: Bool) {
+        UserDefaults.standard.set(!value, forKey: .firsttimeLaunch)
     }
 }
 
 private extension String {
     static let favouriteDrinkKey = "favouriteDrinksKey"
-    static let wasWalkthrough = "wasWalkthrough"
+    static let firsttimeLaunch = "firsttimeLaunch"
 }

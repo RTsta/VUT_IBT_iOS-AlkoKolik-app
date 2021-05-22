@@ -17,6 +17,7 @@ class DayVC : UIViewController {
     var weekRecords : [DrinkRecord] = []
     var selectedDayRecords : [DrinkRecord] = []
     var callback : (() -> Void)?
+    var model : AppModel? = nil //TODO: Implement
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
@@ -71,6 +72,7 @@ class DayVC : UIViewController {
             
             let selectedDayWithNowTime = Calendar.current.date(bySettingHour: hour, minute: min, second: 0, of: selectedDate) ?? selectedDate
             vc.selectedDate = selectedDayWithNowTime
+            vc.model = model
         }
     }
     
@@ -138,7 +140,7 @@ extension DayVC : FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAp
                 sum += dose
             }
         }
-        return UIColor.colorFor(daydose: sum)
+        return UIColor.colorFor(daydose: sum, gender: (model!.getSex() ?? .female)) //female is default, becasue it has lower balues
     }
     
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {

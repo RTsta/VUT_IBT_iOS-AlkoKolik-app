@@ -60,6 +60,25 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         refreshChart()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !model1.isPersonalDataAvaibile() {
+            let alert = UIAlertController(title: "Personal info", message: "Sorry, there is a problem with HelthKit. Please check app premissions on health data", preferredStyle: .alert)
+            
+            if let url = URL(string: "x-apple-health://") {
+                if UIApplication.shared.canOpenURL(url) {
+                    alert.addAction(UIAlertAction(title: "Open Health", style: UIAlertAction.Style.default) {_ in
+                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    })
+                }
+            }
+
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     func setupCharts(){
         graphView.delegate = self
         

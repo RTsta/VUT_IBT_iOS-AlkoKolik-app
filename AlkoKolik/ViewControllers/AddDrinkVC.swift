@@ -15,6 +15,7 @@ class AddDrinkVC: UIViewController {
     var selectedDate : Date = Date()
     let datePicker = UIDatePicker()
     let volumePickerView = UIPickerView()
+    var model : AppModel? = nil //TODO: Implement
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBOutlet weak var timeText: UITextField!
@@ -24,8 +25,8 @@ class AddDrinkVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _list = ListOfDrinksManager.loadAllDrinks() {
-            listOfDrinks = _list
+        if let _m = model {
+            listOfDrinks = _m.listOfDrinks
             listOfDrinks.sort(by: {$0.name < $1.name})
             listOfDrinks.sort(by: {$0.type < $1.type})
             drinksTable.reloadData()
