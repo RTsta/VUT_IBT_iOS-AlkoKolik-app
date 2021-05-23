@@ -12,6 +12,9 @@ class TodayDrinkAddTableCell: UITableViewCell {
     @IBOutlet weak var plusImage: UIImageView!
     
     override func layoutSubviews() {
+        self.shouldIndentWhileEditing = false
+        self.editingAccessoryType = .none
+        
         backgroundColor = .appBackground
         self.layer.cornerRadius = min(self.bounds.size.width,self.bounds.size.height) / 4.0
         self.layer.borderWidth = 1.5

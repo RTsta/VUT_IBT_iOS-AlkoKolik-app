@@ -64,6 +64,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         super.viewDidAppear(animated)
         
         if !model1.isPersonalDataAvaibile() {
+            // TODO: Localization
             let alert = UIAlertController(title: "Personal info", message: "Sorry, there is a problem with HelthKit. Please check app premissions on health data", preferredStyle: .alert)
             
             if let url = URL(string: "x-apple-health://") {

@@ -23,6 +23,26 @@ class DayVC : UIViewController {
     @IBOutlet weak var todayDrinkTable: UITableView!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
     
+    lazy var editButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.style = .plain
+        button.tintColor = .appButton
+        button.title = "Edit" // TODO : Localization
+        button.target = self
+        button.action = #selector(editButtonPressed)
+        return button
+    }()
+    
+    lazy var deleteButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.style = .plain
+        button.tintColor = .systemRed
+        button.title = "Delete" // TODO : Localization
+        button.target = self
+        button.action = #selector(deleteButtonPressed)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCalendar()
@@ -33,6 +53,9 @@ class DayVC : UIViewController {
         swipeLeftGesture.direction = .left
         todayDrinkTable.addGestureRecognizer(swipeRightGesture)
         todayDrinkTable.addGestureRecognizer(swipeLeftGesture)
+        todayDrinkTable.allowsSelectionDuringEditing = true
+        
+        self.navigationItem.leftBarButtonItem = editButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,7 +84,42 @@ class DayVC : UIViewController {
     }
     
     @IBAction func doneBtnPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        if todayDrinkTable.isEditing {
+            todayDrinkTable.isEditing = false
+            self.navigationItem.leftBarButtonItem = editButton
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @objc func editButtonPressed(){
+        self.navigationItem.leftBarButtonItem = deleteButton
+        todayDrinkTable.isEditing = true
+        updateDeleteButtonText(numberOfSelected: todayDrinkTable.indexPathsForSelectedRows?.count ?? 0)
+    }
+    
+    @objc func deleteButtonPressed(){
+        if let selectedRows = todayDrinkTable.indexPathsForSelectedRows {
+            // 1
+            var items = [DrinkRecord]()
+            for indexPath in selectedRows  {
+                items.append(selectedDayRecords[indexPath.row-1])
+            }
+            // 2
+            for item in items {
+                if let index = selectedDayRecords.firstIndex(of: item) {
+                    CoreDataManager.deleteRecord(record: selectedDayRecords[index])
+                    selectedDayRecords.remove(at: index)
+                }
+            }
+            // 3
+            todayDrinkTable.beginUpdates()
+            todayDrinkTable.deleteRows(at: selectedRows, with: .automatic)
+            calendar.reloadData()
+            todayDrinkTable.endUpdates()
+        }
+        self.navigationItem.leftBarButtonItem = editButton
+        todayDrinkTable.isEditing = false
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -193,7 +251,6 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
                 let min = time.minute! < 10 ? "0\(time.minute!)" : "\(time.minute!)"
                 cell.timeLabel.text = "\(time.hour!):\(min)"
             }
-            
         }
         return cell
     }
@@ -213,10 +270,24 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "addDrinkToSelectedDaySegue", sender: nil)
+        if !tableView.isEditing {
+            if indexPath.row == 0 {
+                performSegue(withIdentifier: "addDrinkToSelectedDaySegue", sender: nil)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        } else {
+            if indexPath.row == 0 {
+                tableView.deselectRow(at: indexPath, animated: false)
+            }
+            
+            updateDeleteButtonText(numberOfSelected: tableView.indexPathsForSelectedRows?.count ?? 0)
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+    }
+     // TODO: deselect all after swipe and deselec all after done edditing
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            updateDeleteButtonText(numberOfSelected: tableView.indexPathsForSelectedRows?.count ?? 0)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -261,7 +332,20 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
             }else {
                 todayDrinkTable.scrollToRow(at: IndexPath(row: selectedDayRecords.count, section: 0), at: .bottom, animated: true)
             }
+            
+            updateDeleteButtonText(numberOfSelected: todayDrinkTable.indexPathsForSelectedRows?.count ?? 0)
         }
+    }
+    
+    private func updateDeleteButtonText(numberOfSelected number: Int){
+          if number > 0 {
+            deleteButton.title = "Delete (\(number))"
+            deleteButton.isEnabled = true
+          }
+          else {
+            deleteButton.title = "Delete"
+            deleteButton.isEnabled = false
+          }
     }
     
 }

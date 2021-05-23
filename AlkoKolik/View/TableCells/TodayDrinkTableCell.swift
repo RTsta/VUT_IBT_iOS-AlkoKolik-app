@@ -22,6 +22,11 @@ class TodayDrinkTableCell: UITableViewCell {
         self.layer.cornerRadius = min(self.bounds.size.width,self.bounds.size.height) / 4.0
         self.layer.borderWidth = 3.0
         self.layer.borderColor = UIColor.appBackground.cgColor
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .clear
+        self.selectedBackgroundView = backgroundView
+        
         switch style {
 
         case .drink:
