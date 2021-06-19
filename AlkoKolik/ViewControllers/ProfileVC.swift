@@ -65,17 +65,19 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         
         if !model1.isPersonalDataAvaibile() {
             // TODO: Localization
-            let alert = UIAlertController(title: "Personal info", message: "Sorry, there is a problem with HelthKit. Please check app premissions on health data", preferredStyle: .alert)
+            let alert = UIAlertController(title: NSLocalizedString("Personal info", comment: "Personal info unavaibile warning"),
+                                          message: NSLocalizedString("Sorry, there is a problem with HelthKit. Please check app premissions on health data", comment: "Sorry, there is a problem with HelthKit. Please check app premissions on health data"),
+                                          preferredStyle: .alert)
             
             if let url = URL(string: "x-apple-health://") {
                 if UIApplication.shared.canOpenURL(url) {
-                    alert.addAction(UIAlertAction(title: "Open Health", style: UIAlertAction.Style.default) {_ in
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("Open Health", comment: "Open Apple Health app"), style: UIAlertAction.Style.default) {_ in
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     })
                 }
             }
 
-            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

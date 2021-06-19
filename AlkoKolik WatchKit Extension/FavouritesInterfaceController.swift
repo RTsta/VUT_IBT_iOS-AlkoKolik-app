@@ -225,7 +225,7 @@ extension FavouritesInterfaceController{
             return UIImage(named: "watch_beer")
         case .wine, .cider:
             return UIImage(named: "watch_wine")
-        case .spirit, .liqueur:
+        case .spirit, .liqueur, .vodka, .rum, .whiskey, .gin, .tequila:
             return UIImage(named: "watch_spirit")
         case .cocktail:
             return UIImage(named: "watch_cocktail")

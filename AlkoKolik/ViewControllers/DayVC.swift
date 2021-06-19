@@ -22,12 +22,22 @@ class DayVC : UIViewController {
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
     @IBOutlet weak var calendarHeightConstraint: NSLayoutConstraint!
+
+    lazy var doneButton: UIBarButtonItem = {
+        let button = UIBarButtonItem()
+        button.style = .done
+        button.tintColor = .appButton
+        button.title = NSLocalizedString("Done", comment: "Done button title")
+        button.target = self
+        button.action = #selector(doneBtnPressed)
+        return button
+    }()
     
     lazy var editButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.style = .plain
         button.tintColor = .appButton
-        button.title = "Edit" // TODO : Localization
+        button.title = NSLocalizedString("Edit", comment: "Edit button title")
         button.target = self
         button.action = #selector(editButtonPressed)
         return button
@@ -37,7 +47,7 @@ class DayVC : UIViewController {
         let button = UIBarButtonItem()
         button.style = .plain
         button.tintColor = .systemRed
-        button.title = "Delete" // TODO : Localization
+        button.title = NSLocalizedString("Delete", comment: "Delete button title")
         button.target = self
         button.action = #selector(deleteButtonPressed)
         return button
@@ -56,6 +66,7 @@ class DayVC : UIViewController {
         todayDrinkTable.allowsSelectionDuringEditing = true
         
         self.navigationItem.leftBarButtonItem = editButton
+        self.navigationItem.rightBarButtonItem = doneButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,13 +98,15 @@ class DayVC : UIViewController {
         if todayDrinkTable.isEditing {
             todayDrinkTable.isEditing = false
             self.navigationItem.leftBarButtonItem = editButton
+            self.navigationItem.rightBarButtonItem = doneButton
         } else {
             self.dismiss(animated: true, completion: nil)
         }
     }
     
     @objc func editButtonPressed(){
-        self.navigationItem.leftBarButtonItem = deleteButton
+        self.navigationItem.leftBarButtonItem = doneButton
+        self.navigationItem.rightBarButtonItem = deleteButton
         todayDrinkTable.isEditing = true
         updateDeleteButtonText(numberOfSelected: todayDrinkTable.indexPathsForSelectedRows?.count ?? 0)
     }
@@ -119,6 +132,7 @@ class DayVC : UIViewController {
             todayDrinkTable.endUpdates()
         }
         self.navigationItem.leftBarButtonItem = editButton
+        self.navigationItem.rightBarButtonItem = doneButton
         todayDrinkTable.isEditing = false
     }
     
@@ -339,11 +353,11 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
     
     private func updateDeleteButtonText(numberOfSelected number: Int){
           if number > 0 {
-            deleteButton.title = "Delete (\(number))"
+            deleteButton.title = "\(NSLocalizedString("Delete", comment: "Delete button title")) (\(number))"
             deleteButton.isEnabled = true
           }
           else {
-            deleteButton.title = "Delete"
+            deleteButton.title = NSLocalizedString("Delete", comment: "Delete button title")
             deleteButton.isEnabled = false
           }
     }

@@ -7,30 +7,23 @@
 
 import UIKit
 
-class AddDrinkVC: UIViewController {
+class AddDrinkVC: UIViewController, DrinkListVCDelegate {
     
-    var listOfDrinks = [DrinkItem]()
-    var selectedRow :Int?
+    var selectedDrink : DrinkItem?
     var selectedVolume : Int?
     var selectedDate : Date = Date()
     let datePicker = UIDatePicker()
     let volumePickerView = UIPickerView()
-    var model : AppModel? = nil //TODO: Implement
+    var model : AppModel?
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBOutlet weak var timeText: UITextField!
     @IBOutlet weak var volumeText: UITextField!
-    @IBOutlet weak var drinksTable: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _m = model {
-            listOfDrinks = _m.listOfDrinks
-            listOfDrinks.sort(by: {$0.name < $1.name})
-            listOfDrinks.sort(by: {$0.type < $1.type})
-            drinksTable.reloadData()
-        }
+        
         timeText.tintColor = .clear
         volumeText.tintColor = .clear
         saveBtn.isEnabled = false
@@ -49,9 +42,9 @@ class AddDrinkVC: UIViewController {
     }
     
     @IBAction func saveBtnPressed(_ sender: Any) {
-        guard let _row = selectedRow,
+        guard let _drink = selectedDrink,
               let _volume = selectedVolume else {fatalError("something is not selected ")}
-        CoreDataManager.insertRecord(drink: listOfDrinks[_row], volumeOpt: _volume, time: selectedDate)
+        CoreDataManager.insertRecord(drink: _drink, volumeOpt: _volume, time: selectedDate)
         self.navigationController?.popToRootViewController(animated: true)
     }
     
@@ -96,9 +89,9 @@ class AddDrinkVC: UIViewController {
     }
     
     @objc func doneVolumePickerPressed(){
-        if let _row = selectedRow,
+        if let _drink = selectedDrink,
            let _selVolume = selectedVolume {
-            volumeText.text = "\(listOfDrinks[_row].volume[_selVolume]) ml"
+            volumeText.text = "\(_drink.volume[_selVolume]) ml"
         }
         self.view.endEditing(true)
     }
@@ -110,42 +103,32 @@ class AddDrinkVC: UIViewController {
         let selectionComponents = Calendar.current.dateComponents([.hour,.minute], from: datePicker.date)
         selectedDate = Calendar.current.date(bySettingHour: selectionComponents.hour!, minute: selectionComponents.minute!, second: 0, of: selectedDate)!
     }
-}
-
-// MARK: UITableView
-extension AddDrinkVC : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfDrinks.count
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? DrinkListContainerVC,
+           let _model = model{
+            vc.delegate = self
+            vc.model = _model
+            vc.isTableSelectable = true
+        }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddDrinkListCell", for: indexPath) as? DrinkListCell else { fatalError("Cell is not an instance of DrinkListCell.") }
-        
-        let oneDrink = listOfDrinks[indexPath.row]
-        cell.type = oneDrink.type
-        cell.labelText.text = oneDrink.name
-        
-        return cell
+    func didSelectedDrink(_ drink: DrinkItem?) {
+        if let _drink = drink{
+            selectedDrink = drink
+            selectedVolume = 0
+            volumeText.text = "\(_drink.volume[selectedVolume!]) ml"
+            saveBtn.isEnabled = true
+            volumePickerView.selectRow(0, inComponent: 0, animated: true)
+            volumePickerView.reloadAllComponents();
+        }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
-        selectedVolume = 0
-        volumeText.text = "\(listOfDrinks[selectedRow!].volume[selectedVolume!]) ml"
-        saveBtn.isEnabled = true
-        volumePickerView.selectRow(0, inComponent: 0, animated: true)
-        volumePickerView.reloadAllComponents();
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func didDeselectDrink() {
         volumeText.text = NSLocalizedString("select_drink", comment: "Select dring in table at AddDrinkVC")
-        selectedRow = nil
+        selectedDrink = nil
         selectedVolume = nil
         saveBtn.isEnabled = false
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
     }
 }
 
@@ -157,21 +140,21 @@ extension AddDrinkVC : UIPickerViewDataSource, UIPickerViewDelegate{
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let _row = selectedRow else {return 0}
-        return listOfDrinks[_row].volume.count
+        guard let _drink = selectedDrink else {return 0}
+        return _drink.volume.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let _row = selectedRow else {return ""}
-        return "\(listOfDrinks[_row].volume[row]) ml"
+        guard let _drink = selectedDrink else {return ""}
+        return "\(_drink.volume[row]) ml"
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedVolume = row
         
-        if let _row = selectedRow,
+        if let _drink = selectedDrink,
            let _selVolume = selectedVolume {
-            volumeText.text = "\(listOfDrinks[_row].volume[_selVolume]) ml"
+            volumeText.text = "\(_drink.volume[_selVolume]) ml"
         }
     }
 }

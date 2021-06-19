@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31305345682C831C59531EC9 /* Pods_AlkoKolik_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C884F6B75CB40C2E29F206 /* Pods_AlkoKolik_WatchKit_Extension.framework */; };
-		8F039919264E7BC7004D26BB /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */; };
+		8F039919264E7BC7004D26BB /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8F039918264E7BC7004D26BB /* FSCalendar */; };
 		8F118E1025FFB95300C3F3A8 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */; };
 		8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F271EE125DC0D1E00B76513 /* UIClockView.swift */; };
 		8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2F531325ED761C00313656 /* DrinkItem.swift */; };
@@ -17,6 +17,9 @@
 		8F321CD325ED716200E3CFFC /* DrinkListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F321CD225ED716200E3CFFC /* DrinkListVC.swift */; };
 		8F3651BA25FA362D00055826 /* DayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3651B925FA362D00055826 /* DayVC.swift */; };
 		8F3651C825FA3A7C00055826 /* TodayDrinkTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3651C725FA3A7C00055826 /* TodayDrinkTableCell.swift */; };
+		8F386B30267A44AF0047C919 /* DrinkListContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F386B2F267A44AF0047C919 /* DrinkListContainerVC.swift */; };
+		8F386B32267E37590047C919 /* DrinkListVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F386B31267E37590047C919 /* DrinkListVCDelegate.swift */; };
+		8F386B34267E3B8B0047C919 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F386B33267E3B8B0047C919 /* TestVC.swift */; };
 		8F3D5C34263F42F600D9B34D /* WalkthroughContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D5C33263F42F600D9B34D /* WalkthroughContentVC.swift */; };
 		8F3D5C36263F4DBB00D9B34D /* WalkthroughPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D5C35263F4DBB00D9B34D /* WalkthroughPageVC.swift */; };
 		8F3D5C38263F526B00D9B34D /* WalkthroughVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3D5C37263F526B00D9B34D /* WalkthroughVC.swift */; };
@@ -143,6 +146,9 @@
 		8F321CD225ED716200E3CFFC /* DrinkListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListVC.swift; sourceTree = "<group>"; };
 		8F3651B925FA362D00055826 /* DayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayVC.swift; sourceTree = "<group>"; };
 		8F3651C725FA3A7C00055826 /* TodayDrinkTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayDrinkTableCell.swift; sourceTree = "<group>"; };
+		8F386B2F267A44AF0047C919 /* DrinkListContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListContainerVC.swift; sourceTree = "<group>"; };
+		8F386B31267E37590047C919 /* DrinkListVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkListVCDelegate.swift; sourceTree = "<group>"; };
+		8F386B33267E3B8B0047C919 /* TestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		8F3D5C33263F42F600D9B34D /* WalkthroughContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughContentVC.swift; sourceTree = "<group>"; };
 		8F3D5C35263F4DBB00D9B34D /* WalkthroughPageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPageVC.swift; sourceTree = "<group>"; };
 		8F3D5C37263F526B00D9B34D /* WalkthroughVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughVC.swift; sourceTree = "<group>"; };
@@ -216,7 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F58733025F5337C001CE464 /* HealthKit.framework in Frameworks */,
-				8F039919264E7BC7004D26BB /* BuildFile in Frameworks */,
+				8F039919264E7BC7004D26BB /* FSCalendar in Frameworks */,
 				EA0B0DCEAACE064F1FA13685 /* Pods_AlkoKolik.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,7 +256,6 @@
 				AD527C4F50268F2EF79A704C /* Pods-AlkoKolik WatchKit Extension.debug.xcconfig */,
 				C648279CB96F0D80B9D7C4DA /* Pods-AlkoKolik WatchKit Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -288,9 +293,9 @@
 			isa = PBXGroup;
 			children = (
 				8F3D5C32263F42D300D9B34D /* Walkthrough */,
+				8F386B38267EA39F0047C919 /* Containers */,
 				8FABAC46261C68890039FE68 /* MainTabBarController.swift */,
 				8F51624E25D19E54006DBD85 /* MainVC.swift */,
-				8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */,
 				8F321CD225ED716200E3CFFC /* DrinkListVC.swift */,
 				8F48195D25FB949D00A3B597 /* VolumeAlertVC.swift */,
 				8F5872A425EEF9E9001CE464 /* CalendarVC.swift */,
@@ -300,6 +305,31 @@
 				8F118E0F25FFB95300C3F3A8 /* SettingsVC.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8F386B36267E3BA10047C919 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				8F386B33267E3B8B0047C919 /* TestVC.swift */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		8F386B37267EA3830047C919 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				8F386B31267E37590047C919 /* DrinkListVCDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		8F386B38267EA39F0047C919 /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				8F386B2F267A44AF0047C919 /* DrinkListContainerVC.swift */,
+				8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */,
+			);
+			path = Containers;
 			sourceTree = "<group>";
 		};
 		8F3D5C32263F42D300D9B34D /* Walkthrough */ = {
@@ -342,6 +372,7 @@
 				8F51624A25D19E54006DBD85 /* AppDelegate.swift */,
 				8F51624C25D19E54006DBD85 /* SceneDelegate.swift */,
 				8FABAC292617C5190039FE68 /* AppModel.swift */,
+				8F386B36267E3BA10047C919 /* test */,
 				8FC81B3125FD4112007C0350 /* SimulationModel */,
 				8F58730F25F4D098001CE464 /* Managers */,
 				8F271EC725DC0CA600B76513 /* View */,
@@ -349,6 +380,7 @@
 				8FAEAD7125E98DB8008F2457 /* Extensions */,
 				8F51625325D19E56006DBD85 /* Assets.xcassets */,
 				8F51625825D19E56006DBD85 /* Info.plist */,
+				8F386B37267EA3830047C919 /* Delegates */,
 				8F68CAA62640BAAB00EC60A2 /* Localizable.strings */,
 				8F97137E25F6E4250082FEA6 /* AlkoKolik.xcdatamodeld */,
 				8F97139225F795180082FEA6 /* listOfDrinks.json */,
@@ -470,7 +502,7 @@
 			);
 			name = AlkoKolik;
 			packageProductDependencies = (
-				8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */,
+				8F039918264E7BC7004D26BB /* FSCalendar */,
 			);
 			productName = AlkoKolik;
 			productReference = 8F51624725D19E54006DBD85 /* AlkoKolik.app */;
@@ -544,7 +576,7 @@
 			);
 			mainGroup = 8F51623E25D19E53006DBD85;
 			packageReferences = (
-				8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */,
+				8F039917264E7BC7004D26BB /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 8F51624825D19E54006DBD85 /* Products */;
 			projectDirPath = "";
@@ -700,6 +732,7 @@
 				8F2F531425ED761C00313656 /* DrinkItem.swift in Sources */,
 				8F5872A525EEF9E9001CE464 /* CalendarVC.swift in Sources */,
 				8F118E1025FFB95300C3F3A8 /* SettingsVC.swift in Sources */,
+				8F386B30267A44AF0047C919 /* DrinkListContainerVC.swift in Sources */,
 				8F49304725FACBC50073DCC6 /* TodayDrinkAddTableCell.swift in Sources */,
 				8F48195E25FB949D00A3B597 /* VolumeAlertVC.swift in Sources */,
 				8F69E9D025FBEB34009A5CFF /* AddDrinkVC.swift in Sources */,
@@ -716,6 +749,8 @@
 				8F51624D25D19E54006DBD85 /* SceneDelegate.swift in Sources */,
 				8F58731125F4D0BA001CE464 /* HealthKitManager.swift in Sources */,
 				8F271EE225DC0D1E00B76513 /* UIClockView.swift in Sources */,
+				8F386B34267E3B8B0047C919 /* TestVC.swift in Sources */,
+				8F386B32267E37590047C919 /* DrinkListVCDelegate.swift in Sources */,
 				8F59F2E726021E8E009DBA37 /* myUtil.swift in Sources */,
 				8F7D332126092F2400DDB35B /* WatchManager.swift in Sources */,
 				8F30D2E325FA4F030023A195 /* ListOfDrinksManager.swift in Sources */,
@@ -1099,7 +1134,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */ = {
+		8F039917264E7BC7004D26BB /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
 			requirement = {
@@ -1110,9 +1145,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8F039918264E7BC7004D26BB /* SwiftPackageProductDependency */ = {
+		8F039918264E7BC7004D26BB /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 8F039917264E7BC7004D26BB /* RemoteSwiftPackageReference */;
+			package = 8F039917264E7BC7004D26BB /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */

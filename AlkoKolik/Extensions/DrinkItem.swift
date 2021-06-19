@@ -26,20 +26,70 @@ struct DrinkItem {
             return .cocktail
         case "liquer":
             return .liqueur
-        case "vodka", "rum", "whiskey", "gin", "tequila":
+        case "spirit":
             return .spirit
+        case "vodka":
+            return .vodka
+        case "rum":
+            return .rum
+        case "whiskey":
+            return .whiskey
+        case "gin":
+            return .gin
+        case "tequila":
+            return .tequila
         default:
             return .none
         }
     }
 }
 
-enum DrinkType: Comparable {
+enum DrinkType: Comparable, Hashable{
     case beer
     case wine
     case cider
     case liqueur
     case spirit
+    case vodka
+    case rum
+    case whiskey
+    case gin
+    case tequila
     case cocktail
     case none
+    
+    func text () -> String {
+        switch self {
+        case .beer:
+            return NSLocalizedString("Beer", comment: "Beer DrinkType localized name")
+        case .wine:
+            return NSLocalizedString("Wine", comment: "Wine DrinkType localized name")
+        case .cider:
+            return NSLocalizedString("Cider", comment: "Cider DrinkType localized name")
+        case .liqueur:
+            return NSLocalizedString("Liqueur", comment: "Liqueur DrinkType localized name")
+        case .spirit:
+            return NSLocalizedString("Spirit", comment: "Spirit DrinkType localized name")
+        case .cocktail:
+            return NSLocalizedString("Cocktail", comment: "Cocktail DrinkType localized name")
+        case .vodka:
+            return NSLocalizedString("Vodka", comment: "Vodka DrinkType localized name")
+        case .rum:
+            return NSLocalizedString("Rum", comment: "Rum DrinkType localized name")
+        case .whiskey:
+            return NSLocalizedString("Whiskey", comment: "Whiskey DrinkType localized name")
+        case .gin:
+            return NSLocalizedString("Gin", comment: "Gin DrinkType localized name")
+        case .tequila:
+            return NSLocalizedString("Tequila", comment: "Tequila DrinkType localized name")
+        case .none:
+            return ""
+        }
+    }
+    
+    func firstLetter () -> String {
+        if let char = self.text().first {
+            return String(char)
+        } else { return ""}
+    }
 }

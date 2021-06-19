@@ -32,15 +32,11 @@ extension UIColor {
         switch drinkType {
         case .beer:
             return self.appMin
-        case .wine:
-            return self.appMid
-        case .cider:
+        case .wine, .cider:
             return self.appMid
         case .liqueur:
             return self.appSemiMax
-        case .spirit:
-            return self.appMax
-        case .cocktail:
+        case .spirit, .cocktail, .vodka, .rum, .whiskey, .gin, .tequila:
             return self.appMax
         default:
             return self.yellow

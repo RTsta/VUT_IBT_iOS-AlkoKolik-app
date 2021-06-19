@@ -8,18 +8,16 @@
 import UIKit
 
 
-class DrinkListVC : UIViewController {
+class DrinkListVC : UIViewController, DrinkListVCDelegate {
+
+    lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
+    
+    var selectedDrink : DrinkItem?
+    
+    var childFavVC : FavouriteButtonsVC? = nil // TODO: to je divný
     
     @IBOutlet weak var favouritesViewHeight: NSLayoutConstraint!
-    lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
-    var childFavVC : FavouriteButtonsVC? = nil
-    
-    private var listOfDrinks = [DrinkItem]()
-    var selectedRow = 0
-    
-    
-    @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var drinksTable: UITableView!
+    @IBOutlet weak var favouritesContainerView: UIView!
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -28,7 +26,6 @@ class DrinkListVC : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(adjustFavouriteCollectionHeight), name: .favouriteNeedsReload, object: nil)
-        loadListOfDrinks()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,24 +41,23 @@ class DrinkListVC : UIViewController {
         return new
     }
     
-    private func loadListOfDrinks(){
-        listOfDrinks = model.listOfDrinks
-        listOfDrinks.sort(by: {$0.name < $1.name})
-        listOfDrinks.sort(by: {$0.type < $1.type})
-        drinksTable.reloadData()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? VolumeAlertVC {
-            vc.volumesArray = listOfDrinks[selectedRow].volume
-            vc.selectedDrink = listOfDrinks[selectedRow]
-            vc.cellColor = UIColor.colorFor(drinkType: listOfDrinks[selectedRow].type)
+        if let vc = segue.destination as? VolumeAlertVC,
+           let drink = selectedDrink{
+            vc.volumesArray = drink.volume
+            vc.selectedDrink = drink
+            vc.cellColor = UIColor.colorFor(drinkType: drink.type)
             vc.model = model
             vc.callback = {self.adjustFavouriteCollectionHeight(animated: true)}
         }
         if let vc = segue.destination as? FavouriteButtonsVC {
             vc.model = model
             childFavVC = vc
+        }
+        if let vc = segue.destination as? DrinkListContainerVC {
+            vc.delegate = self
+            vc.model = model
         }
     }
     
@@ -77,32 +73,14 @@ class DrinkListVC : UIViewController {
             } else {self.view.layoutIfNeeded()}
         }
     }
-}
-
-// MARK: UITableView
-extension DrinkListVC : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listOfDrinks.count
-    }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "drinkListCell", for: indexPath) as? DrinkListCell else { fatalError("Cell is not an instance of DrinkListCell.") }
-        
-        let oneDrink = listOfDrinks[indexPath.row]
-        cell.type = oneDrink.type
-        cell.labelText.text = oneDrink.name
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedRow = indexPath.row
+    func didSelectedDrink(_ drink: DrinkItem?) {
+        selectedDrink = drink
         performSegue(withIdentifier: "alertShowSegue", sender: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+    func didDeselectDrink() {
+        return
     }
 }
 
