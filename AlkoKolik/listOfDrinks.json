@@ -1,7 +1,8 @@
 {
     "metadata": {
         "name": "app_drinklist",
-        "version": 0.1,
+        "version": 1.0,
+        "units": "metric",
         
     },
     "drink": [

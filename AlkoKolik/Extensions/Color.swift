@@ -43,37 +43,38 @@ extension UIColor {
         }
     }
     
-    class func colorFor(daydose: Double, gender: AppModel.Gender) -> UIColor {
-        if gender == .male {
-            switch daydose {
-            case 0:
-                return self.appGrey
-            case 0..<20:
-                return self.appMin
-            case 20..<40:
-                return self.appMid
-            case 40..<60:
-                return self.appSemiMax
-            case 60...:
-                return self.appMax
-            default:
-                return .clear
+    class func colorFor(daydose: Double, gender: PersonalData.Gender) -> UIColor {
+                if gender == .male {
+                    switch daydose {
+                    case 0:
+                        return self.appGrey
+                    case 0..<24:
+                        return self.appMin
+                    case 24..<40:
+                        return self.appMid
+                    case 40..<60:
+                        return self.appSemiMax
+                    case 60...:
+                        return self.appMax
+                    default:
+                        return .clear
+                    }
+                }else { //female
+                    switch daydose {
+                    case 0:
+                        return self.appGrey
+                    case 0..<16:
+                        return self.appMin
+                    case 16..<27:
+                        return self.appMid
+                    case 27..<40:
+                        return self.appSemiMax
+                    case 40...:
+                        return self.appMax
+                    default:
+                        return .clear
+                    }
+                }
             }
-        } else {
-            switch daydose {
-            case 0:
-                return self.appGrey
-            case 0..<20:
-                return self.appMin
-            case 20..<30:
-                return self.appMid
-            case 30..<40:
-                return self.appSemiMax
-            case 40...:
-                return self.appMax
-            default:
-                return .clear
-            }
-        }
-    }
+            
 }

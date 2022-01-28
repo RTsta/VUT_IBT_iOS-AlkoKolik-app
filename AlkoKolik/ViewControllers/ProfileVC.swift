@@ -62,9 +62,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         if !model1.isPersonalDataAvaibile() {
-            // TODO: Localization
             let alert = UIAlertController(title: NSLocalizedString("Personal info", comment: "Personal info unavaibile warning"),
                                           message: NSLocalizedString("Sorry, there is a problem with HelthKit. Please check app premissions on health data", comment: "Sorry, there is a problem with HelthKit. Please check app premissions on health data"),
                                           preferredStyle: .alert)
@@ -81,6 +79,8 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
     
     func setupCharts(){
         graphView.delegate = self
@@ -111,7 +111,8 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
     }
     
     func refreshChart(){
-        model1.simulateMultipleAlcoholModels(){
+        model1.simulateAlcoholModel(useMethod: [.all], storeResults: true){_,_,_, succes in
+            if !succes {return}
             self.graphView.xAxis.removeAllLimitLines()
             
             var graphSet = [LineChartDataSet]()
@@ -129,7 +130,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
             self.graphView.data = data
             self.graphView.legend.enabled = true
             
-            if self.model1.dataSet.keys.contains(SimulationAlcoholModel.RFactorMethod.average), let _avrg = self.model1.dataSet[.average]!{
+            if self.model1.dataSet.keys.contains(RFactorMethod.average), let _avrg = self.model1.dataSet[.average]!{
                 self.createXAxes(from: _avrg.from, to: _avrg.to)
                 let intervalToCurrent = Calendar.current.dateComponents([.minute], from: _avrg.from, to: Date())
                 if let timeFromZeroPoint = intervalToCurrent.minute {
@@ -201,7 +202,7 @@ private extension ProfileVC {
         
     }
     
-    func dataSetStyleFrom(rFactor: SimulationAlcoholModel.RFactorMethod) -> DataSetStyle{
+    func dataSetStyleFrom(rFactor: RFactorMethod) -> DataSetStyle{
         switch rFactor {
         case .average:
             return DataSetStyle.average
@@ -265,4 +266,6 @@ private extension ProfileVC {
         set.valueTextColor = .white
         return set
     }
+    
+    
 }

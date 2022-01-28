@@ -27,7 +27,7 @@ class CoreDataManager {
         let a = 1.0
         let d = 0.789
         let dose = v! * z * a * d
-        
+        // TODO: nebude používat strukturu z CoreData
         newRecord.timestemp = time
         newRecord.drink_id = Int32(drink.id)
         newRecord.volume = v!

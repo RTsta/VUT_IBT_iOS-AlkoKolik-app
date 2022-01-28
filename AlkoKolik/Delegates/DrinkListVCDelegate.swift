@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol DrinkListVCDelegate: AnyObject { //TUTORIAL
+protocol DrinkListVCDelegate: AnyObject {
     func didSelectedDrink(_ drink: DrinkItem?)
     func didDeselectDrink()
 }

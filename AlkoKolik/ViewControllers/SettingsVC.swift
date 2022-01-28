@@ -38,6 +38,16 @@ class SettingsVC: UITableViewController  {
         checkLastUploadedData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? HypotheticalModeVC {
+            vc.model = model1
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
@@ -69,7 +79,7 @@ class SettingsVC: UITableViewController  {
                 last30days = Calendar.current.date(bySetting: .minute, value: 0, of: last30days)!
                 let startFrom = last30days < lastBACSync ? lastBACSync : last30days
                 
-                model1?.runModelInCustomPeriod(from: startFrom, to: Date()){ resultValues, succes in
+                model1?.simulateAlcoholModel(from: startFrom, to: Date(), useMethod: [.average], storeResults: false){resultValues,_,_,succes in
                     if !succes {print{"SettingsVC - Error - in making custom model"}; return}
                     guard let resultValues = resultValues else {print{"SettingsVC - Error - in making custom model"}; return}
                     for i in stride(from: 10, to: resultValues.count, by: 10) {
@@ -80,6 +90,8 @@ class SettingsVC: UITableViewController  {
                     self.checkLastUploadedData()
                 }
             }
+        case "settings_cell_hypothetical_mode":
+            break
         default:
             break
         }

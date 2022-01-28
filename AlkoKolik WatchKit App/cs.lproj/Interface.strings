@@ -1,3 +1,5 @@
+/* Class = "WKInterfaceLabel"; text = "1000 ml"; ObjectID = "kCy-Em-ubV"; */
+"kCy-Em-ubV.text" = "1000 ml";
 
 /* Class = "WKInterfaceLabel"; text = "OK in:"; ObjectID = "OP0-80-dVz"; */
 "OP0-80-dVz.text" = "OK za:";
@@ -5,11 +7,9 @@
 /* Class = "WKInterfaceLabel"; text = "Pilsner Urquel"; ObjectID = "T6h-D1-zJS"; */
 "T6h-D1-zJS.text" = "Pilsner Urquel";
 
-/* Class = "WKInterfaceLabel"; text = "1000 ml"; ObjectID = "kCy-Em-ubV"; */
-"kCy-Em-ubV.text" = "1000 ml";
-
 /* Class = "WKInterfaceLabel"; text = "Loading..."; ObjectID = "tbW-jM-nla"; */
 "tbW-jM-nla.text" = "Načítání...";
 
 /* Class = "WKInterfaceLabel"; text = "Current BAC"; ObjectID = "x69-5y-tBK"; */
 "x69-5y-tBK.text" = "Aktuální BAC";
+

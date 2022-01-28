@@ -54,7 +54,9 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
         
         let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneDatePickerPressed))
         doneBtn.tintColor = UIColor(named: "appButoon")
-        toolBar.setItems([doneBtn], animated: true)
+        let btnSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([btnSpace, doneBtn], animated: true)
+
         
         timeText.inputAccessoryView = toolBar
         datePicker.preferredDatePickerStyle = .wheels
@@ -82,7 +84,8 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
         
         let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneVolumePickerPressed))
         doneBtn.tintColor = UIColor(named: "appButoon")
-        toolBar.setItems([doneBtn], animated: true)
+        let btnSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        toolBar.setItems([btnSpace,doneBtn], animated: true)
         
         volumeText.inputAccessoryView = toolBar
         volumeText.inputView = volumePickerView

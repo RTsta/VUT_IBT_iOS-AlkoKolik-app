@@ -2,7 +2,7 @@
 
 |    | version | supported iOS |
 | --- | ------- | --- | 
-| ![App icon](./screenshots/icon.png) | v1.0 | 14.5 | 
+| ![App icon](./screenshots/icon.png) | v1.3 | 15.3 | 
 
 
 AlkoKolik is an app for tracking your alcohol drinking habits. The app is connected with Apple HealthKit, to get your personal info and to share your drinking history
@@ -14,6 +14,8 @@ This app was created as a bachelor's work at the Brno University of Technology (
 - estimates the time to get sober
 - predicts the course of the BAC curve
 - exports BAC to Apple Health (HealthKit)
+- notification when you get sober
+- Hypothetical mode
 
 ## Screenshots
 ### iOS

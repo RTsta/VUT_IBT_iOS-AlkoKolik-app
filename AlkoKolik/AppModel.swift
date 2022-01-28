@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class AppModel {
     
@@ -14,25 +15,22 @@ class AppModel {
         let to : Date
         let values : [Concentration]
     }
-    struct PersonalData{
-        let sex: Gender
-        let height: Measurement<UnitLength>  //meters
-        let weight: Measurement<UnitMass>  //kilograms
-        let age: Double    //years
-    }
-    enum Gender {
-        case male
-        case female
-    }
     
     private let model = SimulationAlcoholModel()
     
     private var personalData : PersonalData?
     
-    var dataSet : [SimulationAlcoholModel.RFactorMethod : ConcetrationData?] = [:]
+    var dataSet : [RFactorMethod : ConcetrationData?] = [:]
     var currentBAC : Concentration?
     var peakBAC : Double?
-    var soberDate : Date?
+    var soberDate : Date? {didSet{
+        
+        if let _soberDate = soberDate, _soberDate > Date(){
+            if !Calendar.current.isDate(oldValue ?? Date(), equalTo: _soberDate, toGranularity: .minute){
+                    UserNotificationManager.planSoberNotification(for: _soberDate)
+            }
+        }else {UserNotificationManager.disableSoberNotification()}
+    }}
     //--------------------
     lazy var favourites : [FavouriteDrink] = {return UserDefaultsManager.loadFavouriteDrinks() ?? []}()
     lazy var fullDrinkItems : [DrinkItem] = {return self.loadFullDrinkItems()}()
@@ -51,7 +49,7 @@ class AppModel {
             dispatchGroup.leave()
         }
         dispatchGroup.notify(queue: .main){
-            self.calculateAlcoholModel(complition: nil)
+            self.simulateAlcoholModel(useMethod: [.average], storeResults: true, complition: nil)
         }
         completion?(true, "nic")
     }
@@ -84,74 +82,48 @@ class AppModel {
         return Measurement(value: 0, unit: .kilograms)
     }
     
-    func getSex() -> AppModel.Gender? {
+    func getSex() -> PersonalData.Gender? {
         if let _p = personalData {
             return _p.sex
         }
         return nil
     }
     
-    func update(complition: (()->Void)?){
+    func update(complition: (([Concentration]?,Concentration?,Date?,Bool)->Void)? = nil){
         if personalData == nil {loadPersonalData(complition: nil)}
-        calculateAlcoholModel(complition: complition)//on complition send notification
+        simulateAlcoholModel(useMethod: [.average],storeResults: true, complition: complition)
     }
     
-    func calculateAlcoholModel(complition: (()->Void)?){
-        guard let _ = personalData else { return }
-        
-        let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
-        let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-
-        model.run(personalData: personalData!, from: from, to: to) { results, succes in
-            guard succes, let modelResults = results else {print("Error - data were not loaded"); return}
-            let data = ConcetrationData(from: from, to: to, values: modelResults)
-            
-            currentBAC = findCurrentBAC(inGraph: data)
-            peakBAC = findPeakBAC(inGraph: data)
-            soberDate = findSoberDate(inGraph: data)
-            dataSet[.average] = data
-            NotificationCenter.default.post(name: .modelCalculated, object: nil)
-            
-            complition?()
-        }
-    }
-    
-    
-    @objc func favouriteBtnPressed(){
-        update(complition: nil)
-    }
-    
-    func simulateMultipleAlcoholModels(complition: (()->Void)? = nil){
-        guard let _ = personalData else { return }
-        
-        let from = Calendar.current.date(byAdding: .day, value: -3, to: Date())!
-        let to = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-        
-        model.runWithMultipleMethods(personalData: personalData!, from: from, to: to) { graphInputs, succes in
-            if succes, let _graphinputs = graphInputs{
+    func simulateAlcoholModel(from: Date? = nil, to: Date? = nil,
+                              withExtraData extraData: [ConsumedDrink] = [],
+                              useMethod method: [RFactorMethod],
+                              storeResults: Bool,
+                              complition: (([Concentration]?,Concentration?,Date?,Bool)->Void)? = nil){
+        //complition: ((values: [Concentration]?,peakBAC: Concentration?,soberDate: Date?,succes: Bool)->Void)?
+        guard let _ = personalData else { complition?(nil,nil,nil,false);return }
+        let _from : Date = from ?? Calendar.current.date(byAdding: .day, value: -3, to: Date())!
+        let _to : Date = to ?? Calendar.current.date(byAdding: .day, value: 2, to: Date())!
+        model.run(personalData: personalData!, from: _from, to: _to,extraData: extraData, method: method){ graphInputs, succes in
+            guard succes, let _graphinputs = graphInputs else {print("Error - data were not loaded"); complition?(nil,nil,nil,false);return}
+            if storeResults {
                 for (key, value) in _graphinputs {
-                    dataSet[key] = ConcetrationData(from: from, to: to, values: value)
+                    dataSet[key] = ConcetrationData(from: _from, to: _to, values: value)
                 }
-                if dataSet.keys.contains(SimulationAlcoholModel.RFactorMethod.average), let avrg = dataSet[.average]! {
+                if dataSet.keys.contains(RFactorMethod.average), let avrg = dataSet[.average]! {
                     currentBAC = findCurrentBAC(inGraph: avrg)
                     peakBAC = findPeakBAC(inGraph: avrg)
                     soberDate = findSoberDate(inGraph: avrg)
                     NotificationCenter.default.post(name: .modelCalculated, object: nil)
                 }
-                complition?()
             }
+            let data = ConcetrationData(from: _from, to: _to, values: _graphinputs[.average]!)
+            complition?(data.values, findPeakBAC(inGraph: data),findSoberDate(inGraph: data), true)
         }
     }
     
-    func runModelInCustomPeriod(from: Date, to: Date, complition: (([Double]?,Bool)->Void)? = nil){
-        guard let _ = personalData else { return }
-        model.run(personalData: personalData!, from: from, to: to) { results, succes in
-            guard succes, let modelResults = results else {print("Error - data were not loaded"); complition?(nil,false);return}
-            
-            complition?(modelResults,true)
-        }
+    @objc func favouriteBtnPressed(){
+        update(complition: nil)
     }
-    
     
     private func findCurrentBAC(inGraph input: ConcetrationData) -> Concentration{
         let intervalToCurrent = Calendar.current.dateComponents([.minute], from: input.from, to: Date())
@@ -192,7 +164,7 @@ class AppModel {
         var items : [DrinkItem] = []
         for drink in favourites {
             let elem = ListOfDrinksManager.findDrink(drink_id: drink.drinkId)
-                ?? DrinkItem(id: -1, name: "", volume: [0], alcoholPercentage: 0, type: .none)
+            ?? DrinkItem(id: -1, name: "", volume: [0], alcoholPercentage: 0, type: .none)
             items.append(elem)
         }
         return items
@@ -205,4 +177,12 @@ class AppModel {
         }
     }
     
+    func findDrinkBy(id: Int) -> DrinkItem? {
+        for drink in listOfDrinks {
+            if drink.id == id {
+                return drink
+            }
+        }
+        return nil
+    }
 }

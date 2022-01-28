@@ -44,6 +44,9 @@ class WalkthroughPageVC : UIPageViewController, UIPageViewControllerDataSource, 
                                         WalkrhroughContent(heading: NSLocalizedString("HealthKit", comment: "HealthKit heading in walkthrough"),
                                                            subheading: NSLocalizedString("To enable calculation of predictions, we need access to HealhKit for understanding who you are 😊", comment: "text about accessing HealthKit"),
                                                            imageFileName: "walkthrough_healthkit"),
+                                        WalkrhroughContent(heading: NSLocalizedString("Notifications", comment: "Notifications heading in walkthrough"),
+                                                           subheading: NSLocalizedString("We would like to notifie you, when you get sober, to let you know you cant do whatever you want 🥳", comment: "text about accessing Notifications"),
+                                                           imageFileName: "walkthrough_notifications")
     ]
    
     var currentIndex = 0

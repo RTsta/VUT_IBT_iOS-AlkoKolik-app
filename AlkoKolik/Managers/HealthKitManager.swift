@@ -30,11 +30,11 @@ class HealthKitManager{
         }
     }
     
-    class func getPersonalData(completion: @escaping (_ l: Measurement<UnitLength>?,_ w: Measurement<UnitMass>?,_ a: Double?,_ s: AppModel.Gender?) -> Void){
+    class func getPersonalData(completion: @escaping (_ l: Measurement<UnitLength>?,_ w: Measurement<UnitMass>?,_ a: Double?,_ s: PersonalData.Gender?) -> Void){
         let dispatchGroup = DispatchGroup()
         var height : Measurement<UnitLength>?
         var weight : Measurement<UnitMass>?
-        var sex : AppModel.Gender?
+        var sex : PersonalData.Gender?
         var age : Double?
         
         do {
@@ -165,6 +165,7 @@ class HealthKitManager{
             completion(success, error)
         }
     }
+    
     
     enum AccesType{
         case read

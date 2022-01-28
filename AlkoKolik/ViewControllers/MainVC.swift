@@ -32,12 +32,35 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(watchRequestedUpdate), name: .watchRequestedUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadSoberDate), name: .modelCalculated, object: nil)
         startClock()
-        HKAuthorization()
         model = AppModel()
-        
+        if UserDefaultsManager.isFirsttimeLaunch() == false {
+            HealthKitManager.authorizeHealthKit { (authorized, error) in
+                guard authorized else {
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: NSLocalizedString("HealthKit", comment: "HealthKit info unavaibile warning"),
+                                                      message: NSLocalizedString("Sorry, there is a problem with HelthKit. Please check app premissions on health data", comment: "Sorry, there is a problem with HelthKit. Please check app premissions on health data"),
+                                                      preferredStyle: .alert)
+                        
+                        if let url = URL(string: "x-apple-health://") {
+                            if UIApplication.shared.canOpenURL(url) {
+                                alert.addAction(UIAlertAction(title: NSLocalizedString("Open Health", comment: "Open Apple Health app"), style: UIAlertAction.Style.default) {_ in
+                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                })
+                            }
+                        }
+
+                        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel button title"), style: UIAlertAction.Style.cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    return
+                }
+            }
+            UserNotificationManager.requestAuthorization(actionIfDenied: nil)
+        }
         if let parrent = tabBarController as? MainTabBarController{
             parrent.model = model
         }
@@ -60,6 +83,11 @@ class MainVC: UIViewController {
                 present(_walkthroughVC, animated: true, completion: nil)
             }
         }
+    }
+    
+    @objc func applicationDidBecomeActive(notification: NSNotification) {
+        // Application is back in the foreground
+        loadSoberDate()
     }
     
     
@@ -117,15 +145,7 @@ class MainVC: UIViewController {
             durationLabel.isHidden = true
         }
     }
-    
-    
-    func HKAuthorization() {
-        HealthKitManager.authorizeHealthKit { (authorized, error) in
-            guard authorized else {
-                return // TODO: what error
-            }
-        }
-    }
+
     
     @objc func watchRequestedUpdate(){
         var response : [String:Any] = [:]

@@ -18,7 +18,8 @@ class VolumeAlertVC: UIViewController {
     
     var callback : (() -> Void)?
     var afterFavouritesChanged : (() -> Void)?
-    var model : AppModel? = nil //TODO: Implement
+    var model : AppModel? = nil 
+    
     
     @IBOutlet weak var theView: UIView!
     @IBOutlet weak var collection: UICollectionView!

@@ -17,7 +17,7 @@ class DayVC : UIViewController {
     var weekRecords : [DrinkRecord] = []
     var selectedDayRecords : [DrinkRecord] = []
     var callback : (() -> Void)?
-    var model : AppModel? = nil //TODO: Implement
+    var model : AppModel? = nil
     
     @IBOutlet weak var calendar: FSCalendar!
     @IBOutlet weak var todayDrinkTable: UITableView!
@@ -297,7 +297,7 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
             updateDeleteButtonText(numberOfSelected: tableView.indexPathsForSelectedRows?.count ?? 0)
         }
     }
-     // TODO: deselect all after swipe and deselec all after done edditing
+
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if tableView.isEditing {
             updateDeleteButtonText(numberOfSelected: tableView.indexPathsForSelectedRows?.count ?? 0)

@@ -1,3 +1,8 @@
+/* Class = "UILabel"; text = "Sober at:"; ObjectID = "1T1-na-Of0"; */
+"1T1-na-Of0.text" = "Střízlivý v:";
+
+/* Class = "UITableViewSection"; headerTitle = "Sync"; ObjectID = "4Dc-7c-1oI"; */
+"4Dc-7c-1oI.headerTitle" = "Synchronizace";
 
 /* Class = "UILabel"; text = "00:00"; ObjectID = "4YM-mf-Ea8"; */
 "4YM-mf-Ea8.text" = "00:00";
@@ -5,23 +10,65 @@
 /* Class = "UILabel"; text = "text"; ObjectID = "8VK-EY-fc3"; */
 "8VK-EY-fc3.text" = "text";
 
-/* Class = "UILabel"; text = "Label"; ObjectID = "Cc1-ZO-PbS"; */
-"Cc1-ZO-PbS.text" = "Label";
+/* Class = "UILabel"; text = "Clear favourite drinks"; ObjectID = "71O-MS-sit"; */
+"71O-MS-sit.text" = "Smazat oblíbené nápoje";
+
+/* Class = "UILabel"; text = "Account actual"; ObjectID = "bG7-Nr-HMK"; */
+"bG7-Nr-HMK.text" = "Zohlednit aktuální stav";
+
+/* Class = "UILabel"; text = " "; ObjectID = "cMf-BE-gZr"; */
+"cMf-BE-gZr.text" = " ";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "csA-kp-TRK"; */
+"csA-kp-TRK.text" = "180.0";
+
+/* Class = "UITableViewSection"; headerTitle = "Data"; ObjectID = "cY3-Am-XbA"; */
+"cY3-Am-XbA.headerTitle" = "Data";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "cyl-Gw-Wrl"; */
+"cyl-Gw-Wrl.normalTitle" = "Zrušit";
+
+/* Class = "UILabel"; text = "Height:"; ObjectID = "dij-nM-6m7"; */
+"dij-nM-6m7.text" = "Výška:";
 
 /* Class = "UITabBarItem"; title = "Drinks"; ObjectID = "DVp-NV-Fgb"; */
 "DVp-NV-Fgb.title" = "Nápoje";
 
+/* Class = "UITabBarItem"; title = "Main"; ObjectID = "fEN-Lz-Tdk"; */
+"fEN-Lz-Tdk.title" = "Hlavní";
+
+/* Class = "UILabel"; text = "text"; ObjectID = "iH0-sc-lVW"; */
+"iH0-sc-lVW.text" = "text";
+
+/* Class = "UILabel"; text = "1000 ml"; ObjectID = "kvg-kf-lSk"; */
+"kvg-kf-lSk.text" = "1000 ml";
+
+/* Class = "UILabel"; text = "Peak BAC:"; ObjectID = "L84-xz-UtI"; */
+"L84-xz-UtI.text" = "Maximální BAC:";
+
+/* Class = "UITextField"; text = "10:00"; ObjectID = "mKK-DM-6KH"; */
+"mKK-DM-6KH.text" = "10:00";
+
+/* Class = "UILabel"; text = "Show walkthrough"; ObjectID = "nCS-yx-cz5"; */
+"nCS-yx-cz5.text" = "Zobrazit tutorial";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "NfJ-bB-moK"; */
+"NfJ-bB-moK.text" = "72.0";
+
+/* Class = "UILabel"; text = "Hypotetical mode"; ObjectID = "nLn-2g-rO9"; */
+"nLn-2g-rO9.text" = "Hypotetický mód";
+
 /* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "NMK-Kt-ojF"; */
 "NMK-Kt-ojF.title" = "Nastavení";
 
-/* Class = "UILabel"; text = "72.0"; ObjectID = "NfJ-bB-moK"; */
-"NfJ-bB-moK.text" = "72.0";
+/* Class = "UILabel"; text = "Peak BAC"; ObjectID = "oxP-E1-ghH"; */
+"oxP-E1-ghH.text" = "Maximální BAC:";
+
+/* Class = "UINavigationItem"; title = "Hypotetical mode"; ObjectID = "QtV-xk-AQW"; */
+"QtV-xk-AQW.title" = "Hypotetický mód";
 
 /* Class = "UINavigationItem"; title = "My profile"; ObjectID = "Qze-7h-ksW"; */
 "Qze-7h-ksW.title" = "Profil";
-
-/* Class = "UILabel"; text = "Label"; ObjectID = "R7j-wy-uBY"; */
-"R7j-wy-uBY.text" = "Label";
 
 /* Class = "UILabel"; text = "text"; ObjectID = "RDc-M3-abj"; */
 "RDc-M3-abj.text" = "text";
@@ -35,50 +82,17 @@
 /* Class = "UILabel"; text = "Current BAC"; ObjectID = "ULr-04-Jxq"; */
 "ULr-04-Jxq.text" = "Aktuální BAC:";
 
-/* Class = "UILabel"; text = "1d 23h 50min"; ObjectID = "cMf-BE-gZr"; */
-"cMf-BE-gZr.text" = " ";
-
-/* Class = "UITableViewSection"; headerTitle = "Data"; ObjectID = "cY3-Am-XbA"; */
-"cY3-Am-XbA.headerTitle" = "Data";
-
-/* Class = "UILabel"; text = "180.0"; ObjectID = "csA-kp-TRK"; */
-"csA-kp-TRK.text" = "180.0";
-
-/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "cyl-Gw-Wrl"; */
-"cyl-Gw-Wrl.normalTitle" = "Zrušit";
-
-/* Class = "UILabel"; text = "Height:"; ObjectID = "dij-nM-6m7"; */
-"dij-nM-6m7.text" = "Výška:";
-
-/* Class = "UITabBarItem"; title = "Main"; ObjectID = "fEN-Lz-Tdk"; */
-"fEN-Lz-Tdk.title" = "Hlavní";
-
-/* Class = "UILabel"; text = "text"; ObjectID = "iH0-sc-lVW"; */
-"iH0-sc-lVW.text" = "text";
-
-/* Class = "UILabel"; text = "1000 ml"; ObjectID = "kvg-kf-lSk"; */
-"kvg-kf-lSk.text" = "1000 ml";
-
-/* Class = "UITextField"; text = "10:00"; ObjectID = "mKK-DM-6KH"; */
-"mKK-DM-6KH.text" = "10:00";
-
-/* Class = "UILabel"; text = "Last export to Apple Health"; ObjectID = "wb1-MM-fds"; */
-"wb1-MM-fds.text" = "Apple Zdraví";
-
-/* Class = "UILabel"; text = "Show walkthrough"; ObjectID = "nCS-yx-cz5"; */
-"nCS-yx-cz5.text" = "Zobrazit tutorial";
-
-/* Class = "UILabel"; text = "Clear all settings"; ObjectID = "nLn-2g-rO9"; */
-"nLn-2g-rO9.text" = "Smazat oblíbené nápoje";
-
-/* Class = "UILabel"; text = "Peak BAC"; ObjectID = "oxP-E1-ghH"; */
-"oxP-E1-ghH.text" = "Maximální BAC:";
-
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "usg-Vi-onj"; */
 "usg-Vi-onj.title" = "Nastavení";
 
 /* Class = "UITabBarItem"; title = "Profile"; ObjectID = "w5Y-cD-INs"; */
 "w5Y-cD-INs.title" = "Profil";
+
+/* Class = "UILabel"; text = "Apple Health"; ObjectID = "wb1-MM-fds"; */
+"wb1-MM-fds.text" = "Apple Zdraví";
+
+/* Class = "UILabel"; text = "Import"; ObjectID = "yiQ-vK-UnV"; */
+"yiQ-vK-UnV.text" = "Importovat";
 
 /* Class = "UILabel"; text = "Fernet stock citrus"; ObjectID = "z6a-5k-75c"; */
 "z6a-5k-75c.text" = "Fernet stock citrus";
@@ -86,5 +100,6 @@
 /* Class = "UILabel"; text = "Label"; ObjectID = "zCJ-k3-sbI"; */
 "zCJ-k3-sbI.text" = "Label";
 
-/* Class = "UITabBarItem"; title = "Callendar"; ObjectID = "zj7-Pk-EMp"; */
+/* Class = "UITabBarItem"; title = "Calendar"; ObjectID = "zj7-Pk-EMp"; */
 "zj7-Pk-EMp.title" = "Kalendář";
+
