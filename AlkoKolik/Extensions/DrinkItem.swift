@@ -87,6 +87,10 @@ enum DrinkType: Comparable, Hashable{
         }
     }
     
+    static func allTypes() -> [DrinkType]{
+        return [.beer, .wine, .cider, .liqueur, .spirit, .vodka, .rum, .whiskey, .gin, .tequila, .cocktail, .none]
+    }
+    
     func firstLetter () -> String {
         if let char = self.text().first {
             return String(char)

@@ -13,7 +13,7 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
     var selectedVolume : Int?
     var selectedDate : Date = Date()
     let datePicker = UIDatePicker()
-    let volumePickerView = UIPickerView()
+    let volumePickerView = UIPickerView() //TODO: předělat na lazy var
     var model : AppModel?
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!

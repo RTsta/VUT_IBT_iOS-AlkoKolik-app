@@ -13,6 +13,7 @@ class DrinkListContainerVC : UITableViewController {
     weak var delegate: DrinkListVCDelegate?
     
     var isTableSelectable : Bool = false
+    var showAddCustom : Bool = false
     
     lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
     var childFavVC : FavouriteButtonsVC? = nil

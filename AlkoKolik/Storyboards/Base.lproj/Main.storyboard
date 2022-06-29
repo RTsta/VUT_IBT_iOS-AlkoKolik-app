@@ -837,7 +837,7 @@
             <objects>
                 <tableViewController interfaceStyle="dark" id="MMv-i2-SYe" customClass="DrinkListContainerVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2KD-gQ-UZz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="497"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <prototypes>
@@ -1210,6 +1210,50 @@
             </objects>
             <point key="canvasLocation" x="4265" y="550"/>
         </scene>
+        <!--Add Custom Drink TableVC-->
+        <scene sceneID="szc-lg-J2E">
+            <objects>
+                <tableViewController id="fV7-dv-jWl" customClass="AddCustomDrinkTableVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="ItJ-TQ-k0a">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_custom_drink_cell" id="7vQ-mP-cCk" customClass="AddCustomDrinkCell" customModule="AlkoKolik" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="49.5" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7vQ-mP-cCk" id="FRx-1O-kkU">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Fv-Sd-jhP">
+                                            <rect key="frame" x="16" y="12.5" width="343" height="18.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="7Fv-Sd-jhP" secondAttribute="trailing" constant="16" id="Xyv-9f-7Ja"/>
+                                        <constraint firstItem="7Fv-Sd-jhP" firstAttribute="centerY" secondItem="FRx-1O-kkU" secondAttribute="centerY" id="bfI-w8-TZw"/>
+                                        <constraint firstItem="7Fv-Sd-jhP" firstAttribute="leading" secondItem="FRx-1O-kkU" secondAttribute="leading" constant="16" id="ewD-VJ-UKW"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" name="appDarkGray"/>
+                                <connections>
+                                    <outlet property="textField" destination="7Fv-Sd-jhP" id="9uW-jc-7uV"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="fV7-dv-jWl" id="yta-Kh-41g"/>
+                            <outlet property="delegate" destination="fV7-dv-jWl" id="FoF-r9-9cp"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zaR-oA-H4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1768.8" y="1542.2788605697153"/>
+        </scene>
         <!--Volume AlertVC-->
         <scene sceneID="lFY-UQ-HMa">
             <objects>
@@ -1456,7 +1500,7 @@
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="q1M-on-g7Y"/>
-        <segue reference="nkK-8k-ucd"/>
+        <segue reference="GxN-Uk-dMP"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="btn_add_drink_small" width="23.5" height="23.5"/>
@@ -1476,16 +1520,16 @@
             <color red="0.47100001573562622" green="0.47100001573562622" blue="0.50199997425079346" alpha="0.15999999642372131" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appDarkGray">
-            <color red="0.093999996781349182" green="0.10599999874830246" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.094117647058823528" green="0.10588235294117647" blue="0.10980392156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appGray">
-            <color red="0.46700000762939453" green="0.52899998426437378" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appInfoLabel">
             <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appMax">
-            <color red="0.875" green="0.16099999845027924" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.87450980392156863" green="0.16078431372549021" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
