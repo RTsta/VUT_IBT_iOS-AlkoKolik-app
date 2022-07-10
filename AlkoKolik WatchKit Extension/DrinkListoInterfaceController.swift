@@ -11,7 +11,7 @@ import Foundation
 
 class DrinkListoInterfaceController: WKInterfaceController {
     
-    var drinks = ListOfDrinksManager.loadAllDrinks()
+    var drinks = DefaultDrinksManager.loadAllDrinks()
     @IBOutlet weak var drinkTable: WKInterfaceTable!
     
     override func awake(withContext context: Any?) {

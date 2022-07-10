@@ -41,7 +41,7 @@ class FavouriteButtonsVC: UIViewController {
     func reload(){
         if willNeedReloadFavourites {
             favourites = model?.favourites
-            fullDrinkItems = model?.fullDrinkItems ?? []
+            fullDrinkItems = model?.fullFavouriteDrinkItems ?? []
             favCollection.reloadData()
             willNeedReloadFavourites = false
         }

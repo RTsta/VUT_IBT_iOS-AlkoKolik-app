@@ -13,7 +13,7 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
     var selectedVolume : Int?
     var selectedDate : Date = Date()
     let datePicker = UIDatePicker()
-    let volumePickerView = UIPickerView()
+    let volumePickerView = UIPickerView() //TODO: předělat na lazy var
     var model : AppModel?
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
@@ -49,20 +49,9 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
     }
     
     func createDatePicker(){
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneDatePickerPressed))
-        doneBtn.tintColor = UIColor(named: "appButoon")
-        let btnSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([btnSpace, doneBtn], animated: true)
-
-        
-        timeText.inputAccessoryView = toolBar
         datePicker.preferredDatePickerStyle = .wheels
         timeText.inputView = datePicker
         datePicker.datePickerMode = .time
-        
         datePicker.addTarget(self, action: #selector(datePickerChangedValue), for: .valueChanged)
     }
     
@@ -79,15 +68,6 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
         volumePickerView.dataSource = self
         volumePickerView.delegate = self
         
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneVolumePickerPressed))
-        doneBtn.tintColor = UIColor(named: "appButoon")
-        let btnSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([btnSpace,doneBtn], animated: true)
-        
-        volumeText.inputAccessoryView = toolBar
         volumeText.inputView = volumePickerView
     }
     
@@ -112,7 +92,7 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
            let _model = model{
             vc.delegate = self
             vc.model = _model
-            vc.isTableSelectable = true
+            vc.containerUsage = .addDrink
         }
     }
     

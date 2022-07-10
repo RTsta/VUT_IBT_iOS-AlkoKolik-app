@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ListOfDrinksManager {
+class DefaultDrinksManager {
     
     private static var fileName : String = "listOfDrinks"
     private static var fileType : String = "json"
@@ -30,10 +30,8 @@ class ListOfDrinksManager {
                           let active = drink["active"] as? Bool
                     else {return nil}
                     
-                    let enumType : DrinkType = DrinkItem.getType(withName: type)
-                    if active{
-                        parsedDrinks.append(DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType))
-                    }
+                    let enumType : DrinkType = DrinkType.getType(withName: type)
+                    parsedDrinks.append(DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType, active: active))
                 }
                 return parsedDrinks
             }
@@ -58,10 +56,11 @@ class ListOfDrinksManager {
                         guard let name = drink["name"] as? String,
                               let volumes = drink["volume"] as? [Double],
                               let percentage = drink["percentage"] as? Double,
-                              let type = drink["type"] as? String
+                              let type = drink["type"] as? String,
+                              let active = drink["active"] as? Bool
                         else {return nil}
-                        let enumType : DrinkType = DrinkItem.getType(withName: type)
-                        return DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType)
+                        let enumType : DrinkType = DrinkType.getType(withName: type)
+                        return DrinkItem(id: id, name: name, volume: volumes, alcoholPercentage: percentage, type: enumType, active: active)
                     }
                 }
             }

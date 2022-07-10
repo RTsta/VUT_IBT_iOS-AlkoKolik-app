@@ -13,34 +13,23 @@ struct DrinkItem {
     let volume : [Double] //volume in ml
     let alcoholPercentage : Double
     let type : DrinkType
+    let active : Bool
     
-    static func getType(withName: String) -> DrinkType {
-        switch withName {
-        case "beer":
-            return .beer
-        case "wine", "aperitive":
-            return .wine
-        case "cider":
-            return .cider
-        case "cocktail":
-            return .cocktail
-        case "liquer":
-            return .liqueur
-        case "spirit":
-            return .spirit
-        case "vodka":
-            return .vodka
-        case "rum":
-            return .rum
-        case "whiskey":
-            return .whiskey
-        case "gin":
-            return .gin
-        case "tequila":
-            return .tequila
-        default:
-            return .none
+    static func createFrom(_ drink: CustomDrink) -> Self? {
+        guard let _volumes = drink.volumes,
+              let _name = drink.name,
+              let _type = drink.type else {return nil}
+        return DrinkItem(id: Int(drink.drink_id), name: _name, volume: _volumes, alcoholPercentage: drink.percentage, type: DrinkType.getType(withName: _type),active: drink.active)
+    }
+    
+    static func createFrom(_ drinks: [CustomDrink]) -> [Self] {
+        var result : [Self] = []
+        for drink in drinks {
+            if let _drink = self.createFrom(drink) {
+                result.append(_drink)
+            }
         }
+        return result
     }
 }
 
@@ -85,6 +74,70 @@ enum DrinkType: Comparable, Hashable{
         case .none:
             return ""
         }
+    }
+    
+    static func getType(withName: String) -> DrinkType {
+        switch withName {
+        case "beer":
+            return .beer
+        case "wine", "aperitive":
+            return .wine
+        case "cider":
+            return .cider
+        case "cocktail":
+            return .cocktail
+        case "liquer":
+            return .liqueur
+        case "spirit":
+            return .spirit
+        case "vodka":
+            return .vodka
+        case "rum":
+            return .rum
+        case "whiskey":
+            return .whiskey
+        case "gin":
+            return .gin
+        case "tequila":
+            return .tequila
+        default:
+            return .none
+        }
+    }
+    
+    func getString() -> String {
+        switch self{
+        case .none:
+            return ""
+        case .beer:
+            return "beer"
+        case .wine:
+            return "wine"
+        case .cider:
+            return "cider"
+        case .liqueur:
+            return "liqueur"
+        case .spirit:
+            return "spirit"
+        case .cocktail:
+            return "cocktail"
+        case .vodka:
+            return "vodka"
+        case .rum:
+            return "rum"
+        case .whiskey:
+            return "whiskey"
+        case .gin:
+            return "gin"
+        case .tequila:
+            return "tequila"
+        }
+    }
+    
+    
+    
+    static func allTypes() -> [DrinkType]{
+        return [.beer, .wine, .cider, .liqueur, .spirit, .vodka, .rum, .whiskey, .gin, .tequila, .cocktail, .none]
     }
     
     func firstLetter () -> String {

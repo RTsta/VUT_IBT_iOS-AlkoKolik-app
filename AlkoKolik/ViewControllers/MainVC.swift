@@ -68,7 +68,7 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        model.update(complition: nil)
+        model.updateSimulation(complition: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

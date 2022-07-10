@@ -256,7 +256,7 @@ extension DayVC: UITableViewDelegate, UITableViewDataSource {
            let idOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "drink_id") as? Int,
            let volumeOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "volume") as? Double,
            let timestempOfDrink = selectedDayRecords[indexPath.row-1].value(forKey: "timestemp") as? Date,
-           let cellForDrink = ListOfDrinksManager.findDrink(drink_id: idOfDrink) {
+           let cellForDrink = model?.findDrinkBy(id: idOfDrink) {
             let time = Calendar.current.dateComponents([.hour, .minute], from: timestempOfDrink)
             cell.style = .drink
             cell.backgroundColor = UIColor.colorFor(drinkType: cellForDrink.type)
