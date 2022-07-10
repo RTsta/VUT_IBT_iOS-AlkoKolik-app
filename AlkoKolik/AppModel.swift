@@ -18,24 +18,32 @@ class AppModel {
     
     private let model = SimulationAlcoholModel()
     
+    // Personal data properties
+    //--------------------
     private var personalData : PersonalData?
     
+    // Alcohol model data properties
+    //--------------------
     var dataSet : [RFactorMethod : ConcetrationData?] = [:]
     var currentBAC : Concentration?
     var peakBAC : Double?
     var soberDate : Date? {didSet{
-        
         if let _soberDate = soberDate, _soberDate > Date(){
             if !Calendar.current.isDate(oldValue ?? Date(), equalTo: _soberDate, toGranularity: .minute){
                     UserNotificationManager.planSoberNotification(for: _soberDate)
             }
         }else {UserNotificationManager.disableSoberNotification()}
     }}
+    
+    // Favourtite drinks properties
     //--------------------
     lazy var favourites : [FavouriteDrink] = {return UserDefaultsManager.loadFavouriteDrinks() ?? []}()
-    lazy var fullDrinkItems : [DrinkItem] = {return self.loadFullDrinkItems()}()
+    lazy var fullFavouriteDrinkItems : [DrinkItem] = {return self.loadFullDrinkItems()}()
+    //All drinks properties
     //--------------------
-    lazy var listOfDrinks : [DrinkItem] = {return ListOfDrinksManager.loadAllDrinks() ?? []}()
+    lazy var customDrinks : [DrinkItem] = { return DrinkItem.createFrom(CoreDataManager.fetchCustomDrinksAll()) }()
+    lazy var defaultDrinks : [DrinkItem] = { return DefaultDrinksManager.loadAllDrinks() ?? [] }()
+    lazy var listOfAllDrinks : [DrinkItem] = { return customDrinks + defaultDrinks }()
     //-------------------
     //---------------------
     
@@ -89,7 +97,7 @@ class AppModel {
         return nil
     }
     
-    func update(complition: (([Concentration]?,Concentration?,Date?,Bool)->Void)? = nil){
+    func updateSimulation(complition: (([Concentration]?,Concentration?,Date?,Bool)->Void)? = nil){
         if personalData == nil {loadPersonalData(complition: nil)}
         simulateAlcoholModel(useMethod: [.average],storeResults: true, complition: complition)
     }
@@ -122,7 +130,7 @@ class AppModel {
     }
     
     @objc func favouriteBtnPressed(){
-        update(complition: nil)
+        updateSimulation(complition: nil)
     }
     
     private func findCurrentBAC(inGraph input: ConcetrationData) -> Concentration{
@@ -160,11 +168,21 @@ class AppModel {
         return .zero
     }
     
+
+    
+    func findDrinkBy(id: Int) -> DrinkItem? {
+        return listOfAllDrinks.first(where: {$0.id == id})
+    }
+}
+
+//Favourite drink - methods
+extension AppModel {
     private func loadFullDrinkItems() -> [DrinkItem]{
+        updateCustomDrinks() //they are more likely to be often changed, maybe unefficient, maybe in future refactored to better sollution
         var items : [DrinkItem] = []
         for drink in favourites {
-            let elem = ListOfDrinksManager.findDrink(drink_id: drink.drinkId)
-            ?? DrinkItem(id: -1, name: "", volume: [0], alcoholPercentage: 0, type: .none)
+            let elem = listOfAllDrinks.first(where: {$0.id == drink.drinkId})
+            ?? DrinkItem(id: -1, name: "", volume: [0], alcoholPercentage: 0, type: .none, active: true)
             items.append(elem)
         }
         return items
@@ -173,16 +191,25 @@ class AppModel {
     @objc func reloadFavourites(){
         if let _defaultsFavourites = UserDefaultsManager.loadFavouriteDrinks(){
             favourites = _defaultsFavourites
-            fullDrinkItems = self.loadFullDrinkItems()
+            fullFavouriteDrinkItems = self.loadFullDrinkItems()
         }
     }
+}
+
+extension AppModel{
     
-    func findDrinkBy(id: Int) -> DrinkItem? {
-        for drink in listOfDrinks {
-            if drink.id == id {
-                return drink
-            }
-        }
-        return nil
+    func updateCustomDrinks(){
+        customDrinks = DrinkItem.createFrom(CoreDataManager.fetchCustomDrinksAll())
+        listOfAllDrinks = customDrinks + defaultDrinks
+    }
+    
+    func isDefault(drink: DrinkItem) -> Bool {
+        return self.defaultDrinks.contains(where: {$0.id == drink.id})
+    }
+    func isCustom(drink: DrinkItem) -> Bool {
+        return self.customDrinks.contains(where: {$0.id == drink.id})
+    }
+    func isFavourite(drink: DrinkItem) -> Bool {
+        return self.fullFavouriteDrinkItems.contains(where: {$0.id == drink.id})
     }
 }

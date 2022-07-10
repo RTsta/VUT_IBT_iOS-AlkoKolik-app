@@ -46,6 +46,9 @@ class SettingsVC: UITableViewController  {
         if let vc = segue.destination as? HypotheticalModeVC {
             vc.model = model1
         }
+        if let vc = segue.destination as? CustomDrinksListVC {
+            vc.model = model1
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,12 +62,12 @@ class SettingsVC: UITableViewController  {
         return cell
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch tableView.cellForRow(at: indexPath)?.reuseIdentifier {
         case "settings_cell_clear_all":
             UserDefaultsManager.saveFavourite(drinks: [])
+            NotificationCenter.default.post(name: .favouriteNeedsReload, object: nil)
         case "settings_cell_show_walkthrough":
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
             if let _walkthroughVC = storyboard.instantiateViewController(identifier: "WalkthroughVC") as? WalkthroughVC{

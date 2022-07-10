@@ -82,7 +82,7 @@ class VolumeAlertVC: UIViewController {
     }
     
     func reloadeVolumes(){
-        if let _list = ListOfDrinksManager.loadAllDrinks(),
+        if let _list = DefaultDrinksManager.loadAllDrinks(),
            let _selected = selectedDrink,
            let _elem = _list.first(where: {($0.id == _selected.id)}) {
             volumesArray = _elem.volume

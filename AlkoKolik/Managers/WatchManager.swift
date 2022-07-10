@@ -44,10 +44,10 @@ extension WatchManager: WCSessionDelegate{
     }
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-        
+        //FIXME: DefaultDrinksManager.findDrink doesnt load custom drinks
         if let drinkId = message["drink_id"] as? Int,
            let volume = message["selectedVolume"] as? Int,
-           let drink = ListOfDrinksManager.findDrink(drink_id: drinkId){
+           let drink = DefaultDrinksManager.findDrink(drink_id: drinkId){
             DispatchQueue.main.async {
                 CoreDataManager.insertRecord(drink: drink, volumeOpt: volume, time: Date())
             }
@@ -58,9 +58,10 @@ extension WatchManager: WCSessionDelegate{
             NotificationCenter.default.post(name: .watchRequestedUpdate, object: nil)
         }
         
+        //FIXME: DefaultDrinksManager.findDrink doesnt load custom drinks
         if let drinkId = message["drink_id"] as? Int,
            let volume = message["selectedFavouriteVolume"] as? Double,
-           let drink = ListOfDrinksManager.findDrink(drink_id: drinkId){
+           let drink = DefaultDrinksManager.findDrink(drink_id: drinkId){
             DispatchQueue.main.async {
                 CoreDataManager.insertRecord(drink: drink, volumeOpt: 0, time: Date(), volumeMl: volume)
             }

@@ -98,7 +98,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         
         graphView.xAxis.drawGridLinesEnabled = false
         graphView.rightAxis.enabled = false
-        graphView.chartDescription?.enabled = false
+        graphView.chartDescription.enabled = false
         graphView.legend.enabled = false
         graphView.xAxis.drawLabelsEnabled = false
     }
@@ -178,7 +178,7 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                 let line = ChartLimitLine(limit: counter, label: NSLocalizedString("now", comment: "Now at Charts graph displaying current line"))
                 line.lineColor = .appMax
                 line.valueTextColor = .appText
-                line.labelPosition = .bottomLeft
+                line.labelPosition = .leftBottom
                 graphView.xAxis.addLimitLine(line)
             }
             
@@ -265,9 +265,10 @@ private extension ProfileVC {
             set.colors = [.appMax]
             set.label = "Average"
         default:
-            let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
-            let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
-            set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+            //let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
+            //TODO: remove
+            //let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
+            //set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
             set.drawFilledEnabled = true
             set.fillColor = .appMax
             set.colors = [.appMax]
