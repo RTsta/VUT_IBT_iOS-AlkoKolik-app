@@ -19,10 +19,6 @@ class DrinkListVC : UIViewController, DrinkListVCDelegate {
     @IBOutlet weak var favouritesViewHeight: NSLayoutConstraint!
     @IBOutlet weak var favouritesContainerView: UIView!
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(adjustFavouriteCollectionHeight), name: .favouriteNeedsReload, object: nil)
@@ -39,6 +35,10 @@ class DrinkListVC : UIViewController, DrinkListVCDelegate {
             parrent.model = new
         }
         return new
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     

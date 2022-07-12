@@ -63,7 +63,7 @@
 		8FAEAD7D25EA9F36008F2457 /* UIFavouriteDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkCell.swift */; };
 		8FBAAE4925FBA01A00F8FDCE /* VolumeAlertViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBAAE4825FBA01A00F8FDCE /* VolumeAlertViewCell.swift */; };
 		8FC81B3325FD4142007C0350 /* SimulationAlcoholModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81B3225FD4142007C0350 /* SimulationAlcoholModel.swift */; };
-		8FD3246227A6E3A400D6B629 /* AddCustomDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3246127A6E3A400D6B629 /* AddCustomDrinkCell.swift */; };
+		8FD3246227A6E3A400D6B629 /* OneCustomDrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD3246127A6E3A400D6B629 /* OneCustomDrinkCell.swift */; };
 		8FDA0F2526455FDE0090CABB /* SettingsSyncCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FDA0F2426455FDE0090CABB /* SettingsSyncCell.swift */; };
 		8FE3539D25ED15DB005CD98D /* FavouriteButtonsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */; };
 		8FF0CFAF25FE85AD008E2269 /* FavouriteDrink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */; };
@@ -170,7 +170,7 @@
 		8FAEAD7C25EA9F36008F2457 /* UIFavouriteDrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFavouriteDrinkCell.swift; sourceTree = "<group>"; };
 		8FBAAE4825FBA01A00F8FDCE /* VolumeAlertViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeAlertViewCell.swift; sourceTree = "<group>"; };
 		8FC81B3225FD4142007C0350 /* SimulationAlcoholModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationAlcoholModel.swift; sourceTree = "<group>"; };
-		8FD3246127A6E3A400D6B629 /* AddCustomDrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCustomDrinkCell.swift; sourceTree = "<group>"; };
+		8FD3246127A6E3A400D6B629 /* OneCustomDrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneCustomDrinkCell.swift; sourceTree = "<group>"; };
 		8FDA0F2426455FDE0090CABB /* SettingsSyncCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSyncCell.swift; sourceTree = "<group>"; };
 		8FE3539C25ED15DB005CD98D /* FavouriteButtonsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteButtonsVC.swift; sourceTree = "<group>"; };
 		8FF0CFAE25FE85AD008E2269 /* FavouriteDrink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteDrink.swift; sourceTree = "<group>"; };
@@ -199,6 +199,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F0E9F4E287D99470064D899 /* CustomDrinks */ = {
+			isa = PBXGroup;
+			children = (
+				8F95606628779ACD00C35A16 /* CustomDrinksListVC.swift */,
+				8F12C5CC27A6E57D00124DBB /* OneCustomDrinkTableVC.swift */,
+			);
+			path = CustomDrinks;
+			sourceTree = "<group>";
+		};
 		8F271EC725DC0CA600B76513 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +230,7 @@
 		8F321CD925ED717600E3CFFC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				8F0E9F4E287D99470064D899 /* CustomDrinks */,
 				8F3D5C32263F42D300D9B34D /* Walkthrough */,
 				8F386B38267EA39F0047C919 /* Containers */,
 				8FABAC46261C68890039FE68 /* MainTabBarController.swift */,
@@ -241,9 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				8F386B33267E3B8B0047C919 /* TestVC.swift */,
-				8F12C5CC27A6E57D00124DBB /* OneCustomDrinkTableVC.swift */,
-				8F95606628779ACD00C35A16 /* CustomDrinksListVC.swift */,
-				8FD3246127A6E3A400D6B629 /* AddCustomDrinkCell.swift */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -351,6 +358,7 @@
 		8F5872C125EFEEB8001CE464 /* TableCells */ = {
 			isa = PBXGroup;
 			children = (
+				8FD3246127A6E3A400D6B629 /* OneCustomDrinkCell.swift */,
 				8F5872C225EFEF47001CE464 /* ProfileViewInfoCell.swift */,
 				8F2F531F25ED91B600313656 /* DrinkListCell.swift */,
 				8F3651C725FA3A7C00055826 /* TodayDrinkTableCell.swift */,
@@ -536,7 +544,7 @@
 				8FAE551A2713645D00A367E8 /* HypoMDrinkListContainerVC.swift in Sources */,
 				8F386B30267A44AF0047C919 /* DrinkListContainerVC.swift in Sources */,
 				8F49304725FACBC50073DCC6 /* TodayDrinkAddTableCell.swift in Sources */,
-				8FD3246227A6E3A400D6B629 /* AddCustomDrinkCell.swift in Sources */,
+				8FD3246227A6E3A400D6B629 /* OneCustomDrinkCell.swift in Sources */,
 				8F48195E25FB949D00A3B597 /* VolumeAlertVC.swift in Sources */,
 				8F69E9D025FBEB34009A5CFF /* AddDrinkVC.swift in Sources */,
 				8F3D5C34263F42F600D9B34D /* WalkthroughContentVC.swift in Sources */,

@@ -20,10 +20,6 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
     
     var expandedDrink : DrinkItem? = nil
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     lazy var picker : UIPickerView = {
         let picker = UIPickerView()
         picker.autoresizingMask = .flexibleWidth

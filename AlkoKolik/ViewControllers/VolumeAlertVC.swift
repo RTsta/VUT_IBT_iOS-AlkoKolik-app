@@ -58,10 +58,6 @@ class VolumeAlertVC: UIViewController {
         callback?()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     func initFavourites(){
         favourites = model?.favourites
     }

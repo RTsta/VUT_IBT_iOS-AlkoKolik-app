@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddCustomDrinkCell: UITableViewCell {
+class OneCustomDrinkCell: UITableViewCell {
     
     
     @IBOutlet weak var textField: UITextField!

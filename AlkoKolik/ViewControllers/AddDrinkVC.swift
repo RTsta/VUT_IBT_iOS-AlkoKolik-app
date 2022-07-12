@@ -37,10 +37,6 @@ class AddDrinkVC: UIViewController, DrinkListVCDelegate {
         
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     @IBAction func saveBtnPressed(_ sender: Any) {
         guard let _drink = selectedDrink,
               let _volume = selectedVolume else {fatalError("something is not selected ")}

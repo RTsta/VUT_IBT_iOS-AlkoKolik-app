@@ -85,15 +85,13 @@ class MainVC: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @objc func applicationDidBecomeActive(notification: NSNotification) {
         // Application is back in the foreground
         loadSoberDate()
-    }
-    
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     //MARK: - TIMER

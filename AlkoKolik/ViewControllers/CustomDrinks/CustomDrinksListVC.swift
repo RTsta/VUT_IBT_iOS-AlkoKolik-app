@@ -23,10 +23,6 @@ class CustomDrinksListVC: UIViewController, DrinkListVCDelegate {
         }
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     func didSelectedDrink(_ drink: DrinkItem?) {
         selectedDrink = drink
         performSegue(withIdentifier: "one_custom_drink_segue", sender: nil)

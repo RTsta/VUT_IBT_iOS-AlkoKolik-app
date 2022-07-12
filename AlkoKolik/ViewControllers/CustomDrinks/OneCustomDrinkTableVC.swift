@@ -43,28 +43,23 @@ class OneCustomDrinkTableVC: UITableViewController  {
         navBarRightBtn.target = self
         navBarRightBtn.action = #selector(navBarRightBtnPressed)
         navBarRightBtn.isEnabled = false
-        if let _ = drink {navBarRightBtn.title = "Update"}
-        else {navBarRightBtn.title = "Insert"} //TODO: Localize
+        navBarRightBtn.title = NSLocalizedString("Done", comment: "Done")
         checkNavBarRightBtnConditions()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     @objc func updateCustomDrinkName(){
-        guard let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AddCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
+        guard let nameCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? OneCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
         customDrinkName = nameCell.textField.text ?? ""
     }
     
     @objc func updateCustomDrinkPercentage(){
-        guard let percentageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? AddCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
+        guard let percentageCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? OneCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
         customDrinkPercentage = Double(percentageCell.textField.text?.replacingOccurrences(of: ",", with: ".") ?? "0.0") ?? 0.0
     }
     
     @objc func updateCustomDrinkVolumes(){
         for rowNum in 0..<self.tableView.numberOfRows(inSection: 1)-1{
-            guard let volumeCell = tableView.cellForRow(at: IndexPath(row: rowNum, section: 1)) as? AddCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
+            guard let volumeCell = tableView.cellForRow(at: IndexPath(row: rowNum, section: 1)) as? OneCustomDrinkCell else { print("Error - AddCustromDrinkTableVC - not a instance of AddCustomDrinkCell"); return }
             volumes[rowNum] = volumeCell.textField.text ?? ""
         }
     }
@@ -140,17 +135,17 @@ class OneCustomDrinkTableVC: UITableViewController  {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "add_custom_drink_cell") as? AddCustomDrinkCell else {fatalError("Cell is not an instance of AddCustomDrinkCell.")}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "add_custom_drink_cell") as? OneCustomDrinkCell else {fatalError("Cell is not an instance of AddCustomDrinkCell.")}
         
         switch indexPath.section {
         case 0:
             switch indexPath.row{
             case 0:
-                cell.textField.placeholder = "Name"
+                cell.textField.placeholder = NSLocalizedString("Name", comment: "Name (of drink)")
                 cell.textField.text = customDrinkName
                 cell.textField.addTarget(self, action: #selector(updateCustomDrinkName), for: .editingChanged)
             case 1:
-                cell.textField.placeholder = "Type"
+                cell.textField.placeholder = NSLocalizedString("Type", comment: "Type (of drink)")
                 cell.textField.text = customDrinkType.text()
                 cell.textField.inputView = typePickerView
                 cell.textField.tintColor = .clear
@@ -164,14 +159,14 @@ class OneCustomDrinkTableVC: UITableViewController  {
             }
         case 1:
             cell.textField.keyboardType = .decimalPad
-            cell.textField.placeholder = "volume"
+            cell.textField.placeholder = NSLocalizedString("Volume", comment: "Volume")
             cell.textField.isEnabled = true
             cell.textField.addTarget(self, action: #selector(updateCustomDrinkVolumes), for: .editingChanged)
             if indexPath.row < volumes.count {
                 cell.textField.text = volumes[indexPath.row]
                 cell.textField.keyboardType = .decimalPad
             }else {
-                cell.textField.text = "Insert volume"
+                cell.textField.text = NSLocalizedString("add volume", comment: "add volume")
                 cell.textField.isEnabled = false
             }
         default:
@@ -184,7 +179,7 @@ class OneCustomDrinkTableVC: UITableViewController  {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .insert{
             //case, where is not previous cell filled with any value, so it doesnt let you to create next cell
-            if let previousCell = tableView.cellForRow(at: IndexPath(row: indexPath.row-1, section: indexPath.section)) as? AddCustomDrinkCell, previousCell.textField.text == "" {
+            if let previousCell = tableView.cellForRow(at: IndexPath(row: indexPath.row-1, section: indexPath.section)) as? OneCustomDrinkCell, previousCell.textField.text == "" {
                 return
             }
             
@@ -193,7 +188,7 @@ class OneCustomDrinkTableVC: UITableViewController  {
                 return
             }
             
-            if let cell = tableView.cellForRow(at: indexPath) as? AddCustomDrinkCell{
+            if let cell = tableView.cellForRow(at: indexPath) as? OneCustomDrinkCell{
                 self.tableView.beginUpdates()
                 cell.textField.isEnabled = true
                 cell.textField.text = ""
@@ -227,7 +222,7 @@ extension OneCustomDrinkTableVC : UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         customDrinkType = DrinkType.allTypes()[row]
-        if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? AddCustomDrinkCell {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? OneCustomDrinkCell {
             cell.textField.text = customDrinkType.text()
             myDebugPrint(customDrinkType.text(), "text")
         }

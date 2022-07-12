@@ -23,11 +23,6 @@ class SettingsVC: UITableViewController  {
         dateformater.timeStyle = .short
         return dateformater
     }()
-
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +35,10 @@ class SettingsVC: UITableViewController  {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

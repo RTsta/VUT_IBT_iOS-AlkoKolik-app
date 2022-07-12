@@ -90,10 +90,6 @@ class DayVC : UIViewController {
         callback?()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     @IBAction func doneBtnPressed(_ sender: Any) {
         if todayDrinkTable.isEditing {
             todayDrinkTable.isEditing = false

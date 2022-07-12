@@ -22,12 +22,12 @@ class CalendarVC: UIViewController {
         setupCalendar()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         reloadData()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

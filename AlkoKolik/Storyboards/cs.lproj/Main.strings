@@ -37,8 +37,14 @@
 /* Class = "UITabBarItem"; title = "Main"; ObjectID = "fEN-Lz-Tdk"; */
 "fEN-Lz-Tdk.title" = "Hlavní";
 
+/* Class = "UITableViewController"; title = "New custom drink"; ObjectID = "fV7-dv-jWl"; */
+"fV7-dv-jWl.title" = "Nový vlastní nápoj";
+
 /* Class = "UILabel"; text = "text"; ObjectID = "iH0-sc-lVW"; */
 "iH0-sc-lVW.text" = "text";
+
+/* Class = "UIBarButtonItem"; title = "Insert"; ObjectID = "iwx-dn-0hp"; */
+"iwx-dn-0hp.title" = "Vložit";
 
 /* Class = "UILabel"; text = "1000 ml"; ObjectID = "kvg-kf-lSk"; */
 "kvg-kf-lSk.text" = "1000 ml";
@@ -55,7 +61,7 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "NfJ-bB-moK"; */
 "NfJ-bB-moK.text" = "72.0";
 
-/* Class = "UILabel"; text = "Hypotetical mode"; ObjectID = "nLn-2g-rO9"; */
+/* Class = "UILabel"; text = "Hypothetical mode"; ObjectID = "nLn-2g-rO9"; */
 "nLn-2g-rO9.text" = "Hypotetický mód";
 
 /* Class = "UIBarButtonItem"; title = "Settings"; ObjectID = "NMK-Kt-ojF"; */
@@ -64,7 +70,7 @@
 /* Class = "UILabel"; text = "Peak BAC"; ObjectID = "oxP-E1-ghH"; */
 "oxP-E1-ghH.text" = "Maximální BAC:";
 
-/* Class = "UINavigationItem"; title = "Hypotetical mode"; ObjectID = "QtV-xk-AQW"; */
+/* Class = "UINavigationItem"; title = "Hypothetical mode"; ObjectID = "QtV-xk-AQW"; */
 "QtV-xk-AQW.title" = "Hypotetický mód";
 
 /* Class = "UINavigationItem"; title = "My profile"; ObjectID = "Qze-7h-ksW"; */
@@ -90,6 +96,9 @@
 
 /* Class = "UILabel"; text = "Apple Health"; ObjectID = "wb1-MM-fds"; */
 "wb1-MM-fds.text" = "Apple Zdraví";
+
+/* Class = "UILabel"; text = "Custom drinks"; ObjectID = "xYF-Rq-SFo"; */
+"xYF-Rq-SFo.text" = "Vlastní nápoje";
 
 /* Class = "UILabel"; text = "Import"; ObjectID = "yiQ-vK-UnV"; */
 "yiQ-vK-UnV.text" = "Importovat";

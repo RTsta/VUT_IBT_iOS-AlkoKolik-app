@@ -26,10 +26,6 @@ class DrinkListContainerVC : UITableViewController {
     private var categoriesOfDrinks = [DrinkType]()
     var selectedIndexPath : IndexPath = IndexPath()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadListOfDrinks()
