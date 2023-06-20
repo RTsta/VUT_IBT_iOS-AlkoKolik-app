@@ -45,10 +45,6 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         setupCharts()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.currentBAC = model1.currentBAC ?? 0
@@ -86,13 +82,19 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
         graphView.delegate = self
         
         graphView.gridBackgroundColor = .appMin
-        graphView.backgroundColor = .appGrey
+        graphView.backgroundColor = .appBackground
         
         graphView.leftAxis.axisMaximum = 3.0
         graphView.leftAxis.axisMinimum = 0
+        graphView.leftAxis.labelTextColor = .appGrey
+        graphView.leftAxis.gridColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 1) //MARK: In future think about som different color
+        graphView.leftAxis.gridLineDashLengths = [1.0, 1.0]
+        graphView.legend.textColor = .appText
         
+        
+        graphView.xAxis.drawGridLinesEnabled = false
         graphView.rightAxis.enabled = false
-        graphView.chartDescription?.enabled = false
+        graphView.chartDescription.enabled = false
         graphView.legend.enabled = false
         graphView.xAxis.drawLabelsEnabled = false
     }
@@ -155,17 +157,24 @@ class ProfileVC: UITableViewController, ChartViewDelegate {
                 if ((component.hour ?? 1) % 24 ) == 0 {
                     let weekDayString = Calendar.current.shortWeekdaySymbols[(component.weekday!-1)%7]
                     let line = ChartLimitLine(limit: counter, label: "\(weekDayString)")
-                    line.lineColor = .appSemiMax
+                    line.lineColor = .appText
+                    line.valueTextColor = .appText
+                    line.lineWidth = 1.0
+                    line.lineDashLengths = [2.0, 2.0]
                     graphView.xAxis.addLimitLine(line)
                 } else {
                     let line = ChartLimitLine(limit: counter, label: "\(component.hour ?? 0):00")
-                    line.lineColor = .appMid
+                    line.lineColor = .appGrey
+                    line.valueTextColor = .appGrey
+                    line.lineWidth = 0.5
+                    line.lineDashLengths = [2.0, 2.0]
                     graphView.xAxis.addLimitLine(line)
                 }
             } else if Calendar.current.isDate(tmp, equalTo: Date(), toGranularity: .minute){
                 let line = ChartLimitLine(limit: counter, label: NSLocalizedString("now", comment: "Now at Charts graph displaying current line"))
                 line.lineColor = .appMax
-                line.labelPosition = .bottomLeft
+                line.valueTextColor = .appText
+                line.labelPosition = .leftBottom
                 graphView.xAxis.addLimitLine(line)
             }
             
@@ -233,8 +242,8 @@ private extension ProfileVC {
             break
         case .forrest:
             set.drawFilledEnabled = false
-            set.fillColor = .appDarkGrey
-            set.colors = [.appDarkGrey]
+            set.fillColor = .appText
+            set.colors = [.appText]
             set.label = "Forrest"
         case .ulrich:
             set.drawFilledEnabled = false
@@ -252,9 +261,10 @@ private extension ProfileVC {
             set.colors = [.appMax]
             set.label = "Average"
         default:
-            let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
-            let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
-            set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
+            //let gradientColors = [UIColor.appMax.cgColor, UIColor.clear.cgColor] as CFArray
+            //TODO: remove
+            //let gradient = CGGradient.init(colorsSpace: nil, colors: gradientColors, locations: nil) // Gradient Object
+            //set.fill = Fill.fillWithLinearGradient(gradient!, angle: 90.0) // Set the Gradient
             set.drawFilledEnabled = true
             set.fillColor = .appMax
             set.colors = [.appMax]
@@ -263,7 +273,7 @@ private extension ProfileVC {
         set.drawValuesEnabled = false
         set.mode = .cubicBezier
         set.drawCirclesEnabled = false
-        set.valueTextColor = .white
+        set.valueTextColor = .appText
         return set
     }
     

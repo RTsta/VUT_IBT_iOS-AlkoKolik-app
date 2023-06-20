@@ -68,7 +68,7 @@ class MainVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        model.update(complition: nil)
+        model.updateSimulation(complition: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,15 +85,13 @@ class MainVC: UIViewController {
         }
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     @objc func applicationDidBecomeActive(notification: NSNotification) {
         // Application is back in the foreground
         loadSoberDate()
-    }
-    
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     //MARK: - TIMER

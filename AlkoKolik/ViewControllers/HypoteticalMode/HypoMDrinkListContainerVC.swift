@@ -14,14 +14,11 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
     var model : AppModel?
     
     private var listOfDrinks = [[DrinkItem]]()
+    private var flatternListOfDrinkIds : [Int] = []
     private var categoriesOfDrinks = [DrinkType]()
     var selectedVolumes : [Int] = [Int]()
     
     var expandedDrink : DrinkItem? = nil
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     lazy var picker : UIPickerView = {
         let picker = UIPickerView()
@@ -62,6 +59,11 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
         blurView.frame = view.bounds
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadListOfDrinks()
+    }
+    
     private func createNewAppModel() -> AppModel{
         let new = AppModel()
         if let parrent = tabBarController as? MainTabBarController{
@@ -71,21 +73,29 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
     }
     
     private func loadListOfDrinks(){
+        var result : [[DrinkItem]] = []
+        var _flatternListOfDrinkIds : [Int] = []
+        var _selectedVolumes : [Int] = []
         guard let model = model else {return}
-        var drinks = model.listOfDrinks
+        var drinks = model.listOfAllDrinks
         drinks.sort(by: {$0.name < $1.name})
+        drinks.sort(by: {model.isCustom(drink: $0) && !model.isCustom(drink: $1 )})
         drinks.sort(by: {$0.type < $1.type})
         
         var cat = Set<DrinkType>()
         for drink in drinks { cat.insert(drink.type) }
         categoriesOfDrinks = Array(cat).sorted(by: { $0.text() < $1.text() })
         
-        for _ in categoriesOfDrinks { listOfDrinks.append( [DrinkItem]() ) }
+        for _ in categoriesOfDrinks { result.append( [DrinkItem]() ) }
         
         for drink in drinks {
-            listOfDrinks[categoryToInt(drink.type)].append(drink)
-            selectedVolumes.append(0)
+            result[categoryToInt(drink.type)].append(drink)
+            _flatternListOfDrinkIds.append(drink.id)
+            _selectedVolumes.append(0)
         }
+        selectedVolumes=_selectedVolumes
+        listOfDrinks = result
+        flatternListOfDrinkIds = _flatternListOfDrinkIds
         self.tableView.reloadData()
     }
     
@@ -124,7 +134,7 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
         let oneDrink = listOfDrinks[indexPath.section][indexPath.row]
         cell.type = oneDrink.type
         cell.labelText.text = oneDrink.name
-        cell.volumeButton.setTitle("\(oneDrink.volume[selectedVolumes[oneDrink.id]])ml", for: .normal)
+        cell.volumeButton.setTitle("\(oneDrink.volume[selectedVolumes[flatternListOfDrinkIds.firstIndex(of: oneDrink.id)!]])ml", for: .normal)
         cell.delegate = self
         
         cell.drink_id = oneDrink.id
@@ -147,7 +157,7 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
     }
     
     func selectedVolumeChanged(at drink: Int, for index: Int) {
-        selectedVolumes[drink] = index
+        selectedVolumes[flatternListOfDrinkIds.firstIndex(of: drink)!] = index
         myDebugPrint(index)
     }
     
@@ -169,14 +179,15 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if let drink = expandedDrink {
-            selectedVolumes[drink.id] = row
+            
+            selectedVolumes[flatternListOfDrinkIds.firstIndex(of: drink.id)!] = row
         }
     }
     
     
     func volumeButtonPressed(withId drink: Int){
         if let _drink = findDrink(by: drink) {
-            delegate?.didSelectedDrink(_drink, selectedVolumes[_drink.id])
+            delegate?.didSelectedDrink(_drink, selectedVolumes[flatternListOfDrinkIds.firstIndex(of: _drink.id)!])
         }
     }
     
@@ -196,7 +207,7 @@ class HypoMDrinkListContainerVC : UITableViewController, UIPickerViewDelegate, U
         
         guard let window = window else {return}
         picker.reloadAllComponents()
-        picker.selectRow(selectedVolumes[expandedDrink?.id ?? 0], inComponent: 0, animated: false)
+        picker.selectRow(selectedVolumes[flatternListOfDrinkIds.firstIndex(of: expandedDrink?.id ?? 0) ?? 0], inComponent: 0, animated: false)
         window.addSubview(blurView)
         window.addSubview(picker)
         window.addSubview(toolbar)

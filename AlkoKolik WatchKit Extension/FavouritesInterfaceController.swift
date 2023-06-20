@@ -112,7 +112,8 @@ extension FavouritesInterfaceController{
         var result : [DrinkItem] = []
         if let favourites = favourites {
         for  d in favourites {
-            let tmp = ListOfDrinksManager.findDrink(drink_id: d.drinkId)
+            //FIXME: DefaultDrinksManager.findDrink doesnt load custom drinks
+            let tmp = DefaultDrinksManager.findDrink(drink_id: d.drinkId)
             guard let _ = tmp else {continue}
             result.append(tmp!)
         }

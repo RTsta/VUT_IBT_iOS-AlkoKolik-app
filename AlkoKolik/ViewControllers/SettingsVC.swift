@@ -23,11 +23,6 @@ class SettingsVC: UITableViewController  {
         dateformater.timeStyle = .short
         return dateformater
     }()
-
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +37,15 @@ class SettingsVC: UITableViewController  {
         super.viewWillDisappear(animated)
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? HypotheticalModeVC {
+            vc.model = model1
+        }
+        if let vc = segue.destination as? CustomDrinksListVC {
             vc.model = model1
         }
     }
@@ -59,12 +61,12 @@ class SettingsVC: UITableViewController  {
         return cell
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch tableView.cellForRow(at: indexPath)?.reuseIdentifier {
         case "settings_cell_clear_all":
             UserDefaultsManager.saveFavourite(drinks: [])
+            NotificationCenter.default.post(name: .favouriteNeedsReload, object: nil)
         case "settings_cell_show_walkthrough":
             let storyboard = UIStoryboard(name: "Walkthrough", bundle: nil)
             if let _walkthroughVC = storyboard.instantiateViewController(identifier: "WalkthroughVC") as? WalkthroughVC{

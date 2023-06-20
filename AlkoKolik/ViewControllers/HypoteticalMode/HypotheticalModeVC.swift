@@ -31,10 +31,6 @@ class HypotheticalModeVC: UIViewController, UITableViewDelegate, UITableViewData
     var peakBAC : Double = 0
     var soberDate : Date = Date()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     lazy var deleteButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
         button.style = .plain

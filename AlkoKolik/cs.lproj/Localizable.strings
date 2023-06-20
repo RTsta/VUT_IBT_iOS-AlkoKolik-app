@@ -1,3 +1,6 @@
+/* add volume */
+"add volume" = "přidat objem";
+
 /* Beer DrinkType localized name */
 "Beer" = "Beer";
 
@@ -16,7 +19,7 @@
 /* Delete button title */
 "Delete" = "Delete";
 
-/* Delete hypotetical drinks */
+/* Delete hypothetical drinks */
 "Delete all" = "Vymazat vše";
 
 /* Done button title */
@@ -46,6 +49,9 @@
 
 /* Liqueur DrinkType localized name */
 "Liqueur" = "Liqueur";
+
+/* Name (of drink) */
+"Name" = "Název";
 
 /* when was the last update to HealthKit */
 "never" = "Nikdy";
@@ -101,6 +107,9 @@
 /* Vodka DrinkType localized name */
 "Vodka" = "Vodka";
 
+/* Volume */
+"Volume" = "Objem";
+
 /* text about accessing Notifications */
 "We would like to notifie you, when you get sober, to let you know you cant do whatever you want 🥳" = "Rádi bychom ti dali vědět, jakmile budeš opět střízlivý, aby ti už nic neuteklo 🥳";
 
@@ -117,5 +126,5 @@
 "You can quickly access your favorites from main screen" = "Oblíbené nápoje můžou být na dosah ruky přímo z hlavní obrazovky";
 
 /* You reached 0‰ */
-"You reached 0‰" = "Jsi opět na 0";
+"You reached 0‰" = "Jsi opět na 0‰";
 

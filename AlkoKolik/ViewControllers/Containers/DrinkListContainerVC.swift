@@ -9,10 +9,15 @@ import UIKit
 
 
 class DrinkListContainerVC : UITableViewController {
+    enum Usage {
+        case drinkList
+        case addDrink
+        case customDrinks
+    }
     
     weak var delegate: DrinkListVCDelegate?
     
-    var isTableSelectable : Bool = false
+    var containerUsage: DrinkListContainerVC.Usage = .drinkList
     
     lazy var model : AppModel = { return (tabBarController as? MainTabBarController)?.model ?? createNewAppModel()}()
     var childFavVC : FavouriteButtonsVC? = nil
@@ -21,12 +26,13 @@ class DrinkListContainerVC : UITableViewController {
     private var categoriesOfDrinks = [DrinkType]()
     var selectedIndexPath : IndexPath = IndexPath()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadListOfDrinks()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         loadListOfDrinks()
     }
     
@@ -43,20 +49,24 @@ class DrinkListContainerVC : UITableViewController {
     }
     
     private func loadListOfDrinks(){
-        var drinks = model.listOfDrinks
+        var result : [[DrinkItem]] = []
+        var drinks = containerUsage == .customDrinks ? model.customDrinks : model.listOfAllDrinks
+        drinks = drinks.filter({$0.active == true})
         drinks.sort(by: {$0.name < $1.name})
+        drinks.sort(by: {model.isCustom(drink: $0) && !model.isCustom(drink: $1 )})
         drinks.sort(by: {$0.type < $1.type})
         
         var cat = Set<DrinkType>()
         for drink in drinks { cat.insert(drink.type) }
         categoriesOfDrinks = Array(cat).sorted(by: { $0.text() < $1.text() })
         
-        for _ in categoriesOfDrinks { listOfDrinks.append( [DrinkItem]() ) }
+        for _ in categoriesOfDrinks { result.append( [DrinkItem]() ) }
         
         for drink in drinks {
-            listOfDrinks[categoryToInt(drink.type)].append(drink)
+            result[categoryToInt(drink.type)].append(drink)
         }
         
+        listOfDrinks = result
         self.tableView.reloadData()
     }
     
@@ -90,15 +100,11 @@ class DrinkListContainerVC : UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if selectedIndexPath == indexPath {
+        selectedIndexPath = indexPath
+        let drink = listOfDrinks[selectedIndexPath.section][selectedIndexPath.row]
+        delegate?.didSelectedDrink(drink)
+        if containerUsage != .addDrink{
             tableView.deselectRow(at: indexPath, animated: true)
-        } else {
-            selectedIndexPath = indexPath
-            let drink = listOfDrinks[selectedIndexPath.section][selectedIndexPath.row]
-            delegate?.didSelectedDrink(drink)
-            if !isTableSelectable{
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
         }
     }
     
@@ -114,5 +120,30 @@ class DrinkListContainerVC : UITableViewController {
         view.tintColor = UIColor.appBackground
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.appText
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        if containerUsage == .customDrinks {
+            return .delete
+        }else {
+            return .none
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if containerUsage == .customDrinks {
+                tableView.beginUpdates()
+                let drink = listOfDrinks[indexPath.section][indexPath.row]
+                CoreDataManager.updateCustomDrinks(of: drink, active: false)
+                listOfDrinks[indexPath.section].remove(at: indexPath.row)
+                model.updateCustomDrinks()
+                model.favourites.removeAll(where: {($0.drinkId == drink.id)})
+                UserDefaultsManager.saveFavourite(drinks: model.favourites)
+                NotificationCenter.default.post(name: .favouriteNeedsReload, object: nil)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+                tableView.endUpdates()
+            }
+        }
     }
 }
