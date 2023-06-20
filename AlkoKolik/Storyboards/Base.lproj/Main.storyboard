@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjo-M6-JiL">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjo-M6-JiL">
     <device id="retina6_0" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -37,25 +37,25 @@
         <!--Main-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController interfaceStyle="dark" id="BYZ-38-t0r" customClass="MainVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMf-BE-gZr">
-                                <rect key="frame" x="192.33333333333334" y="64" width="5.3333333333333428" height="29"/>
+                                <rect key="frame" x="192.33333333333334" y="67" width="5.3333333333333428" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" name="appText"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLr-db-I4G" customClass="UIClockView" customModule="AlkoKolik" customModuleProvider="target">
-                                <rect key="frame" x="24" y="103" width="342" height="342"/>
+                                <rect key="frame" x="24" y="106" width="342" height="342"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PLr-db-I4G" secondAttribute="height" multiplier="200:200" id="qFC-Dp-txz"/>
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mqF-9o-9mV">
-                                <rect key="frame" x="84" y="453" width="222" height="246"/>
+                                <rect key="frame" x="84" y="456" width="222" height="246"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="246" id="oeJ-FE-1Jo"/>
                                 </constraints>
@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncf-42-zHb">
-                                <rect key="frame" x="70" y="64" width="250" height="261"/>
+                                <rect key="frame" x="70" y="67" width="250" height="261"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="261" id="UiL-mo-njF"/>
                                 </constraints>
@@ -106,7 +106,7 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V5p-dI-Umb">
-                                <rect key="frame" x="0.0" y="335" width="390" height="426"/>
+                                <rect key="frame" x="0.0" y="338" width="390" height="423"/>
                                 <connections>
                                     <segue destination="MMv-i2-SYe" kind="embed" id="nkK-8k-ucd"/>
                                 </connections>
@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eb4-4v-9mu" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
+                                <rect key="frame" x="0.0" y="47" width="390" height="714"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="firstWeekday">
                                         <integer key="value" value="2"/>
@@ -213,7 +213,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black" translucent="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="KX6-Ua-bW1">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="47" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" name="appText"/>
@@ -236,7 +236,7 @@
             <objects>
                 <tableViewController id="uE0-13-RR6" customClass="ProfileVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="RuV-qF-Buz">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <sections>
@@ -472,11 +472,11 @@
             <objects>
                 <viewController id="a7Q-DY-X5Z" customClass="DayVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E84-QS-EcM">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-Xp-EmW">
-                                <rect key="frame" x="0.0" y="56" width="390" height="768"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="812"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJF-m8-FLh" customClass="FSCalendar">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
@@ -503,11 +503,11 @@
                                         </connections>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yUk-7B-Lf4">
-                                        <rect key="frame" x="0.0" y="320" width="390" height="448"/>
+                                        <rect key="frame" x="0.0" y="320" width="390" height="492"/>
                                         <color key="backgroundColor" name="appBackground"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todayDrinkTableCell" rowHeight="44" id="0G9-YH-ool" customClass="TodayDrinkTableCell" customModule="AlkoKolik" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="44"/>
+                                                <rect key="frame" x="0.0" y="50" width="390" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0G9-YH-ool" id="ERa-ib-p4b">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
@@ -541,7 +541,7 @@
                                                 </connections>
                                             </tableViewCell>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="todayDrinkAddTableCell" rowHeight="44" id="6L3-E5-drc" customClass="TodayDrinkAddTableCell" customModule="AlkoKolik" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="88.666666030883789" width="390" height="44"/>
+                                                <rect key="frame" x="0.0" y="94" width="390" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6L3-E5-drc" id="i8a-sM-2kl">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
@@ -604,11 +604,11 @@
             <objects>
                 <viewController id="je8-et-wTj" customClass="AddDrinkVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pPY-k9-Avc">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1lX-9e-YGc">
-                                <rect key="frame" x="0.0" y="56" width="390" height="734"/>
+                                <rect key="frame" x="0.0" y="56" width="390" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uW-oU-VYk">
                                         <rect key="frame" x="20" y="0.0" width="370" height="50"/>
@@ -641,7 +641,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LH2-8g-bui">
-                                        <rect key="frame" x="0.0" y="110" width="390" height="624"/>
+                                        <rect key="frame" x="0.0" y="110" width="390" height="668"/>
                                         <connections>
                                             <segue destination="MMv-i2-SYe" kind="embed" id="GxN-Uk-dMP"/>
                                         </connections>
@@ -686,14 +686,14 @@
             <objects>
                 <tableViewController id="fL5-ZQ-NRr" customClass="SettingsVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y9o-lY-6sk">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <sections>
                             <tableViewSection headerTitle="Sync" id="4Dc-7c-1oI">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings_cell_sync_info" rowHeight="65" id="zTj-Zw-o0l" customClass="SettingsSyncCell" customModule="AlkoKolik" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="65"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zTj-Zw-o0l" id="Z13-Tm-lKV">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="65"/>
@@ -751,7 +751,7 @@
                             <tableViewSection headerTitle="Data" id="cY3-Am-XbA">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings_cell_show_test_vc" id="H6I-Tt-KnP">
-                                        <rect key="frame" x="0.0" y="176.99999809265137" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="193" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H6I-Tt-KnP" id="gXP-Vo-j4I">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -776,7 +776,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings_cell_show_walkthrough" id="cg1-Q4-J0H">
-                                        <rect key="frame" x="0.0" y="220.66666603088379" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="236.66666793823242" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cg1-Q4-J0H" id="py0-bS-uYY">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -798,7 +798,7 @@
                                         <color key="backgroundColor" name="appCell"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings_cell_hypothetical_mode" id="Tmx-lO-BRP">
-                                        <rect key="frame" x="0.0" y="264.33333396911621" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="280.33333587646484" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tmx-lO-BRP" id="GwK-LF-xNR">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -823,7 +823,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="settings_cell_clear_all" id="5Bx-zZ-Ga0">
-                                        <rect key="frame" x="0.0" y="308.00000190734863" width="390" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="324.00000381469727" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Bx-zZ-Ga0" id="9gb-G8-e8Y">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -863,12 +863,12 @@
             <objects>
                 <tableViewController id="MMv-i2-SYe" customClass="DrinkListContainerVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="2KD-gQ-UZz">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="426"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="423"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="drinkListCell" rowHeight="45" id="iVK-45-AP6" customClass="DrinkListCell" customModule="AlkoKolik" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="45"/>
+                                <rect key="frame" x="0.0" y="50" width="390" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iVK-45-AP6" id="728-5o-HsM">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="45"/>
@@ -922,15 +922,15 @@
             <objects>
                 <viewController id="amX-h9-U1H" customClass="HypotheticalModeVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gFZ-yF-pOL">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eud-e8-Mru">
-                                <rect key="frame" x="0.0" y="140.00000000000003" width="390" height="263.66666666666674"/>
+                                <rect key="frame" x="0.0" y="140" width="390" height="262"/>
                                 <color key="backgroundColor" name="appBackground"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="hypotheticalModeRecordCell" rowHeight="44" id="5Be-HM-Y2n" customClass="TodayDrinkTableCell" customModule="AlkoKolik" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="390" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Be-HM-Y2n" id="SOF-M3-MSv">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="44"/>
@@ -970,7 +970,7 @@
                                 </connections>
                             </tableView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6h-Sy-GaO">
-                                <rect key="frame" x="0.0" y="403.66666666666674" width="390" height="269.33333333333326"/>
+                                <rect key="frame" x="0.0" y="402" width="390" height="268"/>
                                 <connections>
                                     <segue destination="9Dx-gE-uXM" kind="embed" identifier="hypoMDrinkListContainerSegue" id="OWr-8E-anR"/>
                                 </connections>
@@ -1150,12 +1150,12 @@
             <objects>
                 <tableViewController id="9Dx-gE-uXM" customClass="HypoMDrinkListContainerVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Pnb-Ls-zMh">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="269.33333333333331"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="268"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="drinkListCell" rowHeight="45" id="bHd-0Q-YxM" customClass="HypoMDrinkListCell" customModule="AlkoKolik" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="45"/>
+                                <rect key="frame" x="0.0" y="50" width="390" height="45"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bHd-0Q-YxM" id="4HK-ow-xci">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="45"/>
@@ -1241,12 +1241,12 @@
             <objects>
                 <tableViewController title="New custom drink" id="fV7-dv-jWl" customClass="OneCustomDrinkTableVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="ItJ-TQ-k0a">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="appBackground"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="add_custom_drink_cell" id="7vQ-mP-cCk" customClass="OneCustomDrinkCell" customModule="AlkoKolik" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49" width="390" height="43.666667938232422"/>
+                                <rect key="frame" x="0.0" y="55.333332061767578" width="390" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7vQ-mP-cCk" id="FRx-1O-kkU">
                                     <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
@@ -1292,11 +1292,11 @@
             <objects>
                 <viewController id="1Nm-84-Eeg" customClass="CustomDrinksListVC" customModule="AlkoKolik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lxC-sp-2Tg">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKs-J8-YIx">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="673"/>
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="670"/>
                                 <connections>
                                     <segue destination="MMv-i2-SYe" kind="embed" id="nF4-lt-Uo3"/>
                                 </connections>
@@ -1332,7 +1332,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygk-nf-JqN">
-                                <rect key="frame" x="64" y="272.33333333333337" width="262" height="309.33333333333337"/>
+                                <rect key="frame" x="64" y="267.33333333333337" width="262" height="309.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="1zn-zB-NTV">
                                         <rect key="frame" x="0.0" y="-0.66666666666662877" width="262" height="310"/>
@@ -1490,7 +1490,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BMH-gz-Agg">
-                                <rect key="frame" x="0.0" y="44" width="222" height="202"/>
+                                <rect key="frame" x="0.0" y="47" width="222" height="165"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="7" minimumInteritemSpacing="10" id="1iR-CO-gfL">
                                     <size key="itemSize" width="80" height="80"/>
@@ -1573,8 +1573,8 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="btn_add_drink_small" width="23.333333969116211" height="23.333333969116211"/>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
-        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="tab_calendar" width="30" height="30"/>
         <image name="tab_drinks" width="30" height="30"/>
         <image name="tab_main" width="30" height="30"/>
@@ -1592,13 +1592,13 @@
             <color red="0.093999996781349182" green="0.10599999874830246" blue="0.10999999940395355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appGray">
-            <color red="0.46700000762939453" green="0.52899998426437378" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appInfoLabel">
             <color red="0.46666666666666667" green="0.52941176470588236" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appMax">
-            <color red="0.87450980392156863" green="0.16078431372549021" blue="0.20784313725490197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.875" green="0.16099999845027924" blue="0.20800000429153442" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="appText">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
